@@ -14,15 +14,22 @@
 
 ## 每次更新
 
+### 发布前：自检（推荐）
+
+```bash
+python scripts/check.py
+```
+
+会检查 HTML 标签配对、锚点、资源引用、占位文本、疑似密钥等。
+**0 错误**再推送。
+
 ### 方式 A：使用脚本（推荐）
 
 ```bash
-./scripts/deploy.sh "更新内容"
+bash scripts/deploy.sh "更新内容"
 ```
 
-脚本会自动 `git add`、`commit`、`push`。
-
-> Windows 用户（Git Bash）也可以直接运行：`bash scripts/deploy.sh "更新内容"`
+脚本会自动 `git add`、`commit`、`push`。Windows（Git Bash）可以直接运行。
 
 ### 方式 B：手动
 
@@ -41,4 +48,4 @@ A：GitHub Pages 构建需要 1~3 分钟，稍等并刷新（可强制刷新 Ctr
 A：确认 `git push` 成功，并且页面 URL 是 `https://chenji0421.github.io`（不是本地路径）。
 
 **Q：想换一个主题色？**
-A：所有颜色都在 `css/style.css` 顶部的 `:root` / `[data-theme="light"]` 里，改 `--accent` 和 `--accent-2` 即可。
+A：改 `css/style.css` 顶部的 `--accent` 和 `--accent-2`，全站颜色会统一变化。
