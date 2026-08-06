@@ -17,7 +17,7 @@
 打字机短语在 `js/main.js` 顶部：
 
 ```js
-var phrases = ['爱折腾的高中生', 'Python 学习者', ...];
+var phrases = ['爱折腾的大学生', 'Python 学习者', ...];
 ```
 
 首屏数据条（`3+ 技能方向` 等）在 Hero 区的 `.hero-stats` 里，改数字即可。
