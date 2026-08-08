@@ -76,7 +76,12 @@
           <span></span><span></span><span></span>
         </button>
         <div class="topbar-title" id="topbarTitle">首页</div>
-        <div class="topbar-actions"></div>
+        <div class="topbar-actions">
+          <button type="button" class="theme-toggle" id="themeToggle" title="切换深色 / 浅色模式" aria-label="切换主题">
+            <span class="theme-icon" aria-hidden="true">🌙</span>
+            <span class="theme-text">深色模式</span>
+          </button>
+        </div>
       </header>
 
       <div class="pages">
@@ -376,13 +381,13 @@
               <p class="plan-hero-desc">大二阶段学习记录：编程基础、Python 自动化、网页开发、数据分析和规律生活。</p>
             </div>
             <div class="plan-actions">
-              <button type="button" class="btn btn-outline" data-toast="已复制计划文本到剪贴板（演示）">📋 复制计划</button>
-              <button type="button" class="btn btn-outline" data-toast="已恢复为默认模板">↺ 恢复模板</button>
-              <button type="button" class="btn btn-primary" data-toast="已保存到浏览器 localStorage（演示）">💾 本地保存</button>
+              <button type="button" class="btn btn-outline" id="planCopy">📋 复制计划</button>
+              <button type="button" class="btn btn-outline" id="planReset">↺ 恢复模板</button>
+              <button type="button" class="btn btn-primary" id="planSave">💾 本地保存</button>
             </div>
           </div>
 
-          <div class="plan-tip">💡 当前是查看模式。修改内容会保存到浏览器 localStorage，不会上传到服务器。</div>
+          <div class="plan-tip">💡 当前为编辑模式。表格内容可直接修改，改动会自动保存到浏览器 localStorage，不会上传到服务器。</div>
 
           <div class="plan-cols">
             <div class="plan-col">
@@ -415,7 +420,10 @@
             </div>
           </div>
 
-          <h3 class="block-title">🕒 每日时间段安排</h3>
+          <div class="plan-table-tools">
+            <h3 class="block-title">🕒 每日时间段安排</h3>
+            <button type="button" class="btn btn-outline" id="planAddRow">＋ 新增时间段</button>
+          </div>
           <div class="table-wrap">
             <table class="plan-table">
               <thead>
@@ -424,56 +432,129 @@
                   <th>要做什么</th>
                   <th>重点 / 说明</th>
                   <th>类型</th>
+                  <th>操作</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr>
-                  <td>07:30 - 08:00</td>
-                  <td>起床、洗漱、早餐</td>
-                  <td>不赖床，吃好早餐</td>
-                  <td><span class="type-badge t-life">生活</span></td>
+              <tbody id="planBody">
+                <tr data-type="生活">
+                  <td><input class="cell-input" type="text" value="07:30 - 08:00" data-field="time" aria-label="时间段" placeholder="如 07:30 - 08:00" /></td>
+                  <td><input class="cell-input" type="text" value="起床、洗漱、早餐" data-field="task" aria-label="要做什么" placeholder="要做什么" /></td>
+                  <td><input class="cell-input" type="text" value="不赖床，吃好早餐" data-field="note" aria-label="说明" placeholder="重点 / 说明" /></td>
+                  <td>
+                    <select class="cell-select" data-field="type" aria-label="类型">
+                      <option value="生活" selected>生活</option>
+                      <option value="学习">学习</option>
+                      <option value="运动">运动</option>
+                      <option value="调整">调整</option>
+                      <option value="项目">项目</option>
+                    </select>
+                  </td>
+                  <td class="cell-ops"><button type="button" class="row-del" title="删除该时间段" aria-label="删除">✕</button></td>
                 </tr>
-                <tr>
-                  <td>08:00 - 10:00</td>
-                  <td>Python 基础练习</td>
-                  <td>语法 + 每天一道练习</td>
-                  <td><span class="type-badge t-study">学习</span></td>
+                <tr data-type="学习">
+                  <td><input class="cell-input" type="text" value="08:00 - 10:00" data-field="time" aria-label="时间段" /></td>
+                  <td><input class="cell-input" type="text" value="Python 基础练习" data-field="task" aria-label="要做什么" /></td>
+                  <td><input class="cell-input" type="text" value="语法 + 每天一道练习" data-field="note" aria-label="说明" /></td>
+                  <td>
+                    <select class="cell-select" data-field="type" aria-label="类型">
+                      <option value="生活">生活</option>
+                      <option value="学习" selected>学习</option>
+                      <option value="运动">运动</option>
+                      <option value="调整">调整</option>
+                      <option value="项目">项目</option>
+                    </select>
+                  </td>
+                  <td class="cell-ops"><button type="button" class="row-del" title="删除该时间段" aria-label="删除">✕</button></td>
                 </tr>
-                <tr>
-                  <td>10:15 - 11:30</td>
-                  <td>前端页面练习</td>
-                  <td>复刻一个组件 / 页面</td>
-                  <td><span class="type-badge t-study">学习</span></td>
+                <tr data-type="学习">
+                  <td><input class="cell-input" type="text" value="10:15 - 11:30" data-field="time" aria-label="时间段" /></td>
+                  <td><input class="cell-input" type="text" value="前端页面练习" data-field="task" aria-label="要做什么" /></td>
+                  <td><input class="cell-input" type="text" value="复刻一个组件 / 页面" data-field="note" aria-label="说明" /></td>
+                  <td>
+                    <select class="cell-select" data-field="type" aria-label="类型">
+                      <option value="生活">生活</option>
+                      <option value="学习" selected>学习</option>
+                      <option value="运动">运动</option>
+                      <option value="调整">调整</option>
+                      <option value="项目">项目</option>
+                    </select>
+                  </td>
+                  <td class="cell-ops"><button type="button" class="row-del" title="删除该时间段" aria-label="删除">✕</button></td>
                 </tr>
-                <tr>
-                  <td>12:00 - 14:00</td>
-                  <td>午餐 + 午休</td>
-                  <td>清淡饮食，睡 30 分钟</td>
-                  <td><span class="type-badge t-life">生活</span></td>
+                <tr data-type="生活">
+                  <td><input class="cell-input" type="text" value="12:00 - 14:00" data-field="time" aria-label="时间段" /></td>
+                  <td><input class="cell-input" type="text" value="午餐 + 午休" data-field="task" aria-label="要做什么" /></td>
+                  <td><input class="cell-input" type="text" value="清淡饮食，睡 30 分钟" data-field="note" aria-label="说明" /></td>
+                  <td>
+                    <select class="cell-select" data-field="type" aria-label="类型">
+                      <option value="生活" selected>生活</option>
+                      <option value="学习">学习</option>
+                      <option value="运动">运动</option>
+                      <option value="调整">调整</option>
+                      <option value="项目">项目</option>
+                    </select>
+                  </td>
+                  <td class="cell-ops"><button type="button" class="row-del" title="删除该时间段" aria-label="删除">✕</button></td>
                 </tr>
-                <tr>
-                  <td>14:00 - 15:30</td>
-                  <td>数据分析入门</td>
-                  <td>pandas / 数据可视化</td>
-                  <td><span class="type-badge t-study">学习</span></td>
+                <tr data-type="学习">
+                  <td><input class="cell-input" type="text" value="14:00 - 15:30" data-field="time" aria-label="时间段" /></td>
+                  <td><input class="cell-input" type="text" value="数据分析入门" data-field="task" aria-label="要做什么" /></td>
+                  <td><input class="cell-input" type="text" value="pandas / 数据可视化" data-field="note" aria-label="说明" /></td>
+                  <td>
+                    <select class="cell-select" data-field="type" aria-label="类型">
+                      <option value="生活">生活</option>
+                      <option value="学习" selected>学习</option>
+                      <option value="运动">运动</option>
+                      <option value="调整">调整</option>
+                      <option value="项目">项目</option>
+                    </select>
+                  </td>
+                  <td class="cell-ops"><button type="button" class="row-del" title="删除该时间段" aria-label="删除">✕</button></td>
                 </tr>
-                <tr>
-                  <td>15:30 - 16:30</td>
-                  <td>运动 / 快走</td>
-                  <td>拉伸 + 快走 40 分钟</td>
-                  <td><span class="type-badge t-sport">运动</span></td>
+                <tr data-type="运动">
+                  <td><input class="cell-input" type="text" value="15:30 - 16:30" data-field="time" aria-label="时间段" /></td>
+                  <td><input class="cell-input" type="text" value="运动 / 快走" data-field="task" aria-label="要做什么" /></td>
+                  <td><input class="cell-input" type="text" value="拉伸 + 快走 40 分钟" data-field="note" aria-label="说明" /></td>
+                  <td>
+                    <select class="cell-select" data-field="type" aria-label="类型">
+                      <option value="生活">生活</option>
+                      <option value="学习">学习</option>
+                      <option value="运动" selected>运动</option>
+                      <option value="调整">调整</option>
+                      <option value="项目">项目</option>
+                    </select>
+                  </td>
+                  <td class="cell-ops"><button type="button" class="row-del" title="删除该时间段" aria-label="删除">✕</button></td>
                 </tr>
-                <tr>
-                  <td>16:30 - 17:30</td>
-                  <td>弹性时间</td>
-                  <td>处理临时事项 / 休息</td>
-                  <td><span class="type-badge t-adjust">调整</span></td>
+                <tr data-type="调整">
+                  <td><input class="cell-input" type="text" value="16:30 - 17:30" data-field="time" aria-label="时间段" /></td>
+                  <td><input class="cell-input" type="text" value="弹性时间" data-field="task" aria-label="要做什么" /></td>
+                  <td><input class="cell-input" type="text" value="处理临时事项 / 休息" data-field="note" aria-label="说明" /></td>
+                  <td>
+                    <select class="cell-select" data-field="type" aria-label="类型">
+                      <option value="生活">生活</option>
+                      <option value="学习">学习</option>
+                      <option value="运动">运动</option>
+                      <option value="调整" selected>调整</option>
+                      <option value="项目">项目</option>
+                    </select>
+                  </td>
+                  <td class="cell-ops"><button type="button" class="row-del" title="删除该时间段" aria-label="删除">✕</button></td>
                 </tr>
-                <tr>
-                  <td>19:30 - 21:30</td>
-                  <td>项目实践 / 复盘</td>
-                  <td>写博客、整理代码、写复盘</td>
-                  <td><span class="type-badge t-project">项目</span></td>
+                <tr data-type="项目">
+                  <td><input class="cell-input" type="text" value="19:30 - 21:30" data-field="time" aria-label="时间段" /></td>
+                  <td><input class="cell-input" type="text" value="项目实践 / 复盘" data-field="task" aria-label="要做什么" /></td>
+                  <td><input class="cell-input" type="text" value="写博客、整理代码、写复盘" data-field="note" aria-label="说明" /></td>
+                  <td>
+                    <select class="cell-select" data-field="type" aria-label="类型">
+                      <option value="生活">生活</option>
+                      <option value="学习">学习</option>
+                      <option value="运动">运动</option>
+                      <option value="调整">调整</option>
+                      <option value="项目" selected>项目</option>
+                    </select>
+                  </td>
+                  <td class="cell-ops"><button type="button" class="row-del" title="删除该时间段" aria-label="删除">✕</button></td>
                 </tr>
               </tbody>
             </table>

@@ -219,7 +219,211 @@
   var yearEl = $('#year');
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
+  /* ================= 深色 / 浅色主题切换 ================= */
+  var themeBtn = $('#themeToggle');
+  function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    try { localStorage.setItem('workbench_theme', theme); } catch (e) {}
+    if (!themeBtn) return;
+    var icon = themeBtn.querySelector('.theme-icon');
+    var txt = themeBtn.querySelector('.theme-text');
+    if (icon) icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+    if (txt) txt.textContent = theme === 'dark' ? '浅色模式' : '深色模式';
+  }
+  if (themeBtn) {
+    themeBtn.addEventListener('click', function () {
+      var cur = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+      applyTheme(cur === 'dark' ? 'light' : 'dark');
+      toast(cur === 'dark' ? '已切换到浅色模式' : '已切换到深色模式', 'success');
+    });
+  }
+  function initTheme() {
+    var saved = null;
+    try { saved = localStorage.getItem('workbench_theme'); } catch (e) {}
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    applyTheme(saved || (prefersDark ? 'dark' : 'light'));
+  }
+
+  /* ================= 计划表：localStorage 编辑 / 新增 / 删除 / 恢复模板 / 复制 ================= */
+  var planBody = $('#planBody');
+  var planStorageKey = 'workbench_plan_v1';
+  var planTemplateHTML = planBody ? planBody.innerHTML : '';
+
+  var TYPE_COLOR = {
+    '生活': '#2f7d6d',
+    '学习': '#1a73e8',
+    '运动': '#e8590c',
+    '调整': '#6b7280',
+    '项目': '#9333ea'
+  };
+  var TYPE_ORDER = ['生活', '学习', '运动', '调整', '项目'];
+
+  function escapeHtml(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
+
+  function buildTypeOptions(selected) {
+    return TYPE_ORDER.map(function (t) {
+      return '<option value="' + t + '"' + (t === selected ? ' selected' : '') + '>' + t + '</option>';
+    }).join('');
+  }
+
+  function buildPlanRow(row) {
+    var r = row || { time: '', task: '', note: '', type: '生活' };
+    var tr = document.createElement('tr');
+    tr.dataset.type = r.type;
+    tr.innerHTML =
+      '<td><input class="cell-input" type="text" value="' + escapeHtml(r.time) + '" data-field="time" aria-label="时间段" placeholder="如 07:30 - 08:00"></td>' +
+      '<td><input class="cell-input" type="text" value="' + escapeHtml(r.task) + '" data-field="task" aria-label="要做什么" placeholder="要做什么"></td>' +
+      '<td><input class="cell-input" type="text" value="' + escapeHtml(r.note) + '" data-field="note" aria-label="说明" placeholder="重点 / 说明"></td>' +
+      '<td><select class="cell-select" data-field="type" aria-label="类型">' + buildTypeOptions(r.type) + '</select></td>' +
+      '<td class="cell-ops"><button type="button" class="row-del" title="删除该时间段" aria-label="删除">✕</button></td>';
+    return tr;
+  }
+
+  function tintType(tr) {
+    var sel = tr.querySelector('[data-field="type"]');
+    if (!sel) return;
+    sel.style.borderLeft = '3px solid ' + (TYPE_COLOR[sel.value] || '#6b7280');
+  }
+
+  function readPlanRows() {
+    if (!planBody) return [];
+    var rows = [];
+    planBody.querySelectorAll('tr').forEach(function (tr) {
+      var row = { time: '', task: '', note: '', type: '生活' };
+      tr.querySelectorAll('[data-field]').forEach(function (inp) {
+        row[inp.getAttribute('data-field')] = inp.value;
+      });
+      rows.push(row);
+    });
+    return rows;
+  }
+
+  function savePlan() {
+    try { localStorage.setItem(planStorageKey, JSON.stringify(readPlanRows())); } catch (e) {}
+  }
+
+  function renderPlan(rows) {
+    if (!planBody) return;
+    planBody.innerHTML = '';
+    rows.forEach(function (r) {
+      var tr = buildPlanRow(r);
+      tintType(tr);
+      planBody.appendChild(tr);
+    });
+  }
+
+  function loadPlan() {
+    if (!planBody) return;
+    var saved = null;
+    try { saved = localStorage.getItem(planStorageKey); } catch (e) {}
+    if (saved) {
+      try {
+        var rows = JSON.parse(saved);
+        if (Array.isArray(rows) && rows.length) {
+          renderPlan(rows);
+          return;
+        }
+      } catch (e) { /* 存档损坏则回退到静态模板 */ }
+    }
+    // 无存档：保留静态 HTML 模板，并给每行类型下拉加上彩色标识
+    planBody.querySelectorAll('tr').forEach(tintType);
+  }
+
+  if (planBody) {
+    // 输入即自动保存
+    planBody.addEventListener('input', savePlan);
+    planBody.addEventListener('change', function (e) {
+      var tr = e.target.closest ? e.target.closest('tr') : null;
+      if (tr) tintType(tr);
+      savePlan();
+    });
+    // 删除行
+    planBody.addEventListener('click', function (e) {
+      var btn = e.target.closest ? e.target.closest('.row-del') : null;
+      if (!btn) return;
+      var tr = btn.closest('tr');
+      if (tr) {
+        tr.remove();
+        savePlan();
+        toast('已删除该时间段', 'success');
+      }
+    });
+  }
+
+  var planAddBtn = $('#planAddRow');
+  if (planAddBtn && planBody) {
+    planAddBtn.addEventListener('click', function () {
+      var tr = buildPlanRow({ time: '', task: '', note: '', type: '生活' });
+      planBody.appendChild(tr);
+      tintType(tr);
+      savePlan();
+      toast('已新增时间段，填写后自动保存', 'success');
+      var first = tr.querySelector('.cell-input');
+      if (first) first.focus();
+    });
+  }
+
+  var planResetBtn = $('#planReset');
+  if (planResetBtn && planBody) {
+    planResetBtn.addEventListener('click', function () {
+      planBody.innerHTML = planTemplateHTML;
+      planBody.querySelectorAll('tr').forEach(tintType);
+      savePlan();
+      toast('已恢复为默认模板', 'success');
+    });
+  }
+
+  function fallbackCopy(text) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); } catch (e) {}
+    document.body.removeChild(ta);
+  }
+
+  var planCopyBtn = $('#planCopy');
+  if (planCopyBtn) {
+    planCopyBtn.addEventListener('click', function () {
+      var rows = readPlanRows();
+      var lines = ['Chenji 的阶段冲刺计划', ''];
+      rows.forEach(function (r) {
+        lines.push(r.time + ' | ' + r.task + ' | ' + r.note + ' | ' + r.type);
+      });
+      var text = lines.join('\n');
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function () {
+          toast('已复制计划文本到剪贴板', 'success');
+        }, function () {
+          fallbackCopy(text);
+          toast('已复制计划文本到剪贴板', 'success');
+        });
+      } else {
+        fallbackCopy(text);
+        toast('已复制计划文本到剪贴板', 'success');
+      }
+    });
+  }
+
+  var planSaveBtn = $('#planSave');
+  if (planSaveBtn) {
+    planSaveBtn.addEventListener('click', function () {
+      savePlan();
+      toast('已保存到浏览器 localStorage', 'success');
+    });
+  }
+
   /* ================= 初始化 ================= */
+  // 主题（深色/浅色，localStorage 记忆）
+  initTheme();
+  // 计划表（从 localStorage 恢复；无存档则保留静态模板）
+  loadPlan();
   // 页面首次加载：从 hash 恢复路由；没 hash 时保持默认首页
   navigate(getHashPage(), false);
   onScroll();
