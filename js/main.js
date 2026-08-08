@@ -91,6 +91,81 @@
     navigate(getHashPage(), false);
   });
 
+  /* ================= 文章筛选（简单版） ================= */
+  var articleCards = $all('#articleGrid .article-card');
+  var chipBtns = $all('#tagFilter .chip');
+  var catSel = $('#categoryFilter');
+  var monthSel = $('#monthFilter');
+  var countEl = $('#articleCount');
+  var filterState = { q: '', tag: 'all', cat: 'all', month: 'all' };
+
+  function applyArticleFilter() {
+    var shown = 0;
+    articleCards.forEach(function (card) {
+      var ok = true;
+      var text = (card.dataset.title + ' ' + card.dataset.summary + ' ' + card.dataset.tags).toLowerCase();
+      var q = filterState.q.toLowerCase().trim();
+      if (q && text.indexOf(q) === -1) ok = false;
+      if (ok && filterState.tag !== 'all') {
+        var tags = (card.dataset.tags || '').toLowerCase().split(',');
+        if (tags.indexOf(filterState.tag) === -1) ok = false;
+      }
+      if (ok && filterState.cat !== 'all' && card.dataset.cat !== filterState.cat) ok = false;
+      if (ok && filterState.month !== 'all' && (card.dataset.date || '').indexOf(filterState.month) !== 0) ok = false;
+      card.classList.toggle('hide', !ok);
+      if (ok) shown++;
+    });
+    if (countEl) countEl.textContent = shown + ' / ' + articleCards.length + ' 篇文章';
+  }
+
+  var searchInput = $('#articleSearch');
+  if (searchInput) {
+    searchInput.addEventListener('input', function () {
+      filterState.q = searchInput.value;
+      applyArticleFilter();
+    });
+  }
+
+  chipBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      chipBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      filterState.tag = btn.getAttribute('data-tag').toLowerCase();
+      applyArticleFilter();
+    });
+  });
+
+  if (catSel) {
+    catSel.addEventListener('change', function () {
+      filterState.cat = catSel.value;
+      applyArticleFilter();
+    });
+  }
+  if (monthSel) {
+    monthSel.addEventListener('change', function () {
+      filterState.month = monthSel.value;
+      applyArticleFilter();
+    });
+  }
+
+  /* 点文章卡片内标签也能筛选 */
+  $all('#articleGrid .mini-tag').forEach(function (tagEl) {
+    tagEl.addEventListener('click', function () {
+      var t = tagEl.textContent.trim().toLowerCase();
+      var target = chipBtns.filter(function (c) {
+        return c.getAttribute('data-tag').toLowerCase() === t;
+      })[0];
+      if (target) target.click();
+    });
+  });
+
+  /* ================= 通用演示按钮 Toast ================= */
+  $all('[data-toast]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      toast(btn.getAttribute('data-toast'), 'success');
+    });
+  });
+
   /* ================= 侧边栏折叠 / 移动端抽屉 ================= */
   var sidebar = $('#sidebar');
   var collapseBtn = $('#sidebarCollapse');

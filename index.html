@@ -151,87 +151,679 @@
 
         </section>
 
-        <!-- ================= 文章页（占位） ================= -->
+        <!-- ================= 文章页（文章中心） ================= -->
         <section class="page" id="page-articles">
           <div class="page-head">
             <h2 class="page-title">文章</h2>
             <p class="page-sub">学习笔记、项目记录和标签搜索</p>
           </div>
-          <div class="placeholder-card">
-            <div class="placeholder-icon">📝</div>
-            <h3>文章中心</h3>
-            <p>这里将展示学习笔记、项目记录和标签搜索。功能建设中，敬请期待。</p>
-            <span class="placeholder-badge">建设中</span>
+
+          <div class="article-toolbar">
+            <div class="search-box">
+              <span class="search-icon" aria-hidden="true">🔍</span>
+              <input type="search" id="articleSearch" class="search-input" placeholder="搜索标题、正文或标签…" />
+            </div>
+            <div class="toolbar-status">
+              <span class="status-pill online"><span class="dot"></span> 在线工作台</span>
+              <span class="article-count" id="articleCount">9 篇文章</span>
+            </div>
+          </div>
+
+          <div class="filter-block">
+            <div class="filter-row">
+              <span class="filter-label">标签</span>
+              <div class="filter-chips" id="tagFilter">
+                <button type="button" class="chip active" data-tag="all">全部</button>
+                <button type="button" class="chip" data-tag="python">Python</button>
+                <button type="button" class="chip" data-tag="前端">前端</button>
+                <button type="button" class="chip" data-tag="html">HTML</button>
+                <button type="button" class="chip" data-tag="css">CSS</button>
+                <button type="button" class="chip" data-tag="javascript">JavaScript</button>
+                <button type="button" class="chip" data-tag="github pages">GitHub Pages</button>
+                <button type="button" class="chip" data-tag="数据分析">数据分析</button>
+                <button type="button" class="chip" data-tag="自动化">自动化</button>
+                <button type="button" class="chip" data-tag="学习笔记">学习笔记</button>
+                <button type="button" class="chip" data-tag="项目记录">项目记录</button>
+                <button type="button" class="chip" data-tag="技术复盘">技术复盘</button>
+                <button type="button" class="chip" data-tag="工具">工具</button>
+                <button type="button" class="chip" data-tag="复盘">复盘</button>
+              </div>
+            </div>
+            <div class="filter-row">
+              <span class="filter-label">分类</span>
+              <div class="filter-selects">
+                <select id="categoryFilter" class="select">
+                  <option value="all">全部分类</option>
+                  <option value="学习笔记">学习笔记</option>
+                  <option value="项目记录">项目记录</option>
+                  <option value="技术复盘">技术复盘</option>
+                  <option value="生活记录">生活记录</option>
+                </select>
+                <select id="monthFilter" class="select">
+                  <option value="all">全部月份</option>
+                  <option value="2026-08">2026年8月</option>
+                  <option value="2026-07">2026年7月</option>
+                  <option value="2026-06">2026年6月</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="hot-section">
+            <h3 class="block-title">🔥 热门文章</h3>
+            <div class="hot-list" id="hotList">
+              <button type="button" class="hot-item" data-toast="文章详情页建设中">
+                <span class="hot-rank r1">1</span><span class="hot-name">HTML、CSS 和 JavaScript 分别是什么</span><span class="hot-views">214 阅读</span>
+              </button>
+              <button type="button" class="hot-item" data-toast="文章详情页建设中">
+                <span class="hot-rank r2">2</span><span class="hot-name">非计算机专业学生如何入门编程</span><span class="hot-views">158 阅读</span>
+              </button>
+              <button type="button" class="hot-item" data-toast="文章详情页建设中">
+                <span class="hot-rank r3">3</span><span class="hot-name">数据分析入门路线</span><span class="hot-views">143 阅读</span>
+              </button>
+              <button type="button" class="hot-item" data-toast="文章详情页建设中">
+                <span class="hot-rank">4</span><span class="hot-name">我为什么开始搭建个人网站</span><span class="hot-views">128 阅读</span>
+              </button>
+              <button type="button" class="hot-item" data-toast="文章详情页建设中">
+                <span class="hot-rank">5</span><span class="hot-name">GitHub Pages 从 0 到上线</span><span class="hot-views">96 阅读</span>
+              </button>
+            </div>
+          </div>
+
+          <h3 class="block-title">📚 全部文章</h3>
+          <div class="article-grid" id="articleGrid">
+
+            <article class="article-card" data-title="我为什么开始搭建个人网站" data-cat="学习笔记" data-date="2026-08-01" data-summary="想清楚「为什么」比「怎么做」更重要。从想要一个属于自己的地方开始，记录搭建个人网站的三个动机与心态变化。" data-tags="学习笔记,个人网站,复盘">
+              <div class="article-meta">
+                <span class="badge cat-learn">学习笔记</span>
+                <span class="meta-item">2026-08-01</span>
+                <span class="meta-item">5 分钟</span>
+                <span class="meta-item">👁 128</span>
+              </div>
+              <h4 class="article-title">我为什么开始搭建个人网站</h4>
+              <p class="article-summary">想清楚「为什么」比「怎么做」更重要。从「想要一个属于自己的地方」开始，记录搭建个人网站的三个动机与一路的心态变化。</p>
+              <div class="article-tags">
+                <span class="mini-tag">学习笔记</span><span class="mini-tag">个人网站</span><span class="mini-tag">复盘</span>
+              </div>
+            </article>
+
+            <article class="article-card" data-title="GitHub Pages 从 0 到上线" data-cat="项目记录" data-date="2026-07-28" data-summary="从 clone 仓库、改 index.html、提交推送到线上生效，完整记录一次 GitHub Pages 建站的全过程，含踩坑记录。" data-tags="GitHub Pages,前端,项目记录">
+              <div class="article-meta">
+                <span class="badge cat-project">项目记录</span>
+                <span class="meta-item">2026-07-28</span>
+                <span class="meta-item">8 分钟</span>
+                <span class="meta-item">👁 96</span>
+              </div>
+              <h4 class="article-title">GitHub Pages 从 0 到上线</h4>
+              <p class="article-summary">从 clone 仓库、改 index.html、提交推送到线上生效，完整记录一次 GitHub Pages 建站的全过程，以及踩过的那些坑。</p>
+              <div class="article-tags">
+                <span class="mini-tag">GitHub Pages</span><span class="mini-tag">前端</span><span class="mini-tag">项目记录</span>
+              </div>
+            </article>
+
+            <article class="article-card" data-title="HTML、CSS 和 JavaScript 分别是什么" data-cat="学习笔记" data-date="2026-07-20" data-summary="用盖房子的比喻讲清前端三件套：HTML 是结构、CSS 是装修、JavaScript 是水电和智能家居。新手零基础也能看懂。" data-tags="HTML,CSS,JavaScript,前端">
+              <div class="article-meta">
+                <span class="badge cat-learn">学习笔记</span>
+                <span class="meta-item">2026-07-20</span>
+                <span class="meta-item">6 分钟</span>
+                <span class="meta-item">👁 214</span>
+              </div>
+              <h4 class="article-title">HTML、CSS 和 JavaScript 分别是什么</h4>
+              <p class="article-summary">用盖房子的比喻讲清前端三件套：HTML 是结构、CSS 是装修、JavaScript 是水电和智能家居。零基础也能看懂。</p>
+              <div class="article-tags">
+                <span class="mini-tag">HTML</span><span class="mini-tag">CSS</span><span class="mini-tag">JavaScript</span><span class="mini-tag">前端</span>
+              </div>
+            </article>
+
+            <article class="article-card" data-title="Python 文件整理小工具计划" data-cat="项目记录" data-date="2026-07-15" data-summary="计划用 os 和 shutil 写一个按类型自动整理桌面文件的命令行小工具，从需求到拆分功能，写下初步设计。" data-tags="Python,自动化,工具">
+              <div class="article-meta">
+                <span class="badge cat-project">项目记录</span>
+                <span class="meta-item">2026-07-15</span>
+                <span class="meta-item">7 分钟</span>
+                <span class="meta-item">👁 87</span>
+              </div>
+              <h4 class="article-title">Python 文件整理小工具计划</h4>
+              <p class="article-summary">计划用 os 和 shutil 写一个按类型自动整理桌面文件的命令行小工具，从需求到功能拆分，写下初步设计。</p>
+              <div class="article-tags">
+                <span class="mini-tag">Python</span><span class="mini-tag">自动化</span><span class="mini-tag">工具</span>
+              </div>
+            </article>
+
+            <article class="article-card" data-title="数据分析入门路线" data-cat="学习笔记" data-date="2026-07-08" data-summary="从 Excel 到 pandas 再到可视化，梳理一条非科班学生也能走的数据分析自学路线，附每周练习建议。" data-tags="数据分析,Python,学习笔记">
+              <div class="article-meta">
+                <span class="badge cat-learn">学习笔记</span>
+                <span class="meta-item">2026-07-08</span>
+                <span class="meta-item">9 分钟</span>
+                <span class="meta-item">👁 143</span>
+              </div>
+              <h4 class="article-title">数据分析入门路线</h4>
+              <p class="article-summary">从 Excel 到 pandas 再到可视化，梳理一条非科班学生也能走的数据分析自学路线，附每周练习建议。</p>
+              <div class="article-tags">
+                <span class="mini-tag">数据分析</span><span class="mini-tag">Python</span><span class="mini-tag">学习笔记</span>
+              </div>
+            </article>
+
+            <article class="article-card" data-title="如何用 GitHub 管理学习项目" data-cat="技术复盘" data-date="2026-07-02" data-summary="把每一个小练习都变成 repo：commit 提交、分支管理、README 写作，让 GitHub 成为你的学习进度条。" data-tags="GitHub,项目记录,工具">
+              <div class="article-meta">
+                <span class="badge cat-review">技术复盘</span>
+                <span class="meta-item">2026-07-02</span>
+                <span class="meta-item">6 分钟</span>
+                <span class="meta-item">👁 76</span>
+              </div>
+              <h4 class="article-title">如何用 GitHub 管理学习项目</h4>
+              <p class="article-summary">把每一个小练习都变成 repo：commit 提交、分支管理、README 写作，让 GitHub 成为你的学习进度条。</p>
+              <div class="article-tags">
+                <span class="mini-tag">GitHub</span><span class="mini-tag">项目记录</span><span class="mini-tag">工具</span>
+              </div>
+            </article>
+
+            <article class="article-card" data-title="非计算机专业学生如何入门编程" data-cat="技术复盘" data-date="2026-06-25" data-summary="不报班也能入门：选对第一门语言、用项目驱动学习、善用文档与社区，写给同样「非科班」的你。" data-tags="学习笔记,长期主义,复盘">
+              <div class="article-meta">
+                <span class="badge cat-review">技术复盘</span>
+                <span class="meta-item">2026-06-25</span>
+                <span class="meta-item">10 分钟</span>
+                <span class="meta-item">👁 158</span>
+              </div>
+              <h4 class="article-title">非计算机专业学生如何入门编程</h4>
+              <p class="article-summary">不报班也能入门：选对第一门语言、用项目驱动学习、善用文档与社区，写给同样「非科班」的你。</p>
+              <div class="article-tags">
+                <span class="mini-tag">学习笔记</span><span class="mini-tag">长期主义</span><span class="mini-tag">复盘</span>
+              </div>
+            </article>
+
+            <article class="article-card" data-title="我的暑期学习复盘" data-cat="技术复盘" data-date="2026-08-05" data-summary="暑假两个月，从零到上线一个个人网站。复盘做得好的、做得差的，以及下学期的调整方向。" data-tags="复盘,学习笔记">
+              <div class="article-meta">
+                <span class="badge cat-review">技术复盘</span>
+                <span class="meta-item">2026-08-05</span>
+                <span class="meta-item">5 分钟</span>
+                <span class="meta-item">👁 64</span>
+              </div>
+              <h4 class="article-title">我的暑期学习复盘</h4>
+              <p class="article-summary">暑假两个月，从零到上线一个个人网站。复盘做得好的、做得差的，以及下学期的调整方向。</p>
+              <div class="article-tags">
+                <span class="mini-tag">复盘</span><span class="mini-tag">学习笔记</span>
+              </div>
+            </article>
+
+            <article class="article-card" data-title="给未来自己的技术学习路线" data-cat="学习笔记" data-date="2026-06-18" data-summary="一封写给一年后自己的信：HTML/CSS → JavaScript → Python → 数据分析 → 后端，每一步都配一个小作品。" data-tags="学习笔记,长期主义,计划">
+              <div class="article-meta">
+                <span class="badge cat-learn">学习笔记</span>
+                <span class="meta-item">2026-06-18</span>
+                <span class="meta-item">8 分钟</span>
+                <span class="meta-item">👁 102</span>
+              </div>
+              <h4 class="article-title">给未来自己的技术学习路线</h4>
+              <p class="article-summary">一封写给一年后自己的信：HTML/CSS → JavaScript → Python → 数据分析 → 后端，每一步都配一个小作品。</p>
+              <div class="article-tags">
+                <span class="mini-tag">学习笔记</span><span class="mini-tag">长期主义</span><span class="mini-tag">计划</span>
+              </div>
+            </article>
+
           </div>
         </section>
 
-        <!-- ================= 计划页（占位） ================= -->
+        <!-- ================= 计划页（阶段冲刺计划） ================= -->
         <section class="page" id="page-plans">
           <div class="page-head">
             <h2 class="page-title">计划</h2>
             <p class="page-sub">Summer Sprint 阶段冲刺计划</p>
           </div>
-          <div class="placeholder-card">
-            <div class="placeholder-icon">🗓️</div>
-            <h3>阶段冲刺计划</h3>
-            <p>这里将展示可编辑的每日时间段安排与学习计划。功能建设中，敬请期待。</p>
-            <span class="placeholder-badge">建设中</span>
+
+          <div class="plan-hero">
+            <div class="plan-hero-text">
+              <span class="plan-kicker">Summer Sprint</span>
+              <h3 class="plan-hero-title">Chenji 的阶段冲刺计划</h3>
+              <p class="plan-hero-desc">大二阶段学习记录：编程基础、Python 自动化、网页开发、数据分析和规律生活。</p>
+            </div>
+            <div class="plan-actions">
+              <button type="button" class="btn btn-outline" data-toast="已复制计划文本到剪贴板（演示）">📋 复制计划</button>
+              <button type="button" class="btn btn-outline" data-toast="已恢复为默认模板">↺ 恢复模板</button>
+              <button type="button" class="btn btn-primary" data-toast="已保存到浏览器 localStorage（演示）">💾 本地保存</button>
+            </div>
+          </div>
+
+          <div class="plan-tip">💡 当前是查看模式。修改内容会保存到浏览器 localStorage，不会上传到服务器。</div>
+
+          <div class="plan-cols">
+            <div class="plan-col">
+              <h4 class="plan-col-title">📖 学习主线</h4>
+              <ul class="plan-col-list">
+                <li><span class="check">✓</span> Python 基础语法与每日练习</li>
+                <li><span class="check">✓</span> HTML / CSS 页面布局</li>
+                <li><span class="check">✓</span> JavaScript 入门</li>
+                <li><span class="check">✓</span> GitHub 版本管理</li>
+                <li><span class="check">✓</span> 数据分析基础</li>
+              </ul>
+            </div>
+            <div class="plan-col">
+              <h4 class="plan-col-title">🏃 运动与身体</h4>
+              <ul class="plan-col-list">
+                <li><span class="check">✓</span> 每周跑步 3 次</li>
+                <li><span class="check">✓</span> 规律作息：23:30 前睡</li>
+                <li><span class="check">✓</span> 均衡饮食，少点外卖</li>
+                <li><span class="check">✓</span> 记录体重变化</li>
+              </ul>
+            </div>
+            <div class="plan-col">
+              <h4 class="plan-col-title">🎮 娱乐边界</h4>
+              <ul class="plan-col-list">
+                <li><span class="check">✓</span> 每天游戏 ≤ 1 小时</li>
+                <li><span class="check">✓</span> 短视频 ≤ 30 分钟</li>
+                <li><span class="check">✓</span> 每周阅读 ≥ 1 篇长文</li>
+                <li><span class="check">✓</span> 每晚 10 分钟复盘</li>
+              </ul>
+            </div>
+          </div>
+
+          <h3 class="block-title">🕒 每日时间段安排</h3>
+          <div class="table-wrap">
+            <table class="plan-table">
+              <thead>
+                <tr>
+                  <th>时间段</th>
+                  <th>要做什么</th>
+                  <th>重点 / 说明</th>
+                  <th>类型</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>07:30 - 08:00</td>
+                  <td>起床、洗漱、早餐</td>
+                  <td>不赖床，吃好早餐</td>
+                  <td><span class="type-badge t-life">生活</span></td>
+                </tr>
+                <tr>
+                  <td>08:00 - 10:00</td>
+                  <td>Python 基础练习</td>
+                  <td>语法 + 每天一道练习</td>
+                  <td><span class="type-badge t-study">学习</span></td>
+                </tr>
+                <tr>
+                  <td>10:15 - 11:30</td>
+                  <td>前端页面练习</td>
+                  <td>复刻一个组件 / 页面</td>
+                  <td><span class="type-badge t-study">学习</span></td>
+                </tr>
+                <tr>
+                  <td>12:00 - 14:00</td>
+                  <td>午餐 + 午休</td>
+                  <td>清淡饮食，睡 30 分钟</td>
+                  <td><span class="type-badge t-life">生活</span></td>
+                </tr>
+                <tr>
+                  <td>14:00 - 15:30</td>
+                  <td>数据分析入门</td>
+                  <td>pandas / 数据可视化</td>
+                  <td><span class="type-badge t-study">学习</span></td>
+                </tr>
+                <tr>
+                  <td>15:30 - 16:30</td>
+                  <td>运动 / 快走</td>
+                  <td>拉伸 + 快走 40 分钟</td>
+                  <td><span class="type-badge t-sport">运动</span></td>
+                </tr>
+                <tr>
+                  <td>16:30 - 17:30</td>
+                  <td>弹性时间</td>
+                  <td>处理临时事项 / 休息</td>
+                  <td><span class="type-badge t-adjust">调整</span></td>
+                </tr>
+                <tr>
+                  <td>19:30 - 21:30</td>
+                  <td>项目实践 / 复盘</td>
+                  <td>写博客、整理代码、写复盘</td>
+                  <td><span class="type-badge t-project">项目</span></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </section>
 
-        <!-- ================= 项目页（占位） ================= -->
+        <!-- ================= 项目页（项目实验室） ================= -->
         <section class="page" id="page-projects">
           <div class="page-head">
             <h2 class="page-title">项目</h2>
             <p class="page-sub">项目实验室 · 已完成 / 进行中 / 计划中</p>
           </div>
-          <div class="placeholder-card">
-            <div class="placeholder-icon">📦</div>
-            <h3>项目实验室</h3>
-            <p>这里将展示正在做、计划做和已经完成的小项目。功能建设中，敬请期待。</p>
-            <span class="placeholder-badge">建设中</span>
+
+          <div class="project-group">
+            <h3 class="block-title">✅ 已完成</h3>
+            <div class="project-grid">
+
+              <article class="project-card">
+                <div class="proj-top">
+                  <h4 class="proj-name">个人主页网站</h4>
+                  <span class="proj-status s-done">已上线</span>
+                </div>
+                <p class="proj-desc">从一行「你好，我是 Chenji」开始，迭代为多页面个人学习工作台，部署在 GitHub Pages。</p>
+                <div class="proj-tags">
+                  <span class="mini-tag">HTML</span><span class="mini-tag">CSS</span><span class="mini-tag">JavaScript</span><span class="mini-tag">GitHub Pages</span>
+                </div>
+                <div class="proj-actions">
+                  <button type="button" class="btn-sm" data-toast="详情页建设中">查看详情</button>
+                  <button type="button" class="btn-sm" data-toast="仓库地址建设中">查看仓库</button>
+                  <button type="button" class="btn-sm ghost" data-toast="笔记记录建设中">记录笔记</button>
+                </div>
+              </article>
+
+              <article class="project-card">
+                <div class="proj-top">
+                  <h4 class="proj-name">文章中心</h4>
+                  <span class="proj-status s-done">已上线</span>
+                </div>
+                <p class="proj-desc">站内文章模块：9 篇学习笔记与项目记录，支持标签、分类、月份筛选和搜索。</p>
+                <div class="proj-tags">
+                  <span class="mini-tag">JavaScript</span><span class="mini-tag">静态数据</span><span class="mini-tag">筛选</span>
+                </div>
+                <div class="proj-actions">
+                  <button type="button" class="btn-sm" data-toast="详情页建设中">查看详情</button>
+                  <button type="button" class="btn-sm" data-toast="仓库地址建设中">查看仓库</button>
+                  <button type="button" class="btn-sm ghost" data-toast="笔记记录建设中">记录笔记</button>
+                </div>
+              </article>
+
+            </div>
+          </div>
+
+          <div class="project-group">
+            <h3 class="block-title">🔨 进行中</h3>
+            <div class="project-grid">
+
+              <article class="project-card">
+                <div class="proj-top">
+                  <h4 class="proj-name">学习计划面板</h4>
+                  <span class="proj-status s-doing">进行中</span>
+                </div>
+                <p class="proj-desc">可编辑的阶段冲刺计划：三栏目标 + 每日时间段表格，后续接入 localStorage 本地保存。</p>
+                <div class="proj-tags">
+                  <span class="mini-tag">HTML</span><span class="mini-tag">表格</span><span class="mini-tag">JavaScript</span>
+                </div>
+                <div class="proj-actions">
+                  <button type="button" class="btn-sm" data-toast="详情页建设中">查看详情</button>
+                  <button type="button" class="btn-sm" data-toast="仓库地址建设中">查看仓库</button>
+                  <button type="button" class="btn-sm ghost" data-toast="笔记记录建设中">记录笔记</button>
+                </div>
+              </article>
+
+              <article class="project-card">
+                <div class="proj-top">
+                  <h4 class="proj-name">数据分析练习本</h4>
+                  <span class="proj-status s-doing">进行中</span>
+                </div>
+                <p class="proj-desc">用 pandas 和 matplotlib 做的数据分析练习合集，记录每一道练手题的思路与输出。</p>
+                <div class="proj-tags">
+                  <span class="mini-tag">Python</span><span class="mini-tag">pandas</span><span class="mini-tag">matplotlib</span>
+                </div>
+                <div class="proj-actions">
+                  <button type="button" class="btn-sm" data-toast="详情页建设中">查看详情</button>
+                  <button type="button" class="btn-sm" data-toast="仓库地址建设中">查看仓库</button>
+                  <button type="button" class="btn-sm ghost" data-toast="笔记记录建设中">记录笔记</button>
+                </div>
+              </article>
+
+            </div>
+          </div>
+
+          <div class="project-group">
+            <h3 class="block-title">📝 计划中 / 规划中</h3>
+            <div class="project-grid">
+
+              <article class="project-card">
+                <div class="proj-top">
+                  <h4 class="proj-name">Python 文件整理工具</h4>
+                  <span class="proj-status s-plan">计划中</span>
+                </div>
+                <p class="proj-desc">用 os 和 shutil 写一个按类型自动整理桌面文件的命令行小工具，把乱糟糟的下载文件夹理干净。</p>
+                <div class="proj-tags">
+                  <span class="mini-tag">Python</span><span class="mini-tag">os</span><span class="mini-tag">shutil</span><span class="mini-tag">自动化</span>
+                </div>
+                <div class="proj-actions">
+                  <button type="button" class="btn-sm" data-toast="详情页建设中">查看详情</button>
+                  <button type="button" class="btn-sm" data-toast="仓库地址建设中">查看仓库</button>
+                  <button type="button" class="btn-sm ghost" data-toast="笔记记录建设中">记录笔记</button>
+                </div>
+              </article>
+
+              <article class="project-card">
+                <div class="proj-top">
+                  <h4 class="proj-name">自动化脚本合集</h4>
+                  <span class="proj-status s-plan">计划中</span>
+                </div>
+                <p class="proj-desc">把日常重复劳动写成脚本：文件重命名、批量改格式、定时提醒，攒成自己的「效率工具箱」。</p>
+                <div class="proj-tags">
+                  <span class="mini-tag">Python</span><span class="mini-tag">命令行</span><span class="mini-tag">自动化</span>
+                </div>
+                <div class="proj-actions">
+                  <button type="button" class="btn-sm" data-toast="详情页建设中">查看详情</button>
+                  <button type="button" class="btn-sm" data-toast="仓库地址建设中">查看仓库</button>
+                  <button type="button" class="btn-sm ghost" data-toast="笔记记录建设中">记录笔记</button>
+                </div>
+              </article>
+
+              <article class="project-card">
+                <div class="proj-top">
+                  <h4 class="proj-name">Card War 在线试玩</h4>
+                  <span class="proj-status s-embed">嵌入中</span>
+                </div>
+                <p class="proj-desc">HTML5 卡牌对战小游戏，计划通过 iframe 嵌入本站，后续补充排行榜与分数记录。</p>
+                <div class="proj-tags">
+                  <span class="mini-tag">HTML5</span><span class="mini-tag">iframe</span><span class="mini-tag">JavaScript</span>
+                </div>
+                <div class="proj-actions">
+                  <button type="button" class="btn-sm" data-toast="详情页建设中">查看详情</button>
+                  <button type="button" class="btn-sm" data-toast="仓库地址建设中">查看仓库</button>
+                  <button type="button" class="btn-sm ghost" data-toast="笔记记录建设中">记录笔记</button>
+                </div>
+              </article>
+
+              <article class="project-card">
+                <div class="proj-top">
+                  <h4 class="proj-name">全栈博客系统学习版</h4>
+                  <span class="proj-status s-long">长期计划</span>
+                </div>
+                <p class="proj-desc">用 FastAPI + SQLite 写后端、React 或原生前端写界面，把本站升级成真正的全栈博客系统。</p>
+                <div class="proj-tags">
+                  <span class="mini-tag">FastAPI</span><span class="mini-tag">SQLite</span><span class="mini-tag">React</span>
+                </div>
+                <div class="proj-actions">
+                  <button type="button" class="btn-sm" data-toast="详情页建设中">查看详情</button>
+                  <button type="button" class="btn-sm" data-toast="仓库地址建设中">查看仓库</button>
+                  <button type="button" class="btn-sm ghost" data-toast="笔记记录建设中">记录笔记</button>
+                </div>
+              </article>
+
+            </div>
           </div>
         </section>
 
-        <!-- ================= 游戏页（占位） ================= -->
+        <!-- ================= 游戏页（Card War 在线试玩） ================= -->
         <section class="page" id="page-games">
           <div class="page-head">
             <h2 class="page-title">游戏</h2>
             <p class="page-sub">Card War 在线试玩</p>
           </div>
-          <div class="placeholder-card">
-            <div class="placeholder-icon">🎮</div>
-            <h3>Card War 在线试玩</h3>
-            <p>这里将嵌入 HTML5 小游戏，支持试玩与分数记录。功能建设中，敬请期待。</p>
-            <span class="placeholder-badge">建设中</span>
+
+          <div class="game-hero">
+            <div class="game-hero-text">
+              <h3 class="game-hero-title">Card War 在线试玩 <span class="proj-status s-embed">已嵌入 / 计划中</span></h3>
+              <p class="game-hero-desc">当前通过 iframe 或占位区域嵌入小游戏，后续可以补充游戏介绍、排行榜和分数记录。</p>
+            </div>
+            <div class="game-actions">
+              <button type="button" class="btn btn-outline" data-toast="已刷新游戏区域（演示）">↻ 刷新游戏</button>
+              <button type="button" class="btn btn-outline" data-toast="新窗口打开（演示）">⤢ 新窗口打开</button>
+              <button type="button" class="btn btn-primary" data-toast="仓库地址建设中">查看仓库</button>
+            </div>
+          </div>
+
+          <div class="game-frame">
+            <div class="game-placeholder">
+              <div class="game-ph-icon">🃏</div>
+              <h4>游戏区域预留中</h4>
+              <p>未来可以把自己的 HTML 小游戏嵌入到这里</p>
+              <span class="placeholder-badge">敬请期待</span>
+            </div>
+          </div>
+
+          <div class="game-cards">
+            <div class="game-card">
+              <h4>📜 游戏规则</h4>
+              <p>Card War（纸牌大战）是一款回合制卡牌对战小游戏。玩家与电脑轮流出牌，比拼点数大小，策略与运气并存。</p>
+            </div>
+            <div class="game-card">
+              <h4>⚙️ 技术实现</h4>
+              <p>使用原生 HTML5 + CSS + JavaScript 实现，计划通过 iframe 嵌入本站。暂无后端，分数记录后续考虑用 localStorage。</p>
+            </div>
+            <div class="game-card">
+              <h4>🗺️ 后续计划</h4>
+              <p>补充完整可玩版本、游戏介绍页、排行榜与本地分数记录，让这里成为真正能玩的「游戏工作台」。</p>
+            </div>
           </div>
         </section>
 
-        <!-- ================= 关于页（占位） ================= -->
+        <!-- ================= 关于页 ================= -->
         <section class="page" id="page-about">
           <div class="page-head">
             <h2 class="page-title">关于</h2>
             <p class="page-sub">非计算机专业学生的自学记录</p>
           </div>
-          <div class="placeholder-card">
-            <div class="placeholder-icon">👤</div>
-            <h3>关于我</h3>
-            <p>这里将展示个人简介、技能进度、时间线与联系方式。功能建设中，敬请期待。</p>
-            <span class="placeholder-badge">建设中</span>
+
+          <div class="about-grid">
+            <div class="about-card">
+              <h4>👋 个人简介</h4>
+              <p>我是 Chenji（陈际），一名非计算机专业的大二学生。正在通过项目驱动的方式学习 Python、前端开发和数据分析。相信长期主义——每天进步一点点，比什么都重要。</p>
+            </div>
+            <div class="about-card">
+              <h4>🎯 当前关注方向</h4>
+              <div class="focus-list">
+                <span class="focus-chip">Python 自动化</span>
+                <span class="focus-chip">Web 前端</span>
+                <span class="focus-chip">数据分析</span>
+                <span class="focus-chip">GitHub 项目管理</span>
+                <span class="focus-chip">长期主义学习</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-card">
+            <h4>📊 技能雷达</h4>
+            <div class="skill-list">
+              <div class="skill-row">
+                <span class="skill-name">Python</span>
+                <div class="skill-track"><span class="skill-fill" style="width:40%"></span></div>
+                <span class="skill-val">40%</span>
+              </div>
+              <div class="skill-row">
+                <span class="skill-name">HTML / CSS</span>
+                <div class="skill-track"><span class="skill-fill blue" style="width:45%"></span></div>
+                <span class="skill-val">45%</span>
+              </div>
+              <div class="skill-row">
+                <span class="skill-name">JavaScript</span>
+                <div class="skill-track"><span class="skill-fill indigo" style="width:30%"></span></div>
+                <span class="skill-val">30%</span>
+              </div>
+              <div class="skill-row">
+                <span class="skill-name">Git / GitHub</span>
+                <div class="skill-track"><span class="skill-fill green" style="width:35%"></span></div>
+                <span class="skill-val">35%</span>
+              </div>
+              <div class="skill-row">
+                <span class="skill-name">数据分析</span>
+                <div class="skill-track"><span class="skill-fill purple" style="width:20%"></span></div>
+                <span class="skill-val">20%</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-card">
+            <h4>🕰️ 成长时间线</h4>
+            <div class="timeline">
+              <div class="timeline-item">
+                <span class="tline-dot"></span>
+                <div class="tline-body">
+                  <div class="tline-date">2026-06</div>
+                  <div class="tline-title">创建第一个网页</div>
+                  <p>写下人生第一行 HTML，开始对前端产生兴趣。</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <span class="tline-dot"></span>
+                <div class="tline-body">
+                  <div class="tline-date">2026-07</div>
+                  <div class="tline-title">部署 GitHub Pages</div>
+                  <p>个人主页第一次上线，学会 git 提交与推送。</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <span class="tline-dot"></span>
+                <div class="tline-body">
+                  <div class="tline-date">2026-07</div>
+                  <div class="tline-title">搭建个人主页</div>
+                  <p>从占位页升级成作品集风格的完整页面。</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <span class="tline-dot"></span>
+                <div class="tline-body">
+                  <div class="tline-date">2026-08</div>
+                  <div class="tline-title">扩展为学习工作台</div>
+                  <p>多页面系统：文章、计划、项目、游戏、登录一应俱全。</p>
+                </div>
+              </div>
+              <div class="timeline-item">
+                <span class="tline-dot"></span>
+                <div class="tline-body">
+                  <div class="tline-date">未来</div>
+                  <div class="tline-title">学习后端</div>
+                  <p>计划接触 FastAPI 与数据库，走向全栈。</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-card">
+            <h4>📮 联系方式</h4>
+            <div class="contact-links">
+              <a class="contact-item" href="https://github.com/chenji0421" target="_blank" rel="noopener">🐙 GitHub：github.com/chenji0421</a>
+              <a class="contact-item" href="mailto:chenji0421@example.com">✉️ 邮箱：chenji0421@example.com（占位）</a>
+              <span class="contact-item muted">🔒 更多联系方式建设中</span>
+            </div>
           </div>
         </section>
 
-        <!-- ================= 登录页（占位） ================= -->
+        <!-- ================= 登录页（静态演示） ================= -->
         <section class="page" id="page-login">
           <div class="page-head">
             <h2 class="page-title">登录</h2>
             <p class="page-sub">后台入口 · 静态演示</p>
           </div>
-          <div class="placeholder-card">
-            <div class="placeholder-icon">🔐</div>
-            <h3>账号登录</h3>
-            <p>静态演示页面，不会上传任何账号密码。功能建设中，敬请期待。</p>
-            <span class="placeholder-badge">建设中</span>
+
+          <div class="login-wrap">
+            <div class="login-card">
+              <div class="login-logo">🔐</div>
+              <h3 class="login-title">账号登录</h3>
+              <p class="login-tip">当前为静态演示页面，不会上传任何账号密码。请不要输入真实密码。</p>
+
+              <button type="button" class="login-gh-btn" data-toast="这是静态演示，暂未接入真实登录系统。">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+                使用 GitHub 登录
+              </button>
+              <div class="login-note">演示按钮，暂未接入 OAuth</div>
+
+              <div class="login-divider"><span>或</span></div>
+
+              <details class="login-collapse">
+                <summary>站长邮箱登录</summary>
+                <div class="login-form">
+                  <label class="field-label" for="loginEmail">邮箱</label>
+                  <input class="field-input" id="loginEmail" type="email" placeholder="you@example.com" autocomplete="off" />
+                  <label class="field-label" for="loginPwd">密码</label>
+                  <input class="field-input" id="loginPwd" type="password" placeholder="请输入密码" autocomplete="off" />
+                  <button type="button" class="btn btn-primary login-submit" data-toast="这是静态演示，暂未接入真实登录系统。">登 录</button>
+                </div>
+              </details>
+            </div>
           </div>
         </section>
 
