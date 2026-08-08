@@ -1,0 +1,16 @@
+# 前端开发镜像：在 Docker 里跑 Vite 开发服务器（热更新）
+# 只在本地 docker compose 学习 / 展示时使用。
+FROM node:20-slim
+
+WORKDIR /app
+
+# 先装依赖（利用 Docker 层缓存）
+COPY package*.json ./
+RUN npm install
+
+# 再拷代码
+COPY . .
+
+EXPOSE 5173
+
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]

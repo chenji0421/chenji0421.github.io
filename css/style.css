@@ -893,6 +893,48 @@ code {
   .btn { padding: 11px 20px; font-size: 14px; }
 }
 
+/* ---------- 项目结构 ---------- */
+.structure-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 18px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+.struct-card {
+  display: block;
+  padding: 22px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.struct-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+  box-shadow: var(--shadow-lg);
+}
+.struct-icon { font-size: 26px; margin-bottom: 10px; }
+.struct-title {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--accent-2);
+  margin-bottom: 8px;
+}
+.struct-card p { font-size: 14px; color: var(--muted); margin-bottom: 12px; }
+.struct-go { font-size: 13px; font-weight: 600; color: var(--accent-2); }
+.structure-note {
+  max-width: 960px;
+  margin: 18px auto 0;
+  font-size: 13px;
+  color: var(--muted);
+  text-align: center;
+}
+.structure-note a { color: var(--accent-2); font-weight: 600; }
+
 /* 动效偏好：关闭动画 */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

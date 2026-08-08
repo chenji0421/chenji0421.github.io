@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="chenji0421 的个人主页与作品集 —— 一名正在学习 Python 与 Web 开发的大学生。">
+  <meta name="description" content="chenji0421 的个人主页与作品集 —— 一个「个人主页 + 技术博客 + 全栈学习」项目，记录学习路线、项目实践与技术成长。">
   <meta name="author" content="chenji0421">
   <meta name="theme-color" content="#0b1020">
   <meta property="og:title" content="chenji0421 · 个人主页 / 作品集">
@@ -38,6 +38,7 @@
         <a href="#skills" class="nav-link">技能</a>
         <a href="#projects" class="nav-link">项目</a>
         <a href="#roadmap" class="nav-link">路线</a>
+        <a href="#structure" class="nav-link">结构</a>
         <a href="#contact" class="nav-link">联系</a>
       </nav>
 
@@ -243,7 +244,7 @@
           </div>
           <div class="project-body">
             <h3>个人主页 · 作品集 v2</h3>
-            <p>就是这个网站！纯手写 HTML / CSS / JS：深浅色主题、响应式布局、打字机与滚动动画，零框架零依赖。</p>
+            <p>就是这个网站！已从纯静态页升级为「个人主页 + 博客 + 全栈学习」项目：根目录静态主页 + React/Vite 前端 + FastAPI 后端（见下方项目结构）。</p>
             <div class="project-tags">
               <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span>
             </div>
@@ -361,10 +362,51 @@
       </div>
     </section>
 
+    <!-- ===== 项目结构 ===== -->
+    <section class="section section-alt" id="structure">
+      <div class="section-head reveal">
+        <span class="section-tag">05 // REPO</span>
+        <h2 class="section-title">项目<span class="gradient-text">结构</span></h2>
+        <p class="section-sub">这个仓库已经是一个「全栈学习项目」啦——下面是它的骨骼。</p>
+      </div>
+
+      <div class="structure-grid">
+        <a class="struct-card reveal" style="--d:.05s" href="https://github.com/chenji0421/chenji0421.github.io/blob/main/docs/README.md" target="_blank" rel="noopener">
+          <div class="struct-icon" aria-hidden="true">📖</div>
+          <div class="struct-title">docs/</div>
+          <p>架构、路线、部署、学习笔记——想了解项目先看这里。</p>
+          <span class="struct-go">查看文档 →</span>
+        </a>
+
+        <a class="struct-card reveal" style="--d:.1s" href="https://github.com/chenji0421/chenji0421.github.io/tree/main/frontend" target="_blank" rel="noopener">
+          <div class="struct-icon" aria-hidden="true">⚛️</div>
+          <div class="struct-title">frontend/</div>
+          <p>React + Vite 前端：个人主页、博客列表、项目展示（本地运行）。</p>
+          <span class="struct-go">查看源码 →</span>
+        </a>
+
+        <a class="struct-card reveal" style="--d:.15s" href="https://github.com/chenji0421/chenji0421.github.io/tree/main/backend" target="_blank" rel="noopener">
+          <div class="struct-icon" aria-hidden="true">🐍</div>
+          <div class="struct-title">backend/</div>
+          <p>FastAPI 后端：/api/posts、/api/projects 等示例 API（本地运行）。</p>
+          <span class="struct-go">查看源码 →</span>
+        </a>
+
+        <a class="struct-card reveal" style="--d:.2s" href="https://github.com/chenji0421/chenji0421.github.io/tree/main/scripts" target="_blank" rel="noopener">
+          <div class="struct-icon" aria-hidden="true">🧪</div>
+          <div class="struct-title">scripts/</div>
+          <p>自检脚本 check.py + 一键启动脚本 dev.sh / dev.bat。</p>
+          <span class="struct-go">查看脚本 →</span>
+        </a>
+      </div>
+
+      <p class="structure-note reveal">前端与后端需要本地运行；GitHub Pages 只托管根目录的静态页。完整说明见 <a href="https://github.com/chenji0421/chenji0421.github.io/blob/main/README.md" target="_blank" rel="noopener">README</a> 与 <a href="https://github.com/chenji0421/chenji0421.github.io/blob/main/docs/README.md" target="_blank" rel="noopener">docs</a>。</p>
+    </section>
+
     <!-- ===== 联系方式 ===== -->
     <section class="section" id="contact">
       <div class="section-head reveal">
-        <span class="section-tag">05 // CONTACT</span>
+        <span class="section-tag">06 // CONTACT</span>
         <h2 class="section-title">找到<span class="gradient-text">我</span></h2>
         <p class="section-sub">想交流、想合作、或者只是打个招呼都欢迎！</p>
       </div>

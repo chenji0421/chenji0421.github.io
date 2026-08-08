@@ -1,0 +1,47 @@
+# CI：每次 push / PR 自动跑一遍检查
+# 覆盖两个任务：
+#   1. backend-check  —— Python 语法 + 项目关键文件自检（scripts/check.py）
+#   2. frontend-build —— React 前端能否正常构建
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  backend-check:
+    name: 后端与项目自检
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Python 语法检查
+        run: |
+          python -m compileall backend/app scripts/check.py
+
+      - name: 运行项目自检脚本
+        run: python scripts/check.py
+
+  frontend-build:
+    name: 前端构建
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: 安装依赖
+        run: npm install
+
+      - name: 构建前端
+        run: npm run build

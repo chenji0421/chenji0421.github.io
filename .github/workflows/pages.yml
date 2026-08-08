@@ -1,0 +1,45 @@
+# GitHub Pages 部署说明（重要，请先读）
+#
+# 当前线上站点（https://chenji0421.github.io）用的是 GitHub 的
+# 「默认部署」：Settings → Pages → Deploy from a branch → main / (root)。
+# 也就是：根目录的 index.html 直接上线，推送即更新，无需本工作流。
+#
+# 这个 pages.yml 是「前端构建部署」的可选方案，专门给未来用：
+#   - 手动触发（workflow_dispatch），不会自动跑，因此不会破坏现有站点
+#   - 运行后会构建 frontend/（Vite），并把产物发布到 gh-pages 分支
+#   - 想让 React 前端上线时：
+#       1. 手动运行本工作流（Actions → Deploy Frontend to gh-pages → Run workflow）
+#       2. 到 Settings → Pages，把来源改成 Deploy from a branch → gh-pages / (root)
+#   之后这个 gh-pages 分支就会显示 React 前端了。
+#   不想用的时候，把来源切回 main / (root) 即可恢复静态主页。
+name: Deploy Frontend to gh-pages
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    name: 构建并发布前端到 gh-pages
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: 安装依赖并构建
+        working-directory: frontend
+        run: |
+          npm install
+          npm run build
+
+      - name: 发布到 gh-pages 分支
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./frontend/dist
+          publish_branch: gh-pages

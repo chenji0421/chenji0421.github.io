@@ -1,7 +1,7 @@
 # 内容自定义指南
 
 所有内容都在 `index.html` 里，按区块（用 `<!-- ===== ... ===== -->` 注释分隔）划分。
-改完建议先跑 `python scripts/check.py` 自检，再按 [DEPLOYMENT.md](DEPLOYMENT.md) 推送。
+改完建议先跑 `python scripts/check.py` 自检，再按 [deployment.md](deployment.md) 推送。
 
 ## 1. 名字 / 介绍（Hero 区）
 
