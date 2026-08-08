@@ -1,447 +1,467 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-theme="dark">
+<html lang="zh-CN" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="chenji0421 的个人主页与作品集 —— 一个「个人主页 + 技术博客 + 全栈学习」项目，记录学习路线、项目实践与技术成长。">
-  <meta name="author" content="chenji0421">
-  <meta name="theme-color" content="#0b1020">
-  <meta property="og:title" content="chenji0421 · 个人主页 / 作品集">
-  <meta property="og:description" content="学习路上的一切：技能、项目、学习路线。慢慢来，比较快。">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://chenji0421.github.io">
-  <meta property="og:image" content="https://chenji0421.github.io/assets/avatar.svg">
+  <meta name="description" content="Chenji 的个人学习工作台 —— 个人知识库 + 学习计划 + 项目展示 + 技术博客后台，记录 Python、网页开发、数据分析与长期主义。" />
+  <meta name="author" content="chenji0421" />
+  <meta name="theme-color" content="#0f1b2d" />
+  <meta property="og:title" content="Chenji · 个人学习工作台" />
+  <meta property="og:description" content="个人知识库 + 学习工作台 + 技术博客后台。慢慢来，比较快。" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://chenji0421.github.io" />
+  <meta property="og:image" content="https://chenji0421.github.io/assets/avatar.svg" />
 
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-  <title>chenji0421 · 个人主页 / 作品集</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <title>Chenji · 个人学习工作台</title>
 
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
   <!-- 无障碍：跳过链接 -->
-  <a class="skip-link" href="#home">跳到主要内容</a>
-  <!-- 顶部阅读进度条 -->
-  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+  <a class="skip-link" href="#page-home">跳到主要内容</a>
 
-  <!-- ===== 顶部导航 ===== -->
-  <header class="nav" id="nav">
-    <div class="nav-inner">
-      <a href="#home" class="nav-logo" aria-label="回到首页">
-        <span class="nav-logo-dot"></span>
-        <span class="nav-logo-text">chenji0421</span>
-      </a>
+  <div class="app">
 
-      <nav class="nav-links" id="navLinks" aria-label="主导航">
-        <a href="#home" class="nav-link active">首页</a>
-        <a href="#about" class="nav-link">关于</a>
-        <a href="#skills" class="nav-link">技能</a>
-        <a href="#projects" class="nav-link">项目</a>
-        <a href="#roadmap" class="nav-link">路线</a>
-        <a href="#structure" class="nav-link">结构</a>
-        <a href="#contact" class="nav-link">联系</a>
+    <!-- ================= 左侧固定导航栏 ================= -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-head">
+        <div class="avatar-wrap">
+          <img src="assets/avatar.svg" alt="Chenji 头像" width="52" height="52" />
+          <span class="avatar-status" title="在线工作台"></span>
+        </div>
+        <div class="sidebar-user">
+          <div class="user-name">陈际</div>
+          <div class="user-en">chenji0421</div>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav" aria-label="主导航">
+        <a href="#home" class="side-link active" data-page="home"><span class="side-icon">🏠</span><span class="side-text">首页</span></a>
+        <a href="#articles" class="side-link" data-page="articles"><span class="side-icon">📝</span><span class="side-text">文章</span></a>
+        <a href="#plans" class="side-link" data-page="plans"><span class="side-icon">🗓️</span><span class="side-text">计划</span></a>
+        <a href="#projects" class="side-link" data-page="projects"><span class="side-icon">📦</span><span class="side-text">项目</span></a>
+        <a href="#games" class="side-link" data-page="games"><span class="side-icon">🎮</span><span class="side-text">游戏</span></a>
+        <a href="#about" class="side-link" data-page="about"><span class="side-icon">👤</span><span class="side-text">关于</span></a>
+        <a href="#login" class="side-link" data-page="login"><span class="side-icon">🔐</span><span class="side-text">登录</span></a>
       </nav>
 
-      <div class="nav-actions">
-        <button class="theme-toggle" id="themeToggle" aria-label="切换深浅色主题" title="切换主题">
-          <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
-          <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      <div class="sidebar-foot">
+        <div class="side-account">
+          <span class="side-account-label">后台账号</span>
+          <button class="side-login-btn" data-goto="login">登 录</button>
+        </div>
+        <button class="side-collapse" id="sidebarCollapse" title="收起侧边栏">
+          <span class="collapse-icon" aria-hidden="true">«</span>
+          <span class="collapse-text">收起</span>
         </button>
+      </div>
+    </aside>
+
+    <!-- 移动端抽屉遮罩 -->
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+    <!-- ================= 右侧主内容区 ================= -->
+    <main class="main">
+      <!-- 顶部栏 -->
+      <header class="topbar">
         <button class="hamburger" id="hamburger" aria-label="打开菜单" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
-      </div>
-    </div>
-  </header>
-
-  <main>
-    <!-- ===== Hero：首屏个人介绍 ===== -->
-    <section class="hero" id="home">
-      <div class="hero-bg">
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
-        <div class="grid-overlay"></div>
-      </div>
-
-      <div class="hero-inner">
-        <div class="hero-badge reveal">
-          <span class="pulse-dot" aria-hidden="true"></span>
-          目前专注 · Web 前端 &amp; Python
+        <div class="topbar-title" id="topbarTitle">首页</div>
+        <div class="topbar-actions">
+          <button class="tb-btn" id="themeToggle" title="切换深浅色模式">🌙 夜间</button>
         </div>
+      </header>
 
-        <p class="hero-eyebrow reveal" aria-hidden="true">~/whoami</p>
+      <div class="pages">
 
-        <h1 class="hero-name reveal">
-          你好，我是
-          <span class="gradient-text">chenji0421</span>
-        </h1>
+        <!-- ================= 首页（深色科技感） ================= -->
+        <section class="page page-home active" id="page-home">
+          <div class="home-hero">
+            <div class="home-grid-bg" aria-hidden="true"></div>
+            <div class="home-glow glow-a" aria-hidden="true"></div>
+            <div class="home-glow glow-b" aria-hidden="true"></div>
 
-        <p class="hero-type reveal">
-          <span class="type-prefix">一名</span>
-          <span class="typewriter" id="typewriter"></span><span class="caret" aria-hidden="true"></span>
-        </p>
+            <div class="home-inner">
+              <div class="home-badge"><span class="pulse-dot"></span> 个人学习工作台 · 长期维护中</div>
 
-        <p class="hero-desc reveal">
-          普通大学生 · 正在努力把「想做的事」变成「会做的事」。
-          从一行 <code>print("Hello World")</code> 开始，一路摸爬滚打到现在。
-        </p>
+              <h1 class="home-title">你好，我是 <span class="home-gradient">Chenji</span></h1>
+              <p class="home-sub">一名正在长跑中的 <span class="home-accent">长期主义者</span></p>
 
-        <div class="hero-actions reveal">
-          <a href="#projects" class="btn btn-primary">
-            看看我的项目
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-          <a href="#contact" class="btn btn-ghost">联系我</a>
-        </div>
+              <p class="home-desc">
+                普通大学生，正在努力把想做的事变成会做的事。
+                从一行 <code>print("Hello World")</code> 开始，记录 Python、网页开发、
+                数据分析、学习计划和项目实践。
+              </p>
 
-        <div class="hero-stats reveal">
-          <div class="stat-item">
-            <div class="stat-num gradient-text">3+</div>
-            <div class="stat-label">技能方向</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-num gradient-text">1+</div>
-            <div class="stat-label">线上项目</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-num gradient-text">2/4</div>
-            <div class="stat-label">路线阶段</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-num gradient-text">100%</div>
-            <div class="stat-label">好奇心</div>
-          </div>
-        </div>
-      </div>
-
-      <a href="#about" class="scroll-hint" aria-label="向下滚动">
-        <span class="mouse"><span class="wheel"></span></span>
-      </a>
-    </section>
-
-    <!-- ===== 关于 ===== -->
-    <section class="section" id="about">
-      <div class="section-head reveal">
-        <span class="section-tag">01 // ABOUT</span>
-        <h2 class="section-title">关于<span class="gradient-text">我</span></h2>
-        <p class="section-sub">学编程的第 N 天，依然热爱每一天。</p>
-      </div>
-
-      <div class="about-grid">
-        <div class="about-card reveal" style="--d:.05s">
-          <div class="about-avatar">
-            <img src="assets/avatar.svg" alt="chenji0421 的头像占位图" width="104" height="104">
-          </div>
-          <div class="about-facts">
-            <div class="fact"><span class="fact-key">昵称</span><span class="fact-val">chenji0421</span></div>
-            <div class="fact"><span class="fact-key">身份</span><span class="fact-val">大学生</span></div>
-            <div class="fact"><span class="fact-key">坐标</span><span class="fact-val">中国大陆</span></div>
-            <div class="fact"><span class="fact-key">兴趣</span><span class="fact-val">编程 / 音乐 / 二次元</span></div>
-            <div class="fact"><span class="fact-key">现状</span><span class="fact-val">边上课边自学</span></div>
-          </div>
-        </div>
-
-        <div class="about-text reveal" style="--d:.1s">
-          <h3>嗨，很高兴认识你 👋</h3>
-          <p>
-            我是一名对技术充满好奇的大学生。一开始只是因为「电脑很酷」才接触编程，
-            没想到写着写着就停不下来了。Python 是我的第一个朋友，
-            后来我又喜欢上了前端——把想法变成看得见的网页，真的很有成就感。
-          </p>
-          <p>
-            现在的我还在打地基的阶段，但我会一直往前走。
-            这里是我的小站，记录我的技能树、做过的项目，还有接下来想走的路。
-          </p>
-          <div class="about-motto">
-            <span class="quote-mark" aria-hidden="true">“</span>
-            <p>慢慢来，比较快。</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== 技能 ===== -->
-    <section class="section section-alt" id="skills">
-      <div class="section-head reveal">
-        <span class="section-tag">02 // SKILLS</span>
-        <h2 class="section-title">我的<span class="gradient-text">技能树</span></h2>
-        <p class="section-sub">持续点亮中……目前长这样。</p>
-      </div>
-
-      <div class="skills-grid">
-        <div class="skill-card reveal" style="--d:.05s">
-          <div class="skill-icon" aria-hidden="true">🐍</div>
-          <h3>编程语言</h3>
-          <div class="skill-bars">
-            <div class="skill-bar">
-              <div class="skill-bar-head"><span>Python</span><span class="skill-pct" data-pct="70">0%</span></div>
-              <div class="bar"><div class="bar-fill" data-width="70"></div></div>
-            </div>
-            <div class="skill-bar">
-              <div class="skill-bar-head"><span>HTML / CSS</span><span class="skill-pct" data-pct="65">0%</span></div>
-              <div class="bar"><div class="bar-fill" data-width="65"></div></div>
-            </div>
-            <div class="skill-bar">
-              <div class="skill-bar-head"><span>JavaScript</span><span class="skill-pct" data-pct="45">0%</span></div>
-              <div class="bar"><div class="bar-fill" data-width="45"></div></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="skill-card reveal" style="--d:.1s">
-          <div class="skill-icon" aria-hidden="true">🛠️</div>
-          <h3>工具 &amp; 工作流</h3>
-          <div class="tag-list">
-            <span class="tag">Git</span>
-            <span class="tag">GitHub</span>
-            <span class="tag">VS Code</span>
-            <span class="tag">终端 / Shell</span>
-            <span class="tag">Markdown</span>
-            <span class="tag">Vite</span>
-          </div>
-          <p class="skill-note">（一些正在熟练、一些正在学）</p>
-        </div>
-
-        <div class="skill-card reveal" style="--d:.15s">
-          <div class="skill-icon" aria-hidden="true">🌱</div>
-          <h3>正在点亮</h3>
-          <div class="tag-list">
-            <span class="tag tag-soon">机器学习基础</span>
-            <span class="tag tag-soon">前端框架</span>
-            <span class="tag tag-soon">Node.js</span>
-            <span class="tag tag-soon">数据可视化</span>
-            <span class="tag tag-soon">英语阅读</span>
-          </div>
-          <p class="skill-note">学习路线见下方 →</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== 项目 ===== -->
-    <section class="section" id="projects">
-      <div class="section-head reveal">
-        <span class="section-tag">03 // PROJECTS</span>
-        <h2 class="section-title">做过的<span class="gradient-text">项目</span></h2>
-        <p class="section-sub">每一个都是进步的脚印。</p>
-      </div>
-
-      <div class="projects-grid">
-        <article class="project-card reveal" style="--d:.05s">
-          <div class="project-cover cover-a">
-            <div class="term" aria-hidden="true">
-              <div class="term-bar">
-                <span class="term-dot red"></span>
-                <span class="term-dot yellow"></span>
-                <span class="term-dot green"></span>
-                <span class="term-title">index.html</span>
+              <div class="home-terminal">
+                <div class="term-bar">
+                  <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                  <span class="term-title">~/chenji — zsh</span>
+                </div>
+                <div class="term-body">
+                  <div class="term-line"><span class="t-prompt">$</span> boot <span class="t-comment">personal site online</span></div>
+                  <div class="term-line"><span class="t-prompt">$</span> stack <span class="t-comment">HTML + CSS + JavaScript + Python</span></div>
+                  <div class="term-line"><span class="t-prompt">$</span> latest <span class="t-comment">GitHub Pages 建站与前端学习</span></div>
+                  <div class="term-line"><span class="t-prompt">$</span> mode <span class="t-comment">learning mode</span><span class="t-cursor" aria-hidden="true"></span></div>
+                </div>
               </div>
-              <div class="term-body">
-                <code class="code-line"><span class="c-tag">&lt;title&gt;</span>个人主页 v2.0<span class="c-tag">&lt;/title&gt;</span></code>
-                <code class="code-line"><span class="c-tag">&lt;meta</span> <span class="c-key">charset</span>=<span class="c-str">"utf-8"</span><span class="c-tag">/&gt;</span></code>
-                <code class="code-line c-ok">✓ 已部署上线</code>
+
+              <div class="home-actions">
+                <a href="#articles" class="btn btn-primary">看看我的文章 <span class="btn-arrow">→</span></a>
+                <a href="#plans" class="btn btn-ghost">看学习计划</a>
+              </div>
+
+              <div class="home-tags">
+                <span class="tag">Web 入门</span>
+                <span class="tag">Python</span>
+                <span class="tag">数据分析</span>
+                <span class="tag">自动化</span>
+                <span class="tag">GitHub Pages</span>
+                <span class="tag">长期主义</span>
+              </div>
+            </div>
+
+            <div class="home-stats">
+              <div class="stat-card">
+                <div class="stat-num">8</div>
+                <div class="stat-label">已发布文章</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-num">5</div>
+                <div class="stat-label">项目记录</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-num">3</div>
+                <div class="stat-label">学习计划</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-num">12</div>
+                <div class="stat-label">技能标签</div>
               </div>
             </div>
           </div>
-          <div class="project-body">
-            <h3>个人主页 · 作品集 v2</h3>
-            <p>就是这个网站！已从纯静态页升级为「个人主页 + 博客 + 全栈学习」项目：根目录静态主页 + React/Vite 前端 + FastAPI 后端（见下方项目结构）。</p>
-            <div class="project-tags">
-              <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span>
+
+          <div class="home-extra">
+            <h3 class="home-extra-title">最近在做的事</h3>
+            <div class="home-extra-grid">
+              <div class="hx-card">
+                <div class="hx-icon">📝</div>
+                <div>
+                  <div class="hx-title">搭建文章中心</div>
+                  <div class="hx-meta">进行中 · 支持搜索与筛选</div>
+                </div>
+              </div>
+              <div class="hx-card">
+                <div class="hx-icon">🐍</div>
+                <div>
+                  <div class="hx-title">Python 文件整理工具</div>
+                  <div class="hx-meta">计划中 · os + shutil</div>
+                </div>
+              </div>
+              <div class="hx-card">
+                <div class="hx-icon">📊</div>
+                <div>
+                  <div class="hx-title">数据分析入门</div>
+                  <div class="hx-meta">学习笔记 · pandas / matplotlib</div>
+                </div>
+              </div>
+              <div class="hx-card">
+                <div class="hx-icon">♻️</div>
+                <div>
+                  <div class="hx-title">暑期学习复盘</div>
+                  <div class="hx-meta">已完成 · 本周更新</div>
+                </div>
+              </div>
             </div>
-            <div class="project-links">
-              <a href="https://github.com/chenji0421/chenji0421.github.io" target="_blank" rel="noopener" class="project-link">
-                GitHub
-                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
+          </div>
+        </section>
+
+        <!-- ================= 文章页 ================= -->
+        <section class="page" id="page-articles">
+          <div class="page-toolbar">
+            <div class="search-box">
+              <span class="search-icon" aria-hidden="true">🔍</span>
+              <input type="search" id="searchInput" placeholder="搜索标题、正文或标签" autocomplete="off" />
+            </div>
+            <div class="toolbar-right">
+              <button class="tb-btn" id="themeToggle2" title="切换深浅色模式">🌓 日间/夜间</button>
+              <button class="tb-btn tb-btn-online" id="onlineToggle" title="在线工作台状态">
+                <span class="online-dot" aria-hidden="true"></span> 在线工作台
+              </button>
+            </div>
+          </div>
+
+          <div class="page-head">
+            <h2 class="page-title">学习笔记、项目记录和标签搜索</h2>
+            <p class="page-sub">把学过的、做过的、踩过的坑，都记下来。搜索、筛选、复习。</p>
+          </div>
+
+          <div class="filter-bar" id="filterBar">
+            <div class="filter-group" id="tagFilterGroup">
+              <span class="filter-label">标签</span>
+              <div class="filter-chips" id="tagFilters"></div>
+            </div>
+            <div class="filter-group">
+              <span class="filter-label">分类</span>
+              <div class="filter-chips" id="categoryFilters"></div>
+            </div>
+            <div class="filter-group">
+              <span class="filter-label">月份</span>
+              <div class="filter-chips" id="monthFilters"></div>
+            </div>
+          </div>
+
+          <div class="hot-section">
+            <div class="hot-head">
+              <h3>🔥 热门文章</h3>
+              <span class="hot-hint">按阅读量排序</span>
+            </div>
+            <ol class="hot-list" id="hotList"></ol>
+          </div>
+
+          <div class="articles-grid" id="articlesGrid"></div>
+
+          <div class="empty-state" id="articlesEmpty" hidden>
+            <div class="empty-icon">🕸️</div>
+            <p>没有找到匹配的文章</p>
+            <button class="btn btn-ghost" id="resetFilterBtn">清空筛选</button>
+          </div>
+        </section>
+
+        <!-- ================= 计划页 ================= -->
+        <section class="page" id="page-plans">
+          <div class="plan-hero">
+            <div class="plan-hero-text">
+              <span class="plan-badge">Summer Sprint</span>
+              <h2 class="page-title">Chenji 的阶段冲刺计划</h2>
+              <p>大二阶段学习记录：编程基础、Python 自动化、网页开发、数据分析和规律生活。</p>
+            </div>
+            <div class="plan-hero-actions">
+              <button class="btn btn-ghost" id="copyPlan">📋 复制计划</button>
+              <button class="btn btn-ghost" id="resetPlan">♻️ 恢复模板</button>
+              <button class="btn btn-primary" id="savePlan">💾 本地保存</button>
+            </div>
+          </div>
+
+          <div class="plan-notice">
+            <span class="notice-icon" aria-hidden="true">ℹ️</span>
+            当前是查看模式。修改内容会保存到浏览器 <code>localStorage</code>，不会上传到服务器。
+          </div>
+
+          <div class="plan-cards">
+            <div class="plan-card">
+              <div class="plan-card-head"><span class="plan-card-icon">🎯</span><h3>学习主线</h3></div>
+              <ul class="plan-card-list">
+                <li>Python 基础</li>
+                <li>HTML / CSS</li>
+                <li>JavaScript</li>
+                <li>GitHub</li>
+                <li>数据分析</li>
+              </ul>
+            </div>
+            <div class="plan-card">
+              <div class="plan-card-head"><span class="plan-card-icon">💪</span><h3>运动与身体</h3></div>
+              <ul class="plan-card-list">
+                <li>跑步 / 快走</li>
+                <li>规律作息</li>
+                <li>饮食记录</li>
+                <li>体重记录</li>
+              </ul>
+            </div>
+            <div class="plan-card">
+              <div class="plan-card-head"><span class="plan-card-icon">🎮</span><h3>娱乐边界</h3></div>
+              <ul class="plan-card-list">
+                <li>游戏时间控制</li>
+                <li>短视频控制</li>
+                <li>阅读与复盘</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="plan-table-wrap">
+            <div class="plan-table-head">
+              <h3>⏰ 每日时间段安排</h3>
+              <span class="plan-table-hint">点击单元格即可编辑 · 删除可整行移除</span>
+            </div>
+            <div class="table-scroll">
+              <table class="plan-table" id="planTable">
+                <thead>
+                  <tr>
+                    <th>时间段</th>
+                    <th>要做什么</th>
+                    <th>重点 / 说明</th>
+                    <th>类型</th>
+                    <th class="th-op">操作</th>
+                  </tr>
+                </thead>
+                <tbody id="planTbody"></tbody>
+              </table>
+            </div>
+            <div class="plan-table-actions">
+              <button class="btn btn-ghost" id="addRow">＋ 新增时间段</button>
+              <span class="plan-save-hint" id="planSaveHint"></span>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= 项目页 ================= -->
+        <section class="page" id="page-projects">
+          <div class="page-head">
+            <h2 class="page-title">项目实验室</h2>
+            <p class="page-sub">这里记录我正在做、计划做和已经完成的小项目。</p>
+          </div>
+
+          <div class="project-groups" id="projectGroups"></div>
+        </section>
+
+        <!-- ================= 游戏页 ================= -->
+        <section class="page" id="page-games">
+          <div class="game-head">
+            <div class="game-head-text">
+              <h2 class="page-title">Card War 在线试玩</h2>
+              <span class="badge badge-embed">已嵌入 · 计划中</span>
+            </div>
+            <p class="page-sub">
+              当前通过 iframe / 占位区域嵌入小游戏，后续可以补充游戏介绍、排行榜和分数记录。
+            </p>
+          </div>
+
+          <div class="game-actions">
+            <button class="btn btn-primary" id="reloadGame">🔄 刷新游戏</button>
+            <button class="btn btn-ghost" id="openGame">↗ 新窗口打开</button>
+            <a class="btn btn-ghost" href="https://github.com/chenji0421" target="_blank" rel="noopener">📁 查看仓库</a>
+          </div>
+
+          <div class="game-stage" id="gameStage">
+            <div class="game-placeholder">
+              <div class="game-ph-icon" aria-hidden="true">🃏</div>
+              <h3>游戏区域预留中</h3>
+              <p>未来可以把自己的 HTML 小游戏嵌入到这里</p>
+              <span class="game-ph-hint">提示：点击「新窗口打开」可全屏试玩（当前暂无真实游戏地址）</span>
+            </div>
+          </div>
+
+          <div class="game-info-cards">
+            <div class="game-info-card">
+              <div class="gi-icon" aria-hidden="true">📜</div>
+              <h4>游戏规则</h4>
+              <p>双方各抽一张卡比大小：点数高者胜，同点则平局。三局两胜制，先赢两局的一方获胜。规则简单，适合练手。</p>
+            </div>
+            <div class="game-info-card">
+              <div class="gi-icon" aria-hidden="true">🛠️</div>
+              <h4>技术实现</h4>
+              <p>计划使用纯 HTML5 + CSS + JavaScript 实现，不依赖任何框架。洗牌算法 + 简单的比对逻辑，全部在浏览器本地运行。</p>
+            </div>
+            <div class="game-info-card">
+              <div class="gi-icon" aria-hidden="true">🚀</div>
+              <h4>后续计划</h4>
+              <p>补充游戏介绍页、胜率统计、本地排行榜（localStorage），以及把仓库里做的小游戏统一挂到这个页面来试玩。</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= 关于页 ================= -->
+        <section class="page" id="page-about">
+          <div class="page-head">
+            <h2 class="page-title">关于我</h2>
+            <p class="page-sub">一个非计算机专业学生的自学记录，保持诚实，保持长期主义。</p>
+          </div>
+
+          <div class="about-grid">
+            <div class="about-block">
+              <div class="about-block-head"><span class="ab-icon">👋</span><h3>个人简介</h3></div>
+              <div class="about-profile">
+                <img src="assets/avatar.svg" alt="Chenji 头像" class="about-avatar" width="88" height="88" />
+                <div>
+                  <p>我是 <strong>Chenji（陈际）</strong>，非计算机专业大二学生。</p>
+                  <p>正在学习 Python、前端开发和数据分析，想通过项目驱动学习——先做出来，再学明白。</p>
+                  <p>相信「慢慢来，比较快」，把这里当成自己的学习工作台来长期维护。</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="about-block">
+              <div class="about-block-head"><span class="ab-icon">🧭</span><h3>当前关注方向</h3></div>
+              <ul class="focus-list" id="focusList"></ul>
+            </div>
+          </div>
+
+          <div class="about-grid">
+            <div class="about-block">
+              <div class="about-block-head"><span class="ab-icon">📈</span><h3>技能进度</h3></div>
+              <div class="skill-bars" id="skillBars"></div>
+            </div>
+
+            <div class="about-block">
+              <div class="about-block-head"><span class="ab-icon">🕰️</span><h3>时间线</h3></div>
+              <div class="timeline" id="aboutTimeline"></div>
+            </div>
+          </div>
+
+          <div class="about-block">
+            <div class="about-block-head"><span class="ab-icon">✉️</span><h3>联系方式</h3></div>
+            <div class="contact-links">
+              <a class="contact-link" href="https://github.com/chenji0421" target="_blank" rel="noopener">
+                <span class="cl-icon">🐙</span>
+                <span class="cl-body"><strong>GitHub</strong><em>github.com/chenji0421</em></span>
+                <span class="cl-go">→</span>
+              </a>
+              <a class="contact-link" href="mailto:chenji0421@example.com">
+                <span class="cl-icon">📧</span>
+                <span class="cl-body"><strong>邮箱</strong><em>chenji0421@example.com（占位）</em></span>
+                <span class="cl-go">→</span>
               </a>
             </div>
           </div>
-        </article>
+        </section>
 
-        <article class="project-card reveal" style="--d:.1s">
-          <div class="project-cover cover-b">
-            <div class="term" aria-hidden="true">
-              <div class="term-bar">
-                <span class="term-dot red"></span>
-                <span class="term-dot yellow"></span>
-                <span class="term-dot green"></span>
-                <span class="term-title">python3</span>
-              </div>
-              <div class="term-body">
-                <code class="code-line"><span class="c-prompt">&gt;&gt;&gt;</span> print(<span class="c-str">"hello, world!"</span>)</code>
-                <code class="code-line c-ok">hello, world!</code>
-                <code class="code-line"><span class="c-prompt">&gt;&gt;&gt;</span> <span class="c-comment"># 下一个伟大想法</span></code>
-              </div>
+        <!-- ================= 登录页 ================= -->
+        <section class="page" id="page-login">
+          <div class="login-wrap">
+            <div class="login-card">
+              <div class="login-logo">🔐</div>
+              <h2>账号登录</h2>
+              <p class="login-sub">个人工作台后台入口（静态演示）</p>
+
+              <button class="btn btn-primary btn-block" id="ghLogin">
+                🐙 使用 GitHub 登录
+              </button>
+              <p class="login-demo-note">演示按钮，暂未接入 OAuth</p>
+
+              <div class="login-divider"><span>或</span></div>
+
+              <details class="login-email-fold">
+                <summary>站长邮箱登录</summary>
+                <div class="login-form">
+                  <input type="email" class="login-input" id="loginEmail" placeholder="邮箱" autocomplete="off" />
+                  <input type="password" class="login-input" id="loginPwd" placeholder="密码" autocomplete="off" />
+                  <button class="btn btn-primary btn-block" id="loginSubmit">登 录</button>
+                </div>
+              </details>
+
+              <p class="login-note">
+                ⚠️ 当前为静态演示页面，不会上传任何账号密码。请不要输入真实密码。
+              </p>
             </div>
           </div>
-          <div class="project-body">
-            <h3>Python 小练习合集</h3>
-            <p>初学 Python 时写的各种小脚本：猜数字、贪吃蛇、爬虫入门……都收在我的仓库里，见证从零到一。</p>
-            <div class="project-tags">
-              <span class="tag">Python</span><span class="tag">练习</span>
-            </div>
-            <div class="project-links">
-              <a href="https://github.com/chenji0421" target="_blank" rel="noopener" class="project-link">
-                GitHub
-                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
-              </a>
-            </div>
-          </div>
-        </article>
+        </section>
 
-        <article class="project-card reveal" style="--d:.15s">
-          <div class="project-cover cover-c">
-            <div class="term" aria-hidden="true">
-              <div class="term-bar">
-                <span class="term-dot red"></span>
-                <span class="term-dot yellow"></span>
-                <span class="term-dot green"></span>
-                <span class="term-title">zsh</span>
-              </div>
-              <div class="term-body">
-                <code class="code-line"><span class="c-prompt">$</span> cd 下一个项目</code>
-                <code class="code-line"><span class="c-prompt">$</span> <span class="c-comment"># 正在构思中……</span></code>
-                <code class="code-line"><span class="c-prompt">$</span> <span class="caret-lg"></span></code>
-              </div>
-            </div>
-          </div>
-          <div class="project-body">
-            <h3>下一个项目（施工中）</h3>
-            <p>还没想好，但一定很有趣。敬请期待，也欢迎给我点子！</p>
-            <div class="project-tags">
-              <span class="tag tag-soon">Coming Soon</span>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
+      </div><!-- /.pages -->
 
-    <!-- ===== 学习路线 ===== -->
-    <section class="section section-alt" id="roadmap">
-      <div class="section-head reveal">
-        <span class="section-tag">04 // ROADMAP</span>
-        <h2 class="section-title">我的<span class="gradient-text">学习路线</span></h2>
-        <p class="section-sub">一步一个脚印，写给自己也写给未来的自己。</p>
-      </div>
+      <footer class="footer">
+        <p>© <span id="year">2026</span> Chenji (chenji0421) · 个人学习工作台 · 用 ❤ 和咖啡长期维护 · <a href="https://github.com/chenji0421/chenji0421.github.io" target="_blank" rel="noopener">本站源码</a></p>
+      </footer>
+    </main>
+  </div><!-- /.app -->
 
-      <div class="timeline">
-        <div class="timeline-item reveal">
-          <div class="timeline-dot"><span>1</span></div>
-          <div class="timeline-card">
-            <span class="timeline-stage">阶段一 · 已完成 ✅</span>
-            <h3>编程入门</h3>
-            <p>搞定 Python 基础语法、变量与循环；能读懂和写出简单的程序。顺手把 HTML/CSS 的基础也啃了一遍，做出了自己的第一个网页。</p>
-          </div>
-        </div>
+  <button class="back-top" id="backTop" aria-label="回到顶部" title="回到顶部">↑</button>
 
-        <div class="timeline-item reveal">
-          <div class="timeline-dot"><span>2</span></div>
-          <div class="timeline-card">
-            <span class="timeline-stage">阶段二 · 进行中 🔥</span>
-            <h3>Web 开发 &amp; 工具链</h3>
-            <p>深入学习 JavaScript、学会用 Git/GitHub 管理代码，把这个个人主页做成真正像样的项目。</p>
-          </div>
-        </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-        <div class="timeline-item reveal">
-          <div class="timeline-dot"><span>3</span></div>
-          <div class="timeline-card">
-            <span class="timeline-stage">阶段三 · 计划中 📌</span>
-            <h3>前后端全栈</h3>
-            <p>学习前端框架（Vue / React 选一）与后端（Node.js / Python Web 框架），做出自己的完整作品。</p>
-          </div>
-        </div>
-
-        <div class="timeline-item reveal">
-          <div class="timeline-dot"><span>4</span></div>
-          <div class="timeline-card">
-            <span class="timeline-stage">阶段四 · 梦想版 🚀</span>
-            <h3>开源 &amp; 持续成长</h3>
-            <p>参与开源、写技术博客、给社区做贡献。目标：成为一个靠谱的开发者。</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== 项目结构 ===== -->
-    <section class="section section-alt" id="structure">
-      <div class="section-head reveal">
-        <span class="section-tag">05 // REPO</span>
-        <h2 class="section-title">项目<span class="gradient-text">结构</span></h2>
-        <p class="section-sub">这个仓库已经是一个「全栈学习项目」啦——下面是它的骨骼。</p>
-      </div>
-
-      <div class="structure-grid">
-        <a class="struct-card reveal" style="--d:.05s" href="https://github.com/chenji0421/chenji0421.github.io/blob/main/docs/README.md" target="_blank" rel="noopener">
-          <div class="struct-icon" aria-hidden="true">📖</div>
-          <div class="struct-title">docs/</div>
-          <p>架构、路线、部署、学习笔记——想了解项目先看这里。</p>
-          <span class="struct-go">查看文档 →</span>
-        </a>
-
-        <a class="struct-card reveal" style="--d:.1s" href="https://github.com/chenji0421/chenji0421.github.io/tree/main/frontend" target="_blank" rel="noopener">
-          <div class="struct-icon" aria-hidden="true">⚛️</div>
-          <div class="struct-title">frontend/</div>
-          <p>React + Vite 前端：个人主页、博客列表、项目展示（本地运行）。</p>
-          <span class="struct-go">查看源码 →</span>
-        </a>
-
-        <a class="struct-card reveal" style="--d:.15s" href="https://github.com/chenji0421/chenji0421.github.io/tree/main/backend" target="_blank" rel="noopener">
-          <div class="struct-icon" aria-hidden="true">🐍</div>
-          <div class="struct-title">backend/</div>
-          <p>FastAPI 后端：/api/posts、/api/projects 等示例 API（本地运行）。</p>
-          <span class="struct-go">查看源码 →</span>
-        </a>
-
-        <a class="struct-card reveal" style="--d:.2s" href="https://github.com/chenji0421/chenji0421.github.io/tree/main/scripts" target="_blank" rel="noopener">
-          <div class="struct-icon" aria-hidden="true">🧪</div>
-          <div class="struct-title">scripts/</div>
-          <p>自检脚本 check.py + 一键启动脚本 dev.sh / dev.bat。</p>
-          <span class="struct-go">查看脚本 →</span>
-        </a>
-      </div>
-
-      <p class="structure-note reveal">前端与后端需要本地运行；GitHub Pages 只托管根目录的静态页。完整说明见 <a href="https://github.com/chenji0421/chenji0421.github.io/blob/main/README.md" target="_blank" rel="noopener">README</a> 与 <a href="https://github.com/chenji0421/chenji0421.github.io/blob/main/docs/README.md" target="_blank" rel="noopener">docs</a>。</p>
-    </section>
-
-    <!-- ===== 联系方式 ===== -->
-    <section class="section" id="contact">
-      <div class="section-head reveal">
-        <span class="section-tag">06 // CONTACT</span>
-        <h2 class="section-title">找到<span class="gradient-text">我</span></h2>
-        <p class="section-sub">想交流、想合作、或者只是打个招呼都欢迎！</p>
-      </div>
-
-      <div class="contact-card reveal">
-        <div class="contact-main">
-          <h3>一起聊聊天吧？</h3>
-          <p>我可能回得有点慢，但每条都会认真看。</p>
-          <a href="mailto:chenji0421@example.com?subject=%E6%9D%A5%E8%87%AA%E4%BD%A0%E7%9A%84%E4%B8%AA%E4%BA%BA%E4%B8%BB%E9%A1%B5" class="btn btn-primary">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>
-            发邮件给我
-          </a>
-        </div>
-        <div class="contact-socials">
-          <a href="https://github.com/chenji0421" target="_blank" rel="noopener" class="social-link">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.86 10.92c.58.11.79-.25.79-.56v-2c-3.2.7-3.87-1.54-3.87-1.54-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.23-1.28-5.23-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.69 5.39-5.25 5.68.41.35.77 1.05.77 2.12v3.14c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5z"/></svg>
-            <span>GitHub</span>
-          </a>
-          <a href="mailto:chenji0421@example.com" class="social-link">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>
-            <span>Email</span>
-          </a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <p>© <span id="year">2026</span> <a href="https://github.com/chenji0421" target="_blank" rel="noopener">chenji0421</a> · 用 ❤ 和咖啡搭建 · <a href="https://github.com/chenji0421/chenji0421.github.io" target="_blank" rel="noopener">本站源码</a></p>
-  </footer>
-
-  <button class="back-top" id="backTop" aria-label="回到顶部" title="回到顶部">
-    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-  </button>
-
+  <script src="js/data.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

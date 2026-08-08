@@ -105,9 +105,11 @@ def check_html(path: Path) -> None:
         errors.append(f"[{path}] 未闭合标签：{', '.join('<' + t + '>' for t in stack)}")
 
     # ---- 锚点与 id ----
+    # 兼容 hash 路由：页面 section 的 id 是 page-home / page-articles …
+    # 因此 href="#home" 对应 id="page-home"，校验时两种都算。
     ids = set(ID_RE.findall(text))
     for anchor in set(ANCHOR_RE.findall(text)):
-        if anchor not in ids:
+        if anchor not in ids and ("page-" + anchor) not in ids:
             warnings.append(f"[{path}] 锚点 #{anchor} 没有对应的 id")
 
     # ---- 本地资源存在性 ----
