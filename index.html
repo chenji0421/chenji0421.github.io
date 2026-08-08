@@ -1,16 +1,11 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-theme="light">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Chenji 的个人学习工作台 —— 个人知识库 + 学习计划 + 项目展示 + 技术博客后台，记录 Python、网页开发、数据分析与长期主义。" />
+  <meta name="description" content="Chenji 的个人学习工作台 —— 个人知识库 + 学习计划 + 项目展示，记录 Python、网页开发、数据分析与长期主义。" />
   <meta name="author" content="chenji0421" />
-  <meta name="theme-color" content="#0f1b2d" />
-  <meta property="og:title" content="Chenji · 个人学习工作台" />
-  <meta property="og:description" content="个人知识库 + 学习工作台 + 技术博客后台。慢慢来，比较快。" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://chenji0421.github.io" />
-  <meta property="og:image" content="https://chenji0421.github.io/assets/avatar.svg" />
+  <meta name="theme-color" content="#132033" />
 
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
   <title>Chenji · 个人学习工作台</title>
@@ -19,9 +14,6 @@
 </head>
 <body>
 
-  <!-- 无障碍：跳过链接 -->
-  <a class="skip-link" href="#page-home">跳到主要内容</a>
-
   <div class="app">
 
     <!-- ================= 左侧固定导航栏 ================= -->
@@ -29,7 +21,7 @@
       <div class="sidebar-head">
         <div class="avatar-wrap">
           <img src="assets/avatar.svg" alt="Chenji 头像" width="52" height="52" />
-          <span class="avatar-status" title="在线工作台"></span>
+          <span class="avatar-status" title="在线"></span>
         </div>
         <div class="sidebar-user">
           <div class="user-name">陈际</div>
@@ -38,13 +30,27 @@
       </div>
 
       <nav class="sidebar-nav" aria-label="主导航">
-        <a href="#home" class="side-link active" data-page="home"><span class="side-icon">🏠</span><span class="side-text">首页</span></a>
-        <a href="#articles" class="side-link" data-page="articles"><span class="side-icon">📝</span><span class="side-text">文章</span></a>
-        <a href="#plans" class="side-link" data-page="plans"><span class="side-icon">🗓️</span><span class="side-text">计划</span></a>
-        <a href="#projects" class="side-link" data-page="projects"><span class="side-icon">📦</span><span class="side-text">项目</span></a>
-        <a href="#games" class="side-link" data-page="games"><span class="side-icon">🎮</span><span class="side-text">游戏</span></a>
-        <a href="#about" class="side-link" data-page="about"><span class="side-icon">👤</span><span class="side-text">关于</span></a>
-        <a href="#login" class="side-link" data-page="login"><span class="side-icon">🔐</span><span class="side-text">登录</span></a>
+        <a href="#home" class="side-link active" data-page="home">
+          <span class="side-icon">🏠</span><span class="side-text">首页</span>
+        </a>
+        <a href="#articles" class="side-link" data-page="articles">
+          <span class="side-icon">📝</span><span class="side-text">文章</span>
+        </a>
+        <a href="#plans" class="side-link" data-page="plans">
+          <span class="side-icon">🗓️</span><span class="side-text">计划</span>
+        </a>
+        <a href="#projects" class="side-link" data-page="projects">
+          <span class="side-icon">📦</span><span class="side-text">项目</span>
+        </a>
+        <a href="#games" class="side-link" data-page="games">
+          <span class="side-icon">🎮</span><span class="side-text">游戏</span>
+        </a>
+        <a href="#about" class="side-link" data-page="about">
+          <span class="side-icon">👤</span><span class="side-text">关于</span>
+        </a>
+        <a href="#login" class="side-link" data-page="login">
+          <span class="side-icon">🔐</span><span class="side-text">登录</span>
+        </a>
       </nav>
 
       <div class="sidebar-foot">
@@ -64,22 +70,21 @@
 
     <!-- ================= 右侧主内容区 ================= -->
     <main class="main">
-      <!-- 顶部栏 -->
+
       <header class="topbar">
         <button class="hamburger" id="hamburger" aria-label="打开菜单" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
         <div class="topbar-title" id="topbarTitle">首页</div>
-        <div class="topbar-actions">
-          <button class="tb-btn" id="themeToggle" title="切换深浅色模式">🌙 夜间</button>
-        </div>
+        <div class="topbar-actions"></div>
       </header>
 
       <div class="pages">
 
-        <!-- ================= 首页（深色科技感） ================= -->
-        <section class="page page-home active" id="page-home">
-          <div class="home-hero">
+        <!-- ================= 首页（深色科技感 hero 卡片） ================= -->
+        <section class="page active" id="page-home">
+
+          <div class="hero-card">
             <div class="home-grid-bg" aria-hidden="true"></div>
             <div class="home-glow glow-a" aria-hidden="true"></div>
             <div class="home-glow glow-b" aria-hidden="true"></div>
@@ -144,316 +149,98 @@
             </div>
           </div>
 
-          <div class="home-extra">
-            <h3 class="home-extra-title">最近在做的事</h3>
-            <div class="home-extra-grid">
-              <div class="hx-card">
-                <div class="hx-icon">📝</div>
-                <div>
-                  <div class="hx-title">搭建文章中心</div>
-                  <div class="hx-meta">进行中 · 支持搜索与筛选</div>
-                </div>
-              </div>
-              <div class="hx-card">
-                <div class="hx-icon">🐍</div>
-                <div>
-                  <div class="hx-title">Python 文件整理工具</div>
-                  <div class="hx-meta">计划中 · os + shutil</div>
-                </div>
-              </div>
-              <div class="hx-card">
-                <div class="hx-icon">📊</div>
-                <div>
-                  <div class="hx-title">数据分析入门</div>
-                  <div class="hx-meta">学习笔记 · pandas / matplotlib</div>
-                </div>
-              </div>
-              <div class="hx-card">
-                <div class="hx-icon">♻️</div>
-                <div>
-                  <div class="hx-title">暑期学习复盘</div>
-                  <div class="hx-meta">已完成 · 本周更新</div>
-                </div>
-              </div>
-            </div>
-          </div>
         </section>
 
-        <!-- ================= 文章页 ================= -->
+        <!-- ================= 文章页（占位） ================= -->
         <section class="page" id="page-articles">
-          <div class="page-toolbar">
-            <div class="search-box">
-              <span class="search-icon" aria-hidden="true">🔍</span>
-              <input type="search" id="searchInput" placeholder="搜索标题、正文或标签" autocomplete="off" />
-            </div>
-            <div class="toolbar-right">
-              <button class="tb-btn" id="themeToggle2" title="切换深浅色模式">🌓 日间/夜间</button>
-              <button class="tb-btn tb-btn-online" id="onlineToggle" title="在线工作台状态">
-                <span class="online-dot" aria-hidden="true"></span> 在线工作台
-              </button>
-            </div>
-          </div>
-
           <div class="page-head">
-            <h2 class="page-title">学习笔记、项目记录和标签搜索</h2>
-            <p class="page-sub">把学过的、做过的、踩过的坑，都记下来。搜索、筛选、复习。</p>
+            <h2 class="page-title">文章</h2>
+            <p class="page-sub">学习笔记、项目记录和标签搜索</p>
           </div>
-
-          <div class="filter-bar" id="filterBar">
-            <div class="filter-group" id="tagFilterGroup">
-              <span class="filter-label">标签</span>
-              <div class="filter-chips" id="tagFilters"></div>
-            </div>
-            <div class="filter-group">
-              <span class="filter-label">分类</span>
-              <div class="filter-chips" id="categoryFilters"></div>
-            </div>
-            <div class="filter-group">
-              <span class="filter-label">月份</span>
-              <div class="filter-chips" id="monthFilters"></div>
-            </div>
-          </div>
-
-          <div class="hot-section">
-            <div class="hot-head">
-              <h3>🔥 热门文章</h3>
-              <span class="hot-hint">按阅读量排序</span>
-            </div>
-            <ol class="hot-list" id="hotList"></ol>
-          </div>
-
-          <div class="articles-grid" id="articlesGrid"></div>
-
-          <div class="empty-state" id="articlesEmpty" hidden>
-            <div class="empty-icon">🕸️</div>
-            <p>没有找到匹配的文章</p>
-            <button class="btn btn-ghost" id="resetFilterBtn">清空筛选</button>
+          <div class="placeholder-card">
+            <div class="placeholder-icon">📝</div>
+            <h3>文章中心</h3>
+            <p>这里将展示学习笔记、项目记录和标签搜索。功能建设中，敬请期待。</p>
+            <span class="placeholder-badge">建设中</span>
           </div>
         </section>
 
-        <!-- ================= 计划页 ================= -->
+        <!-- ================= 计划页（占位） ================= -->
         <section class="page" id="page-plans">
-          <div class="plan-hero">
-            <div class="plan-hero-text">
-              <span class="plan-badge">Summer Sprint</span>
-              <h2 class="page-title">Chenji 的阶段冲刺计划</h2>
-              <p>大二阶段学习记录：编程基础、Python 自动化、网页开发、数据分析和规律生活。</p>
-            </div>
-            <div class="plan-hero-actions">
-              <button class="btn btn-ghost" id="copyPlan">📋 复制计划</button>
-              <button class="btn btn-ghost" id="resetPlan">♻️ 恢复模板</button>
-              <button class="btn btn-primary" id="savePlan">💾 本地保存</button>
-            </div>
+          <div class="page-head">
+            <h2 class="page-title">计划</h2>
+            <p class="page-sub">Summer Sprint 阶段冲刺计划</p>
           </div>
-
-          <div class="plan-notice">
-            <span class="notice-icon" aria-hidden="true">ℹ️</span>
-            当前是查看模式。修改内容会保存到浏览器 <code>localStorage</code>，不会上传到服务器。
-          </div>
-
-          <div class="plan-cards">
-            <div class="plan-card">
-              <div class="plan-card-head"><span class="plan-card-icon">🎯</span><h3>学习主线</h3></div>
-              <ul class="plan-card-list">
-                <li>Python 基础</li>
-                <li>HTML / CSS</li>
-                <li>JavaScript</li>
-                <li>GitHub</li>
-                <li>数据分析</li>
-              </ul>
-            </div>
-            <div class="plan-card">
-              <div class="plan-card-head"><span class="plan-card-icon">💪</span><h3>运动与身体</h3></div>
-              <ul class="plan-card-list">
-                <li>跑步 / 快走</li>
-                <li>规律作息</li>
-                <li>饮食记录</li>
-                <li>体重记录</li>
-              </ul>
-            </div>
-            <div class="plan-card">
-              <div class="plan-card-head"><span class="plan-card-icon">🎮</span><h3>娱乐边界</h3></div>
-              <ul class="plan-card-list">
-                <li>游戏时间控制</li>
-                <li>短视频控制</li>
-                <li>阅读与复盘</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="plan-table-wrap">
-            <div class="plan-table-head">
-              <h3>⏰ 每日时间段安排</h3>
-              <span class="plan-table-hint">点击单元格即可编辑 · 删除可整行移除</span>
-            </div>
-            <div class="table-scroll">
-              <table class="plan-table" id="planTable">
-                <thead>
-                  <tr>
-                    <th>时间段</th>
-                    <th>要做什么</th>
-                    <th>重点 / 说明</th>
-                    <th>类型</th>
-                    <th class="th-op">操作</th>
-                  </tr>
-                </thead>
-                <tbody id="planTbody"></tbody>
-              </table>
-            </div>
-            <div class="plan-table-actions">
-              <button class="btn btn-ghost" id="addRow">＋ 新增时间段</button>
-              <span class="plan-save-hint" id="planSaveHint"></span>
-            </div>
+          <div class="placeholder-card">
+            <div class="placeholder-icon">🗓️</div>
+            <h3>阶段冲刺计划</h3>
+            <p>这里将展示可编辑的每日时间段安排与学习计划。功能建设中，敬请期待。</p>
+            <span class="placeholder-badge">建设中</span>
           </div>
         </section>
 
-        <!-- ================= 项目页 ================= -->
+        <!-- ================= 项目页（占位） ================= -->
         <section class="page" id="page-projects">
           <div class="page-head">
-            <h2 class="page-title">项目实验室</h2>
-            <p class="page-sub">这里记录我正在做、计划做和已经完成的小项目。</p>
+            <h2 class="page-title">项目</h2>
+            <p class="page-sub">项目实验室 · 已完成 / 进行中 / 计划中</p>
           </div>
-
-          <div class="project-groups" id="projectGroups"></div>
+          <div class="placeholder-card">
+            <div class="placeholder-icon">📦</div>
+            <h3>项目实验室</h3>
+            <p>这里将展示正在做、计划做和已经完成的小项目。功能建设中，敬请期待。</p>
+            <span class="placeholder-badge">建设中</span>
+          </div>
         </section>
 
-        <!-- ================= 游戏页 ================= -->
+        <!-- ================= 游戏页（占位） ================= -->
         <section class="page" id="page-games">
-          <div class="game-head">
-            <div class="game-head-text">
-              <h2 class="page-title">Card War 在线试玩</h2>
-              <span class="badge badge-embed">已嵌入 · 计划中</span>
-            </div>
-            <p class="page-sub">
-              当前通过 iframe / 占位区域嵌入小游戏，后续可以补充游戏介绍、排行榜和分数记录。
-            </p>
+          <div class="page-head">
+            <h2 class="page-title">游戏</h2>
+            <p class="page-sub">Card War 在线试玩</p>
           </div>
-
-          <div class="game-actions">
-            <button class="btn btn-primary" id="reloadGame">🔄 刷新游戏</button>
-            <button class="btn btn-ghost" id="openGame">↗ 新窗口打开</button>
-            <a class="btn btn-ghost" href="https://github.com/chenji0421" target="_blank" rel="noopener">📁 查看仓库</a>
-          </div>
-
-          <div class="game-stage" id="gameStage">
-            <div class="game-placeholder">
-              <div class="game-ph-icon" aria-hidden="true">🃏</div>
-              <h3>游戏区域预留中</h3>
-              <p>未来可以把自己的 HTML 小游戏嵌入到这里</p>
-              <span class="game-ph-hint">提示：点击「新窗口打开」可全屏试玩（当前暂无真实游戏地址）</span>
-            </div>
-          </div>
-
-          <div class="game-info-cards">
-            <div class="game-info-card">
-              <div class="gi-icon" aria-hidden="true">📜</div>
-              <h4>游戏规则</h4>
-              <p>双方各抽一张卡比大小：点数高者胜，同点则平局。三局两胜制，先赢两局的一方获胜。规则简单，适合练手。</p>
-            </div>
-            <div class="game-info-card">
-              <div class="gi-icon" aria-hidden="true">🛠️</div>
-              <h4>技术实现</h4>
-              <p>计划使用纯 HTML5 + CSS + JavaScript 实现，不依赖任何框架。洗牌算法 + 简单的比对逻辑，全部在浏览器本地运行。</p>
-            </div>
-            <div class="game-info-card">
-              <div class="gi-icon" aria-hidden="true">🚀</div>
-              <h4>后续计划</h4>
-              <p>补充游戏介绍页、胜率统计、本地排行榜（localStorage），以及把仓库里做的小游戏统一挂到这个页面来试玩。</p>
-            </div>
+          <div class="placeholder-card">
+            <div class="placeholder-icon">🎮</div>
+            <h3>Card War 在线试玩</h3>
+            <p>这里将嵌入 HTML5 小游戏，支持试玩与分数记录。功能建设中，敬请期待。</p>
+            <span class="placeholder-badge">建设中</span>
           </div>
         </section>
 
-        <!-- ================= 关于页 ================= -->
+        <!-- ================= 关于页（占位） ================= -->
         <section class="page" id="page-about">
           <div class="page-head">
-            <h2 class="page-title">关于我</h2>
-            <p class="page-sub">一个非计算机专业学生的自学记录，保持诚实，保持长期主义。</p>
+            <h2 class="page-title">关于</h2>
+            <p class="page-sub">非计算机专业学生的自学记录</p>
           </div>
-
-          <div class="about-grid">
-            <div class="about-block">
-              <div class="about-block-head"><span class="ab-icon">👋</span><h3>个人简介</h3></div>
-              <div class="about-profile">
-                <img src="assets/avatar.svg" alt="Chenji 头像" class="about-avatar" width="88" height="88" />
-                <div>
-                  <p>我是 <strong>Chenji（陈际）</strong>，非计算机专业大二学生。</p>
-                  <p>正在学习 Python、前端开发和数据分析，想通过项目驱动学习——先做出来，再学明白。</p>
-                  <p>相信「慢慢来，比较快」，把这里当成自己的学习工作台来长期维护。</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="about-block">
-              <div class="about-block-head"><span class="ab-icon">🧭</span><h3>当前关注方向</h3></div>
-              <ul class="focus-list" id="focusList"></ul>
-            </div>
-          </div>
-
-          <div class="about-grid">
-            <div class="about-block">
-              <div class="about-block-head"><span class="ab-icon">📈</span><h3>技能进度</h3></div>
-              <div class="skill-bars" id="skillBars"></div>
-            </div>
-
-            <div class="about-block">
-              <div class="about-block-head"><span class="ab-icon">🕰️</span><h3>时间线</h3></div>
-              <div class="timeline" id="aboutTimeline"></div>
-            </div>
-          </div>
-
-          <div class="about-block">
-            <div class="about-block-head"><span class="ab-icon">✉️</span><h3>联系方式</h3></div>
-            <div class="contact-links">
-              <a class="contact-link" href="https://github.com/chenji0421" target="_blank" rel="noopener">
-                <span class="cl-icon">🐙</span>
-                <span class="cl-body"><strong>GitHub</strong><em>github.com/chenji0421</em></span>
-                <span class="cl-go">→</span>
-              </a>
-              <a class="contact-link" href="mailto:chenji0421@example.com">
-                <span class="cl-icon">📧</span>
-                <span class="cl-body"><strong>邮箱</strong><em>chenji0421@example.com（占位）</em></span>
-                <span class="cl-go">→</span>
-              </a>
-            </div>
+          <div class="placeholder-card">
+            <div class="placeholder-icon">👤</div>
+            <h3>关于我</h3>
+            <p>这里将展示个人简介、技能进度、时间线与联系方式。功能建设中，敬请期待。</p>
+            <span class="placeholder-badge">建设中</span>
           </div>
         </section>
 
-        <!-- ================= 登录页 ================= -->
+        <!-- ================= 登录页（占位） ================= -->
         <section class="page" id="page-login">
-          <div class="login-wrap">
-            <div class="login-card">
-              <div class="login-logo">🔐</div>
-              <h2>账号登录</h2>
-              <p class="login-sub">个人工作台后台入口（静态演示）</p>
-
-              <button class="btn btn-primary btn-block" id="ghLogin">
-                🐙 使用 GitHub 登录
-              </button>
-              <p class="login-demo-note">演示按钮，暂未接入 OAuth</p>
-
-              <div class="login-divider"><span>或</span></div>
-
-              <details class="login-email-fold">
-                <summary>站长邮箱登录</summary>
-                <div class="login-form">
-                  <input type="email" class="login-input" id="loginEmail" placeholder="邮箱" autocomplete="off" />
-                  <input type="password" class="login-input" id="loginPwd" placeholder="密码" autocomplete="off" />
-                  <button class="btn btn-primary btn-block" id="loginSubmit">登 录</button>
-                </div>
-              </details>
-
-              <p class="login-note">
-                ⚠️ 当前为静态演示页面，不会上传任何账号密码。请不要输入真实密码。
-              </p>
-            </div>
+          <div class="page-head">
+            <h2 class="page-title">登录</h2>
+            <p class="page-sub">后台入口 · 静态演示</p>
+          </div>
+          <div class="placeholder-card">
+            <div class="placeholder-icon">🔐</div>
+            <h3>账号登录</h3>
+            <p>静态演示页面，不会上传任何账号密码。功能建设中，敬请期待。</p>
+            <span class="placeholder-badge">建设中</span>
           </div>
         </section>
 
       </div><!-- /.pages -->
 
       <footer class="footer">
-        <p>© <span id="year">2026</span> Chenji (chenji0421) · 个人学习工作台 · 用 ❤ 和咖啡长期维护 · <a href="https://github.com/chenji0421/chenji0421.github.io" target="_blank" rel="noopener">本站源码</a></p>
+        <p>© <span id="year">2026</span> Chenji (chenji0421) · 个人学习工作台 · 用 ❤ 和咖啡长期维护</p>
       </footer>
+
     </main>
   </div><!-- /.app -->
 
@@ -461,7 +248,6 @@
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  <script src="js/data.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
