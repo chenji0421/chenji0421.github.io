@@ -8,12 +8,22 @@
      2. 登记内容 → 在下方 siteContent.articles / projects 数组里加对象
 
    ❌ 这里不会自动生成假文章、假项目、假阅读量、假浏览量。
-     文章数组和项目数组默认都是空的，等你亲手登记才会显示。
+     文章数组默认为空；projects 数组只登记作者真实做过的项目。
+     当前已登记的唯一真实项目：Chenji Learning Hub（本站本体）。
    ============================================================ */
 
 var siteContent = {
   articles: [],
-  projects: []
+  projects: [
+    {
+      name: "Chenji Learning Hub",
+      status: "已上线",
+      description: "一个部署在 GitHub Pages 上的个人学习工作台，用于记录文章、项目和计划。",
+      tech: ["HTML", "CSS", "JavaScript", "GitHub Pages"],
+      repo: "https://github.com/chenji0421/chenji0421.github.io",
+      link: "https://chenji0421.github.io"
+    }
+  ]
 };
 
 /* ============================================================
