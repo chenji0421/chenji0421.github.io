@@ -2,7 +2,7 @@
 
 <img src="assets/avatar.svg" width="96" height="96" alt="logo">
 
-# Chenji Learning Hub
+#沉积学习中心
 
 📚 **真实可维护的个人学习工作台** —— 一个部署在 GitHub Pages 上的纯静态网站
 
@@ -12,8 +12,8 @@
 
 ![Pages](https://img.shields.io/github/deployments/chenji0421/chenji0421.github.io/github-pages?label=Pages&logo=github&style=flat-square)
 ![CI](https://img.shields.io/github/actions/workflow/status/chenji0421/chenji0421.github.io/ci.yml?branch=main&label=CI&logo=github&style=flat-square)
-![License](https://img.shields.io/github/license/chenji0421/chenji0421.github.io?style=flat-square)
-![Last commit](https://img.shields.io/github/last-commit/chenji0421/chenji0421.github.io?style=flat-square)
+![许可证](https://img.shields.io/github/license/chenji0421/chenji0421.github.io?style=flat-square)
+![最近一次提交](https://img.shields.io/github/last-commit/chenji0421/chenji0421.github.io?style=flat-square)
 
 </div>
 
@@ -157,7 +157,7 @@ npx serve .
 3. `git push`，项目就会出现在「项目」页
 4. 项目页**只显示作者真实登记的内容**——不会自动生成假项目，也不会显示假进度、假星标、假浏览量
 
-> 当前已登记：**Chenji Learning Hub**（`已上线`）——它就是本站本体。
+>当前已登记：**Chenji学习中心**（`已上线`）——它就是本站本体。
 
 **使用计划系统：**
 - **公开计划**：想给别人看的计划写进 `data/plans.json` 并推送，所有访问者都能看到（只读）
@@ -192,6 +192,6 @@ npx serve .
 - GitHub：[chenji0421](https://github.com/chenji0421)
 - 网站：[chenji0421.github.io](https://chenji0421.github.io)
 
-## 📄 License
+##许可证
 
 [MIT](LICENSE) © chenji0421
