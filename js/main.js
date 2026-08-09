@@ -133,7 +133,7 @@
     ],
     contact: [
       { icon: '🐙', label: 'GitHub：github.com/chenji0421', href: 'https://github.com/chenji0421' },
-      { icon: '✉️', label: '邮箱：chenji0421@example.com（占位）', href: 'mailto:chenji0421@example.com' },
+      { icon: '✉️', label: '邮箱：待补充', href: null },
       { icon: '🔒', label: '更多联系方式建设中', href: null }
     ]
   };
