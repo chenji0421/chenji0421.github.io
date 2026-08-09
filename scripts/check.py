@@ -11,7 +11,7 @@ chenji0421.github.io · 项目自检脚本（真实空框架版）
   2. Python 文件能否通过语法检查（用 ast 解析，不执行代码）
   3. 根目录 index.html 标签是否配对闭合、锚点与本地资源是否有效
   4. 页面路由完整性（8 个 hash 路由页面）
-  5. js/content.js 是否为「空框架」结构（siteContent.articles / projects 存在）
+  5. js/content.js 是否为「框架」结构（siteContent.articles / projects 数组存在，内容由作者登记）
   6. 是否残留 example.com 等占位文本（提醒用，不阻断）
   7. 是否误提交疑似密钥 / token（阻断）
 
@@ -68,11 +68,13 @@ SECRET_RE = re.compile(
 # ---------- 页面路由完整性 ----------
 HASH_PAGES = ["home", "articles", "plans", "projects", "toolbox", "games", "about", "maintain"]
 
-# ---------- js/content.js 空框架结构检查 ----------
+# ---------- js/content.js 框架结构检查 ----------
+# 注意：不要求数组为空——作者可以登记真实内容（如真实项目）。
+# 只校验「数组键存在」，防止误删结构或退回假数据文件。
 CONTENT_CHECKS = {
     "siteContent 定义": r"var siteContent\s*=",
-    "articles 数组": r"articles\s*:\s*\[\s*\]",
-    "projects 数组": r"projects\s*:\s*\[\s*\]",
+    "articles 键": r"articles\s*:\s*\[",
+    "projects 键": r"projects\s*:\s*\[",
     "文章登记示例注释": r"文章登记示例",
     "项目登记示例注释": r"项目登记示例",
 }
@@ -182,8 +184,8 @@ def main() -> int:
     if root_html.exists():
         check_html(root_html)
 
-    # 4. content.js 空框架结构
-    print("   🗂️  检查 js/content.js 空框架 ...")
+    # 4. content.js 框架结构
+    print("   🗂️  检查 js/content.js 框架结构 ...")
     content_js = ROOT / "js" / "content.js"
     if content_js.exists():
         check_content(content_js)
