@@ -1,16 +1,19 @@
 @echo off
-REM 开发环境一键启动脚本（Windows，双击运行）
-REM 需要先安装 Python 和 Node.js
-
+REM 本地预览 Chenji Learning Hub（Windows，双击运行）
+REM 起一个静态服务器：http://localhost:8000
 cd /d "%~dp0\.."
 
-echo [1/2] 启动后端 http://127.0.0.1:8000/docs
-start "chenji-backend" cmd /k "cd backend && pip install -r requirements.txt && uvicorn app.main:app --reload"
+echo [1/2] 运行自检（需安装 Python，可选）...
+where python >nul 2>nul
+if %errorlevel%==0 (
+  python scripts\check.py
+) else (
+  echo     未检测到 Python，跳过自检
+)
 
-echo [2/2] 启动前端 http://localhost:5173
-start "chenji-frontend" cmd /k "cd frontend && npm install && npm run dev"
+echo [2/2] 启动静态服务器 http://localhost:8000
+python -m http.server 8000
 
 echo.
-echo 两个窗口都启动好了，关闭对应窗口即停止对应服务。
-echo 如果窗口一闪而过，说明依赖没装好，请看 README。
+echo 按 Ctrl+C 停止服务器。
 pause

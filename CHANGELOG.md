@@ -1,40 +1,48 @@
 # 更新日志
 
 本项目遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
+主要版本线从 `v0.1.0` 一路走到「Chenji Learning Hub」的 `v0.4.0`。
 
-## [2.0.0] - 2026-08-08
+## [v0.4.0] - 2026-08-09
 
 ### 新增
-- `frontend/`：React + Vite 前端（8 个组件 + 静态模拟数据）
-- `backend/`：FastAPI 后端（posts / projects / health 接口 + SQLite + 自动文档）
-- `docs/`：文档中心（architecture / roadmap / deployment / learning-notes）
-- `scripts/`：`dev.sh`、`dev.bat` 一键启动脚本；`check.py` 升级为项目级自检
-- `.github/workflows/`：`ci.yml`（自动检查）、`pages.yml`（前端构建部署说明）
-- `docker-compose.yml`：前端 + 后端 + PostgreSQL 三件套
-- `.env.example`、`CHANGELOG.md`
-- 根目录静态主页新增「项目结构」导航区块
+- 文章中心增强：12 篇文章（含 `pinned` 置顶字段）、置顶文章区、热门文章榜
+- 计划面板增强：12 行可编辑时间表（新增 / 删除 / 恢复模板 / 复制 / 本地保存）
+- 项目实验室增强：10 个项目按「已上线 / 进行中 / 计划中 / 长期计划」分组
+- 新增「工具箱」页面（第 8 个模块）：Python 学习工具 / 文件整理设想 / Markdown 模板 / Git 命令速查 / 检查脚本说明 / AI 辅助学习工作流
+- 关于页新增「学习原则」区块
+- 首页升级：当前学习状态 + 最近更新 + 快捷入口 + 统计卡片
 
 ### 变更
-- 根目录 `index.html` 保留为 landing page（GitHub Pages 入口不变）
-- `docs/DEPLOYMENT.md` 重命名为 `docs/deployment.md` 并扩充为全栈部署指南
+- 全部数据迁入 `js/data.js`，页面由 `js/main.js` 统一渲染（单一数据源）
+- 数据存储键名统一为 `hub_*`
+- 清理了全栈学习阶段的遗留目录（`frontend/`、`backend/`、`docker-compose.yml` 等），项目收敛为纯静态结构
 
-## [1.1.0] - 2026-08-07
+## [v0.3.0] - 2026-08-09
 
 ### 新增
-- 去掉 Google Fonts，改用系统字体栈（国内访问更快）
-- 统一配色、卡片阴影 / 圆角 / 字体层级优化
-- 终端风项目封面，增强作品集 / 技术感
-- 首屏数据条 + 状态徽章 + `~/whoami` 终端彩蛋
-- 阅读进度条、返回顶部按钮、更自然的深浅色过渡
-- `assets/avatar.svg` 头像占位图、`scripts/check.py` 自检脚本
-- `docs/roadmap.md` 与 `LICENSE`
-- 无障碍支持（跳过链接、`:focus-visible`、`prefers-reduced-motion`）
+- Learning Hub 重构：左侧 280px 深色固定导航 + 右侧多页面工作台
+- hash 路由 7 页面系统（首页 / 文章 / 计划 / 项目 / 游戏 / 关于 / 登录）
+- 首页深色科技感 Hero：终端框 + 统计卡片 + 网格背景
+- 深浅双主题、侧边栏折叠、移动端抽屉菜单、返回顶部、Toast
 
-## [1.0.0] - 2026-08-05
+## [v0.2.0] - 2026-08-08
+
+### 变更
+- 项目结构拆分：`css/`、`js/`、`assets/`、`docs/`、`scripts/` 各司其职
+- `js/data.js` 与 `js/main.js` 分离，数据与逻辑解耦
+- `scripts/check.py` 升级为项目级自检（关键文件 + HTML 配对 + 密钥扫描）
+
+## [v0.1.0] - 2026-08-05
 
 ### 新增
 - 初始占位页 → 现代单页作品集
 - 深 / 浅色主题切换 + localStorage 记忆
-- Hero 打字机效果
 - 响应式布局与移动端汉堡菜单
 - 项目级目录结构（`docs/`、`scripts/`、`assets/`）
+
+---
+
+> 说明：仓库历史上曾短暂存在过一个「全栈学习项目」阶段（React 前端 + FastAPI 后端 +
+> Docker Compose），后来按「纯静态 GitHub Pages」方向收敛，相关示例已移出主仓库结构，
+> 仅保留在 git 历史与 `docs/learning-notes.md` 中作为学习参考。

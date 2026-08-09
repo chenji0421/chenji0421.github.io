@@ -1,82 +1,76 @@
 # 内容自定义指南
 
-所有内容都在 `index.html` 里，按区块（用 `<!-- ===== ... ===== -->` 注释分隔）划分。
+本站所有内容都是「静态数据」—— 改文件即改内容，刷新即见效果。
 改完建议先跑 `python scripts/check.py` 自检，再按 [deployment.md](deployment.md) 推送。
 
-## 1. 名字 / 介绍（Hero 区）
+## 1. 数据在哪改？→ `js/data.js`
 
-搜索 `chenji0421`，把出现的名字改成你自己的：
+所有页面内容几乎都集中在 `js/data.js` 里。结构：
 
-```html
-<h1 class="hero-name">
-  你好，我是
-  <span class="gradient-text">chenji0421</span>
-</h1>
-```
+| 变量 | 控制什么 | 怎么改 |
+| --- | --- | --- |
+| `NAV_ITEMS` | 左侧导航 8 项 | 增删一个对象 |
+| `HOME` | 首页 Hero / 状态 / 统计 / 快捷入口 | 直接改文字 |
+| `POSTS` | 文章中心（12 篇） | 照葫芦画瓢加对象 |
+| `FILTER_*` | 文章筛选的标签 / 分类 / 月份 | 增删数组元素 |
+| `PLAN_TEMPLATE` | 计划表默认 12 行 | 加一行 / 改内容 |
+| `PLAN_CARDS` | 计划页三栏目标 | 改 `items` 数组 |
+| `PROJECT_GROUPS` | 项目实验室（10 个） | 按状态分组加项目 |
+| `TOOLS` | 工具箱（6 张卡） | 加一个工具对象 |
+| `GAME` | 游戏页说明卡 | 改 `cards` |
+| `ABOUT_INTRO` / `FOCUS_ITEMS` / `SKILLS` / `ABOUT_TIMELINE` / `LEARNING_PRINCIPLES` / `CONTACT` | 关于页全部内容 | 直接改 |
 
-打字机短语在 `js/main.js` 顶部：
+### 加一篇文章的例子
+
+在 `POSTS` 数组末尾加：
 
 ```js
-var phrases = ['爱折腾的大学生', 'Python 学习者', ...];
+{
+  id: 13,
+  title: '我的第一篇真实笔记',
+  summary: '这里是摘要，搜索会匹配它。',
+  category: '学习笔记',            // 学习笔记 / 项目记录 / 技术复盘 / 生活记录
+  tags: ['学习笔记', 'Python'],
+  date: '2026-08-10',
+  month: '2026年8月',              // 要和 FILTER_MONTHS 里的对得上
+  readTime: '5 分钟',
+  views: 0,
+  pinned: false                    // true 会显示在「置顶文章」
+}
 ```
 
-首屏数据条（`3+ 技能方向` 等）在 Hero 区的 `.hero-stats` 里，改数字即可。
+## 2. 网站名称 / 头像 / 图标
 
-## 2. 关于我
+- `<title>` 标签：改浏览器标签页文字（`index.html` 的 `<head>` 里）
+- `assets/favicon.svg`：站点图标
+- `assets/avatar.svg`：侧边栏头像
+- 侧边栏的「Chenji / chenji0421」：在 `index.html` 的 `.sidebar-user` 里
 
-在 `<!-- ===== 关于 ===== -->` 区块里修改：
-- `.about-facts` 里的「昵称 / 身份 / 坐标 / 兴趣 / 现状」可以随意增删
-- 头像用的是 `assets/avatar.svg`，想换成自己的照片：
-  1. 把照片放到 `assets/` 目录（建议正方形、PNG/JPG）
-  2. 把 `.about-avatar` 里的 `<img src="assets/avatar.svg">` 改成你的文件路径
-- 两段自我介绍直接改文字
+## 3. 页面布局（加新页面 / 改导航）
 
-## 3. 技能
+1. 在 `index.html` 的 `.pages` 里加一个 `<section class="page" id="page-xxx">`（首页保持 `active`）
+2. 在 `js/data.js` 的 `NAV_ITEMS` 里加对应导航项
+3. 在 `js/main.js` 的 `PAGE_TITLES`（由 `NAV_ITEMS` 自动生成）就会自动支持
+4. 在 `css/style.css` 给新区块补样式
 
-在 `<!-- ===== 技能 ===== -->` 区块：
-- `.skill-bar` 修改技能名和百分比（`data-pct` 和 `data-width` 保持一致）
-- `.tag-list` 里的 `.tag` 标签随意增删
+## 4. 主题配色
 
-## 4. 项目
+所有颜色都在 `css/style.css` 顶部的 `:root` / `[data-theme="dark"]` 变量里：
 
-在 `<!-- ===== 项目 ===== -->` 区块，复制一个 `.project-card` 并修改：
+- `--accent`（青绿 `#2f7d6d`）/ `--accent-2`（蓝 `#1a73e8`）：主色
+- `--main-bg` / `--card-bg` / `--card-border`：浅色与深色主题的背景与边框
+- 改完这几处，全站颜色统一变化
 
-```html
-<article class="project-card reveal">
-  <div class="project-cover cover-a">      <!-- cover-a / cover-b / cover-c 三种配色 -->
-    <div class="term">…</div>              <!-- 终端窗口装饰，可换成你自己的图 -->
-  </div>
-  <div class="project-body">
-    <h3>项目名</h3>
-    <p>项目简介……</p>
-    <div class="project-tags"><span class="tag">标签</span></div>
-    <div class="project-links">
-      <a href="https://github.com/你的账号/你的仓库" class="project-link">GitHub</a>
-    </div>
-  </div>
-</article>
-```
+## 5. 首页 Hero（深色科技感卡片）
 
-## 5. 学习路线
+在 `index.html` 的 `#page-home` 里，内容是直接写死的（不依赖 JS 渲染），
+改标题、副标题、终端框、统计数字都直接改 HTML 即可。
+「最近更新」列表由 `js/main.js` 自动从 `POSTS` 取最新 4 篇。
 
-在 `<!-- ===== 学习路线 ===== -->` 区块，修改 `.timeline-item` 即可，
-阶段状态可以随意改成「已完成 / 进行中 / 计划中」。
+## 6. 联系方式（占位，记得换！）
 
-## 6. 联系方式
+- `js/data.js` 的 `CONTACT` 里，邮箱目前是 `chenji0421@example.com`（占位）
+- 想换真实邮箱：把 `CONTACT` 里的 href 和 label 改成你的
+- GitHub 链接 `https://github.com/chenji0421` 可换成你的主页
 
-- **邮箱**：把 `index.html` 里所有 `chenji0421@example.com` 换成你的真实邮箱
-  （目前是占位地址，记得换！）
-- 社交链接：`.social-link` 的 `href` 改成你的主页
-
-## 7. 站点标题 & 图标
-
-- `<title>` 标签：改浏览器标签页文字
-- `assets/favicon.svg`：用任意文本编辑器改里面的颜色，或换成你自己的图标
-- `assets/avatar.svg`：首页与关于区的头像占位图
-
-## 8. 主题配色
-
-所有颜色都在 `css/style.css` 顶部的 `:root` / `[data-theme="light"]` 里：
-- `--accent` / `--accent-2`：主色与辅色（渐变两端）
-- `--bg` / `--bg-soft`：页面背景
-- 改完这两处，整个站点的主题色就会统一变化
+> 提示：不要在仓库里写真实手机号、密码、Token —— 一旦推送就全世界可见。

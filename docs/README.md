@@ -1,14 +1,14 @@
-# 📖 文档目录
+# 📖 文档中心
 
-这是项目的文档中心。想了解这个仓库怎么运作，从哪篇看起都行，按需翻牌：
+这是 **Chenji Learning Hub** 的文档目录。想了解这个仓库怎么运作、接下来学什么，按需翻牌：
 
 | 文档 | 内容 | 适合谁 |
 | --- | --- | --- |
-| [architecture.md](architecture.md) | 前后端分工、GitHub Pages 能做什么/不能做什么 | 想搞懂整体架构的人 |
 | [roadmap.md](roadmap.md) | 学习路线 + 项目版本规划 | 跟着计划走的人 |
-| [deployment.md](deployment.md) | 静态页/前端/后端/数据库各自的部署方案 | 想把项目弄上线的人 |
 | [learning-notes.md](learning-notes.md) | 新手学习笔记：概念解释 + 踩坑记录 | 刚开始学的小白 |
-| [CONTENT.md](CONTENT.md) | 根目录静态主页的内容自定义指南 | 想改首页文案的人 |
+| [deployment.md](deployment.md) | GitHub Pages 部署 + 未来升级方向 | 想把项目弄上线的人 |
+| [architecture.md](architecture.md) | 纯静态架构说明、数据怎么流动 | 想搞懂整体原理的人 |
+| [CONTENT.md](CONTENT.md) | 首页文案 / 数据修改指南 | 想改网站内容的人 |
 
 ## 快速导航
 
@@ -16,3 +16,9 @@
 - 想知道**下一步学什么** → 看 [roadmap.md](roadmap.md)
 - 想**部署上线** → 看 [deployment.md](deployment.md)
 - 想**复习概念** → 看 [learning-notes.md](learning-notes.md)
+- 想**改文章 / 项目 / 计划** → 看 [CONTENT.md](CONTENT.md)
+
+## 一句话认识这个项目
+
+一个纯静态、零依赖、零构建的**个人学习工作台**，跑在 GitHub Pages 上。
+所有内容都是写死在 `js/data.js` 里的静态数据，所有交互都在浏览器本地完成。

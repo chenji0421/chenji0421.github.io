@@ -1,19 +1,13 @@
 # ---------- 依赖 / 构建缓存 ----------
 node_modules/
-frontend/node_modules/
-frontend/dist/
-frontend/.vite/
 npm-debug.log*
 yarn-error.log*
 
-# ---------- 后端 ----------
+# ---------- Python ----------
 __pycache__/
 *.pyc
 *.db
 *.sqlite3
-backend/.env
-backend/.venv/
-backend/.pytest_cache/
 
 # ---------- 环境变量（永远不要提交）----------
 .env

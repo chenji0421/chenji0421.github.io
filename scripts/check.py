@@ -1,17 +1,18 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-chenji0421.github.io · 项目自检脚本（升级版）
+chenji0421.github.io · 项目自检脚本（Chenji Learning Hub 版）
 
 用法：
     python scripts/check.py
 
 检查项：
-  1. 关键文件是否存在（README、frontend/package.json、backend/requirements.txt …）
+  1. 关键文件是否存在（index.html / css / js / docs / README …）
   2. Python 文件能否通过语法检查（用 ast 解析，不执行代码）
   3. 根目录 index.html 标签是否配对闭合、锚点与本地资源是否有效
-  4. 是否残留 example.com 等占位文本（提醒用，不阻断）
-  5. 是否误提交疑似密钥 / token（阻断）
+  4. 页面与数据完整性（8 个 hash 路由页面、js/data.js 关键数据）
+  5. 是否残留 example.com 等占位文本（提醒用，不阻断）
+  6. 是否误提交疑似密钥 / token（阻断）
 
 退出码：有错误返回 1，仅警告返回 0。
 """
@@ -26,40 +27,25 @@ warnings: list[str] = []
 
 # ---------- 1. 关键文件清单 ----------
 KEY_FILES = [
-    "index.html",          # 根目录静态主页（GitHub Pages 入口）
+    "index.html",              # 根目录静态主页（GitHub Pages 入口）
     "README.md",
     "CHANGELOG.md",
     "LICENSE",
     ".gitignore",
-    ".env.example",
-    "docker-compose.yml",
-    "frontend/package.json",
-    "frontend/vite.config.js",
-    "frontend/index.html",
-    "frontend/src/App.jsx",
-    "backend/requirements.txt",
-    "backend/app/main.py",
+    "css/style.css",
+    "js/data.js",
+    "js/main.js",
+    "assets/avatar.svg",
+    "assets/favicon.svg",
+    "docs/README.md",
     "docs/roadmap.md",
+    "docs/learning-notes.md",
     "docs/deployment.md",
-    "docs/architecture.md",
     "scripts/check.py",
-    ".github/workflows/ci.yml",
-    ".github/workflows/pages.yml",
 ]
 
 # 需要做语法检查的 Python 文件
-PY_FILES = [
-    "scripts/check.py",
-    "backend/app/main.py",
-    "backend/app/config.py",
-    "backend/app/models.py",
-    "backend/app/schemas.py",
-    "backend/app/database.py",
-    "backend/app/database_seed.py",
-    "backend/app/routers/posts.py",
-    "backend/app/routers/projects.py",
-    "backend/app/routers/health.py",
-]
+PY_FILES = ["scripts/check.py"]
 
 # ---------- HTML 校验工具 ----------
 VOID_TAGS = {
@@ -73,6 +59,18 @@ ID_RE = re.compile(r'id="([^"]+)"')
 SECRET_RE = re.compile(
     r"[A-Za-z0-9_\-]{20,}\.[A-Za-z0-9_\-]{20,}\.[A-Za-z0-9_\-]{20,}"  # JWT / token
 )
+
+# ---------- 页面路由完整性 ----------
+HASH_PAGES = ["home", "articles", "plans", "projects", "toolbox", "games", "about", "login"]
+
+# ---------- js/data.js 关键数据 ----------
+DATA_CHECKS = {
+    "12 篇文章": r"title: '我为什么开始搭建个人网站'",
+    "第 12 篇文章": r"title: '下一步学习 FastAPI 的计划'",
+    "10 个项目": r"name: 'FastAPI 博客系统学习版'",
+    "工具箱": r"var TOOLS",
+    "学习原则": r"var LEARNING_PRINCIPLES",
+}
 
 
 def check_python_syntax(path: Path) -> None:
@@ -104,13 +102,16 @@ def check_html(path: Path) -> None:
     if stack:
         errors.append(f"[{path}] 未闭合标签：{', '.join('<' + t + '>' for t in stack)}")
 
-    # ---- 锚点与 id ----
-    # 兼容 hash 路由：页面 section 的 id 是 page-home / page-articles …
-    # 因此 href="#home" 对应 id="page-home"，校验时两种都算。
+    # ---- 锚点与 id（hash 路由：#home → id="page-home"）----
     ids = set(ID_RE.findall(text))
     for anchor in set(ANCHOR_RE.findall(text)):
         if anchor not in ids and ("page-" + anchor) not in ids:
             warnings.append(f"[{path}] 锚点 #{anchor} 没有对应的 id")
+
+    # ---- hash 路由页面 ----
+    for page in HASH_PAGES:
+        if f'id="page-{page}"' not in text:
+            errors.append(f"[{path}] 缺少路由页面：page-{page}")
 
     # ---- 本地资源存在性 ----
     for ref in set(ATTR_URL_RE.findall(text)):
@@ -120,13 +121,20 @@ def check_html(path: Path) -> None:
             errors.append(f"[{path}] 引用的本地资源不存在：{ref}")
 
 
+def check_data(path: Path) -> None:
+    text = path.read_text(encoding="utf-8")
+    for label, pattern in DATA_CHECKS.items():
+        if not re.search(pattern, text):
+            errors.append(f"[{path}] 缺少数据：{label}")
+
+
 def scan_secrets(root: Path) -> None:
     """遍历所有文本文件，找疑似密钥。"""
-    skip = {"node_modules", "dist", ".git", "__pycache__", ".venv"}
+    skip = {"node_modules", "dist", ".git", "__pycache__", ".venv", ".backup-20260809"}
     for p in root.rglob("*"):
         if not p.is_file() or any(part in skip for part in p.parts):
             continue
-        if p.suffix.lower() not in {".py", ".js", ".jsx", ".ts", ".json", ".yml", ".yaml", ".md", ".html", ".css", ".txt", ".env", ""}:
+        if p.suffix.lower() not in {".py", ".js", ".json", ".yml", ".yaml", ".md", ".html", ".css", ".txt", ""}:
             continue
         try:
             text = p.read_text(encoding="utf-8", errors="ignore")
@@ -145,7 +153,7 @@ def check_placeholders(path: Path) -> None:
 
 
 def main() -> int:
-    print("🔍 自检 chenji0421.github.io ...\n")
+    print("🔍 自检 chenji0421.github.io（Chenji Learning Hub）...\n")
 
     # 1. 关键文件
     print("   📁 检查关键文件 ...")
@@ -163,16 +171,23 @@ def main() -> int:
         if p.exists():
             check_python_syntax(p)
 
-    # 3. HTML 校验（只看根目录静态主页，frontend/ 是 Vite 源码不算）
+    # 3. HTML 校验
     print("   📄 检查根目录 index.html ...")
     root_html = ROOT / "index.html"
     if root_html.exists():
         check_html(root_html)
 
-    # 4. 占位提醒（只看根目录主页）
-    check_placeholders(root_html)
+    # 4. 数据完整性
+    print("   🗂️  检查 js/data.js 关键数据 ...")
+    data_js = ROOT / "js" / "data.js"
+    if data_js.exists():
+        check_data(data_js)
 
-    # 5. 密钥扫描（全仓库文本文件）
+    # 5. 占位提醒（只看根目录主页）
+    if root_html.exists():
+        check_placeholders(root_html)
+
+    # 6. 密钥扫描（全仓库文本文件）
     print("   🔑 扫描疑似密钥 ...")
     scan_secrets(ROOT)
 
