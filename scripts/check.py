@@ -66,7 +66,7 @@ SECRET_RE = re.compile(
 )
 
 # ---------- 页面路由完整性 ----------
-HASH_PAGES = ["home", "articles", "plans", "projects", "toolbox", "games", "about", "login"]
+HASH_PAGES = ["home", "articles", "plans", "projects", "toolbox", "games", "about", "maintain"]
 
 # ---------- js/content.js 空框架结构检查 ----------
 CONTENT_CHECKS = {

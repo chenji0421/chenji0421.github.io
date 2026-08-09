@@ -1,7 +1,7 @@
 /* ============================================================
    Chenji Learning Hub · 主样式
    结构：设计变量 / 基础 / 布局 / 侧边栏 / 顶栏 /
-        首页 Hero / 文章 / 计划 / 项目 / 工具箱 / 游戏 / 关于 / 登录 /
+        首页 Hero / 文章 / 计划 / 项目 / 工具箱 / 游戏 / 关于 / 维护 /
         通用组件 / 响应式 / 深浅主题
    ============================================================ */
 
@@ -226,7 +226,7 @@ code {
 }
 .side-account-label { font-size: 12px; color: var(--side-text-dim); }
 
-.side-login-btn {
+.side-maint-btn {
   border: 1px solid rgba(79, 209, 176, .4);
   background: transparent;
   color: #4fd1b0;
@@ -236,7 +236,7 @@ code {
   font-weight: 600;
   transition: all .2s ease;
 }
-.side-login-btn:hover { background: var(--side-active-bg); color: #fff; }
+.side-maint-btn:hover { background: var(--side-active-bg); color: #fff; }
 
 .side-collapse {
   display: flex;
@@ -1098,78 +1098,64 @@ body.side-collapsed .side-collapse { justify-content: center; }
 .contact-item.muted { color: var(--text-faint); cursor: default; }
 .contact-item.muted:hover { border-color: var(--card-border); color: var(--text-faint); transform: none; }
 
-/* ---------- 登录页 ---------- */
-.login-wrap { display: flex; justify-content: center; padding: 20px 0 40px; }
-.login-card {
-  width: 100%;
-  max-width: 400px;
+/* ---------- 维护说明页 ---------- */
+.maintain-wrap { max-width: 860px; margin: 0 auto; display: flex; flex-direction: column; gap: 22px; padding: 10px 0 40px; }
+
+.maintain-intro {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  background: linear-gradient(135deg, rgba(79, 209, 176, .1), rgba(99, 102, 241, .08));
+  border: 1px solid rgba(79, 209, 176, .25);
+  border-radius: var(--radius-lg);
+  padding: 22px 24px;
+}
+.maintain-intro-icon { font-size: 40px; line-height: 1; }
+.maintain-intro-title { font-size: 17px; font-weight: 800; margin: 2px 0 8px; }
+.maintain-intro-text { font-size: 14px; line-height: 1.8; color: var(--text-sub); }
+.maintain-intro-text strong { color: var(--text-main); font-weight: 700; }
+
+.maintain-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 16px;
+}
+.maintain-card {
   background: var(--card-bg);
   border: 1px solid var(--card-border);
-  border-radius: var(--radius-lg);
-  padding: 34px 30px;
-  box-shadow: var(--shadow-lg);
-  text-align: center;
+  border-radius: var(--radius-sm);
+  padding: 18px 20px;
+  box-shadow: 0 4px 14px rgba(16, 24, 40, .06);
+  transition: border-color .2s ease, transform .2s ease;
 }
-.login-logo { font-size: 44px; }
-.login-title { font-size: 21px; font-weight: 800; margin-top: 8px; }
-.login-tip {
-  font-size: 13px;
-  color: var(--text-sub);
-  background: rgba(245, 158, 11, .1);
-  border: 1px solid rgba(245, 158, 11, .25);
-  color: #b45309;
-  border-radius: 10px;
-  padding: 10px 12px;
-  margin: 14px 0 18px;
-}
-
-.login-gh-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  width: 100%;
-  border: 1px solid var(--card-border);
+.maintain-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+.maintain-card-icon { font-size: 26px; }
+.maintain-card-title { font-size: 15px; font-weight: 800; margin: 10px 0 6px; }
+.maintain-card-desc { font-size: 13px; line-height: 1.7; color: var(--text-sub); }
+.maintain-card-desc code {
   background: var(--main-bg);
-  color: var(--text-main);
-  padding: 11px 16px;
-  border-radius: 11px;
-  font-size: 14.5px;
-  font-weight: 600;
-  transition: all .2s ease;
-}
-.login-gh-btn svg { width: 18px; height: 18px; fill: currentColor; }
-.login-gh-btn:hover { border-color: #24292f; background: #24292f; color: #fff; }
-
-.login-note { font-size: 12px; color: var(--text-faint); margin-top: 8px; }
-
-.login-divider {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  color: var(--text-faint);
+  border: 1px solid var(--card-border);
+  border-radius: 6px;
+  padding: 1px 6px;
+  font-family: Consolas, Monaco, monospace;
   font-size: 12px;
-  margin: 18px 0;
-}
-.login-divider::before, .login-divider::after {
-  content: "";
-  flex: 1;
-  height: 1px;
-  background: var(--card-border);
+  word-break: break-all;
 }
 
-.login-collapse { text-align: left; }
-.login-collapse summary {
-  cursor: pointer;
-  font-size: 13.5px;
-  font-weight: 600;
-  color: var(--text-sub);
-  padding: 8px 0;
-  outline: none;
-}
-.login-collapse summary:hover { color: var(--accent); }
+.maintain-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.maintain-actions .btn { text-decoration: none; }
 
-.login-form { display: flex; flex-direction: column; gap: 6px; margin-top: 8px; }
+.maintain-note {
+  font-size: 12.5px;
+  color: var(--text-faint);
+  background: var(--card-bg);
+  border: 1px dashed var(--card-border);
+  border-radius: 10px;
+  padding: 12px 16px;
+  line-height: 1.7;
+}
+
+/* ---------- 表单字段（本地计划编辑器共用） ---------- */
 .field-label { font-size: 12.5px; font-weight: 600; color: var(--text-sub); }
 .field-input {
   border: 1px solid var(--card-border);
@@ -1182,7 +1168,6 @@ body.side-collapsed .side-collapse { justify-content: center; }
   transition: border-color .2s ease, box-shadow .2s ease;
 }
 .field-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
-.login-submit { width: 100%; margin-top: 12px; justify-content: center; }
 
 /* ---------- 页脚 ---------- */
 .footer {

@@ -44,7 +44,7 @@
     { key: 'toolbox',  label: '工具箱', icon: '🧰' },
     { key: 'games',    label: '游戏',   icon: '🎮' },
     { key: 'about',    label: '关于',   icon: '👤' },
-    { key: 'login',    label: '登录',   icon: '🔐' }
+    { key: 'maintain', label: '维护',   icon: '🔧' }
   ];
 
   /* ================= 渲染侧边栏导航 ================= */

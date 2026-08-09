@@ -52,14 +52,14 @@
 | 🧰 **工具箱** | 真实工具入口：文章模板、写作说明、项目登记说明、部署检查脚本、部署文档 |
 | 🎮 **游戏** | 空状态 + iframe 预留区。以后把 HTML 小游戏放进 `games/` 目录就能嵌入 |
 | 👤 **关于** | 真实的自我介绍 + 关注方向 + 技能进度（自我评估）+ 时间线 + 学习原则 + 联系方式 |
-| 🔐 **登录** | 纯静态演示，明确提示「不会连接服务器，也不会保存或上传账号密码」 |
+| 🔧 **维护** | 内容维护说明（站长入口）：本站无后端、无登录，内容全部通过 GitHub 仓库维护 |
 
 ## 🛠️ 技术栈
 
 | 层面 | 技术 |
 | --- | --- |
 | 前端 | 原生 HTML5 · CSS3 · JavaScript（零依赖、零 CDN、零构建） |
-| 路由 | hash 路由（`#home` / `#articles` / `#plans` / `#projects` / `#toolbox` / `#games` / `#about` / `#login`） |
+| 路由 | hash 路由（`#home` / `#articles` / `#plans` / `#projects` / `#toolbox` / `#games` / `#about` / `#maintain`） |
 | 文章 | Markdown 文件 + 极简 Markdown 渲染器（`fetch` 读取，不引外部库） |
 | 数据 | `js/content.js`（空框架）+ `data/plans.json`（公开计划）+ `localStorage`（本地草稿 / 主题 / 侧边栏状态） |
 | 部署 | GitHub Pages（main 分支 / 根目录，推送即更新） |

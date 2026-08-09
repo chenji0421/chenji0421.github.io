@@ -1,7 +1,18 @@
 # 更新日志
 
 本项目遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
-主要版本线从 `v0.1.0` 一路走到「Chenji Learning Hub」的 `v0.6.0`。
+主要版本线从 `v0.1.0` 一路走到「Chenji Learning Hub」的 `v0.7.0`。
+
+## [v0.7.0] - 2026-08-09
+
+### 变更
+- **登录页 → 维护说明页**：左侧导航「登录」改为「维护」，页面标题改为「内容维护说明」，hash 路由 `#login` → `#maintain`
+- **删除假的登录功能**：移除邮箱 / 密码输入框、GitHub 登录按钮等一切「看起来像登录」的元素
+- 维护页说明本站是 GitHub Pages 静态网站：访客只能看公开内容、站长通过 GitHub 仓库维护内容、
+  文章写在 `articles/`、文章索引与项目登记在 `js/content.js`（或 `data/articles.json` / `data/projects.json`）、
+  公开计划写在 `data/plans.json`、本地计划只存浏览器 `localStorage`
+- 维护页只保留三个入口：**打开 GitHub 仓库 / 查看写作说明 / 查看内容维护指南**
+- 侧栏脚部「后台账号 / 登 录」改为「站长入口 / 维护」；`css` 中 `.login-*` 类替换为 `.maintain-*`
 
 ## [v0.6.0] - 2026-08-09
 
