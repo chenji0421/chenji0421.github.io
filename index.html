@@ -145,8 +145,12 @@
             <div class="home-card-col">
               <h3 class="block-title">🕐 最近更新</h3>
               <div class="home-recent" id="recentList">
-                <!-- 有文章时显示最近几篇，没有则显示提示 -->
-                <p class="home-empty-note">还没有文章。等你在 articles/ 写下第一篇后，它会显示在这里。</p>
+                <!-- 有文章时显示最近几篇，没有则显示「等待第一篇文章」的引导 -->
+                <div class="home-empty-note">
+                  <span class="empty-kicker">Articles · 等待第一篇文章</span>
+                  <p class="home-empty-text">还没有文章。在 <code>articles/</code> 写下第一篇、登记到 <code>js/content.js</code> 后，它会显示在这里。</p>
+                  <a class="btn btn-outline btn-sm" href="articles/template.md" target="_blank" rel="noopener">📝 复制文章模板</a>
+                </div>
               </div>
             </div>
           </div>
@@ -209,7 +213,7 @@
             <span class="empty-kicker">Articles · 真实笔记</span>
             <div class="empty-icon">📝</div>
             <h3 class="empty-title">还没有文章</h3>
-            <p class="empty-desc">这里不会自动生成假文章。等你写下第一篇文章后，它会显示在这里。</p>
+            <p class="empty-desc">这里不会自动生成假文章。复制 <code>articles/template.md</code> 写正文，先读 <code>articles/README.md</code> 了解格式；写完放进 <code>articles/</code> 并在 <code>js/content.js</code> 登记，就会显示在这里。</p>
             <div class="empty-actions">
               <a class="btn btn-primary" href="articles/template.md" target="_blank" rel="noopener">查看文章模板</a>
               <a class="btn btn-outline" href="articles/README.md" target="_blank" rel="noopener">查看写作说明</a>
@@ -243,10 +247,11 @@
               <span class="empty-kicker">Public Plans · data/plans.json</span>
               <div class="empty-icon">🌍</div>
               <h3 class="empty-title">暂无公开计划</h3>
-              <p class="empty-desc">站长可以在 data/plans.json 中添加公开计划，访问者就能在这里看到。</p>
+              <p class="empty-desc">编辑 <code>data/plans.json</code> 的 <code>plans</code> 对象，按日期为 key 添加计划，推送后所有访问者都能看到。</p>
               <div class="empty-actions">
                 <a class="btn btn-outline" href="data/plans.json" target="_blank" rel="noopener">打开 data/plans.json</a>
               </div>
+              <p class="empty-hint">格式说明见 docs/CONTENT.md · 这里只能查看，不能编辑</p>
             </div>
 
             <!-- 公开计划展示（只读） -->
@@ -367,7 +372,7 @@
               <span class="empty-kicker">Projects · 真实登记</span>
               <div class="empty-icon">📦</div>
               <h3 class="empty-title">还没有项目</h3>
-              <p class="empty-desc">等你完成真实项目后，可以在 js/content.js 中添加。</p>
+              <p class="empty-desc">完成真实项目后，在 <code>js/content.js</code> 的 <code>siteContent.projects</code> 里登记。项目页只显示真实登记的内容，不会自动生成任何项目。</p>
               <div class="empty-actions">
                 <a class="btn btn-primary" href="js/content.js" target="_blank" rel="noopener">打开登记说明</a>
               </div>
@@ -559,16 +564,27 @@
               </div>
             </div>
 
+            <div class="maintain-checks">
+              <h4 class="maintain-checks-title">📍 我应该在哪里改内容</h4>
+              <ul class="maintain-check-list">
+                <li><b>写文章</b><span class="mc-arrow">→</span><code>articles/</code><span class="mc-note">复制 <a href="articles/template.md" target="_blank" rel="noopener">template.md</a> 填写正文</span></li>
+                <li><b>登记文章</b><span class="mc-arrow">→</span><code>js/content.js</code><span class="mc-note">siteContent.articles</span></li>
+                <li><b>公开计划</b><span class="mc-arrow">→</span><code>data/plans.json</code><span class="mc-note">按日期为 key，推送后所有人可见</span></li>
+                <li><b>项目登记</b><span class="mc-arrow">→</span><code>js/content.js</code><span class="mc-note">siteContent.projects</span></li>
+                <li><b>文档</b><span class="mc-arrow">→</span><code>docs/</code><span class="mc-note">README / roadmap / deployment 等</span></li>
+              </ul>
+            </div>
+
             <div class="maintain-grid">
               <div class="maintain-card">
                 <div class="maintain-card-icon">📝</div>
                 <h4 class="maintain-card-title">文章</h4>
-                <p class="maintain-card-desc">写在 <code>articles/</code> 目录，索引登记在 <code>js/content.js</code> 或 <code>data/articles.json</code></p>
+                <p class="maintain-card-desc">正文写在 <code>articles/</code> 目录，登记在 <code>js/content.js</code> 的 <code>siteContent.articles</code></p>
               </div>
               <div class="maintain-card">
                 <div class="maintain-card-icon">📦</div>
                 <h4 class="maintain-card-title">项目</h4>
-                <p class="maintain-card-desc">登记在 <code>js/content.js</code> 或 <code>data/projects.json</code></p>
+                <p class="maintain-card-desc">登记在 <code>js/content.js</code> 的 <code>siteContent.projects</code></p>
               </div>
               <div class="maintain-card">
                 <div class="maintain-card-icon">🌍</div>
