@@ -13,7 +13,16 @@
    ============================================================ */
 
 var siteContent = {
-  articles: [],
+  articles: [
+    {
+      title: "我的第一个个人网站",
+      date: "2026-08-10",
+      category: "学习笔记",
+      tags: ["GitHub Pages", "个人网站", "前端"],
+      summary: "记录我从零开始搭建个人网站的过程和遇到的问题。",
+      file: "articles/my-first-website.md"
+    }
+  ],
   projects: [
     {
       name: "Chenji Learning Hub",
