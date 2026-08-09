@@ -421,9 +421,16 @@
     if (e.key === 'Escape') closeArticleModal();
   });
 
+  /* 去掉文章头部的 YAML frontmatter（--- 之间的元数据），避免显示到正文 */
+  function stripFrontmatter(md) {
+    var text = String(md || '').replace(/^\uFEFF/, ''); // 去掉可能的 BOM
+    var m = /^---\s*(\r?\n)[\s\S]*?\r?\n---\s*(\r?\n|$)/.exec(text);
+    return m ? text.slice(m[0].length) : text;
+  }
+
   /* 极简 Markdown 渲染器（不引外部库） */
   function renderMarkdown(md) {
-    var lines = String(md || '').split(/\r?\n/);
+    var lines = stripFrontmatter(md).split(/\r?\n/);
     var html = '';
     var inCode = false;
     var codeBuf = [];

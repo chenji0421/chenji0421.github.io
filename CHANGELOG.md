@@ -3,6 +3,18 @@
 本项目遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 主要版本线从 `v0.1.0` 一路走到「Chenji Learning Hub」的 `v0.7.1`。
 
+## [v0.7.2] - 2026-08-09
+
+### 优化
+- **文章系统 Markdown 渲染升级**：
+  - 自动过滤文章开头的 YAML frontmatter（`---` 之间的元数据），不再把 `title` / `date` / `tags` 等头信息显示到正文里
+  - 确认并补齐基础 Markdown 支持：`#` / `##` / `###` 标题、段落、`-` 列表、` ``` ` 代码块、`**加粗**`、行内代码、`[链接](url)`
+  - 文章文件缺失时显示「文章文件不存在，请检查 js/content.js 中的 file 路径」明确错误提示
+- 文章空状态保留两个入口按钮：**查看文章模板**（`articles/template.md`）/ **查看写作说明**（`articles/README.md`）
+
+### 变更
+- `articles/README.md` 补充说明：frontmatter 会被过滤不显示、支持的基础 Markdown 特性清单、文件缺失时的错误提示
+
 ## [v0.7.1] - 2026-08-09
 
 ### 新增

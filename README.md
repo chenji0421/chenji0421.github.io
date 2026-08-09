@@ -147,8 +147,9 @@ npx serve .
 **写一篇文章：**
 1. 复制 [`articles/template.md`](articles/template.md) 为 `articles/我的文章.md`
 2. 填好标题、日期、标签、摘要，写正文
-3. 在 [`js/content.js`](js/content.js) 的 `siteContent.articles` 里加一个对象，`file` 指向上面的文件
-4. `git push`，文章就会出现在网站「文章」页
+3. 文章开头的 `---` 元数据（title / date / tags 等）会被自动过滤，阅读时只渲染正文
+4. 在 [`js/content.js`](js/content.js) 的 `siteContent.articles` 里加一个对象，`file` 指向上面的文件
+5. `git push`，文章就会出现在网站「文章」页
 
 **添加一个项目：**
 1. 在 [`js/content.js`](js/content.js) 的 `siteContent.projects` 里加一个对象
