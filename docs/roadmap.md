@@ -92,7 +92,7 @@
 - [x] `js/data.js` → `js/content.js` 空框架（articles / projects 默认空）
 - [x] 新增 `articles/`（README + template）、`games/`（README）
 - [x] 文章点击可打开 Markdown（fetch + 极简渲染器）
-- [x] 计划系统重构为年 / 月 / 日三视图（localStorage 保存、导出/导入/清空）
+- [x] 计划系统重构为年 / 月 / 日三视图（本地草稿存 localStorage、支持导出 / 导入 / 清空）
 - [x] 工具箱改为真实工具入口；游戏页改为空状态；登录页改为「维护」说明页（无任何登录功能）
 
 ### 🔜 v0.6.0 — 第一批真实内容

@@ -29,7 +29,8 @@
 
 **没有服务器，没有数据库，没有构建步骤，没有假内容。**
 浏览器直接加载 HTML/CSS/JS，页面内容由 `main.js` 根据 `siteContent`（空框架）渲染；
-文章是 `articles/` 目录里的真实 Markdown 文件，计划数据存在浏览器 `localStorage`。
+文章是 `articles/` 目录里的真实 Markdown 文件；计划数据分两部分：**公开计划**在
+`data/plans.json`（所有人可见、只读），**本地草稿**存浏览器 `localStorage`（仅自己可见、可编辑）。
 
 ## 各部分职责
 
@@ -53,7 +54,7 @@
   - 根据 `siteContent.articles` 渲染文章卡片（为空时显示空状态）
   - 点击文章卡片 → `fetch` `articles/*.md` → 极简 Markdown 渲染器 → 显示阅读模态框
   - 根据 `siteContent.projects` 按状态分组渲染项目（为空时显示空状态）
-  - 计划页「年 / 月 / 日」三视图，数据存 `localStorage`（`chenji_planner_data`）
+  - 计划页分「公开计划 / 本地草稿」两个标签：公开计划数据来自 `data/plans.json`（只读展示），本地草稿存浏览器 `localStorage`（`chenji_planner_data`，可编辑 / 导出 / 导入）
   - hash 路由、主题切换、侧边栏折叠、toast、返回顶部
 - 首页统计（文章数 / 项目数 / 本地计划天数 / 技能数）**全部真实计算**，没有数据就显示 0。
 
