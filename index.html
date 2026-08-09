@@ -223,81 +223,129 @@
         <section class="page" id="page-plans">
           <div class="page-head">
             <h2 class="page-title">计划</h2>
-            <p class="page-sub">年表 / 月表 / 日计划 · 长期主义者的时间账本</p>
+            <p class="page-sub">公开计划（data/plans.json）+ 本地草稿（localStorage）· 长期主义者的时间账本</p>
           </div>
 
-          <div class="plan-hero">
-            <div class="plan-hero-text">
-              <span class="plan-kicker">My Planner</span>
-              <h3 class="plan-hero-title">我的个人计划本</h3>
-              <p class="plan-hero-desc">按年、按月、按天记录自己的计划。没有预设目标，从真实生活开始记录。</p>
-            </div>
-            <div class="plan-actions">
-              <button type="button" class="btn btn-outline" id="viewYear">📅 年表</button>
-              <button type="button" class="btn btn-outline" id="viewMonth">🗓️ 月表</button>
-              <button type="button" class="btn btn-outline" id="viewDay">📝 日计划</button>
-            </div>
+          <!-- 双标签：公开计划 / 本地草稿 -->
+          <div class="plan-tabs" role="tablist" aria-label="计划标签切换">
+            <button type="button" class="plan-tab active" data-plantab="public" role="tab" aria-selected="true">🌍 公开计划</button>
+            <button type="button" class="plan-tab" data-plantab="local" role="tab" aria-selected="false">✏️ 本地草稿</button>
           </div>
 
-          <div class="plan-tip">💡 当前计划数据保存在你自己的浏览器 localStorage 中，不会上传到服务器。换设备后不会自动同步。</div>
+          <!-- ============ 公开计划面板（只读，来自 data/plans.json） ============ -->
+          <div class="plan-pane" id="planPublicPane">
+            <div class="plan-tip plan-tip-public">🌍 公开计划来自 data/plans.json，所有访问者都能看到。这里只能查看，不能编辑。</div>
 
-          <div class="planner-card">
-            <div class="planner-head">
-              <div class="planner-nav">
-                <button type="button" class="btn btn-outline" id="plannerPrev">←</button>
-                <h3 class="planner-title" id="plannerTitle">2026</h3>
-                <button type="button" class="btn btn-outline" id="plannerNext">→</button>
-                <button type="button" class="btn btn-outline" id="plannerToday">回到今天</button>
-              </div>
-              <div class="planner-actions">
-                <button type="button" class="btn btn-outline" id="planExport">导出 JSON</button>
-                <button type="button" class="btn btn-outline" id="planImport">导入 JSON</button>
-                <input type="file" id="planImportFile" accept="application/json,.json" hidden />
-                <button type="button" class="btn btn-outline danger" id="planClear">清空本地计划</button>
+            <!-- 公开计划空状态 -->
+            <div class="empty-state" id="publicEmpty">
+              <div class="empty-icon">🌍</div>
+              <h3 class="empty-title">暂无公开计划</h3>
+              <p class="empty-desc">站长可以在 data/plans.json 中添加公开计划，访问者就能在这里看到。</p>
+              <div class="empty-actions">
+                <a class="btn btn-outline" href="data/plans.json" target="_blank" rel="noopener">打开 data/plans.json</a>
               </div>
             </div>
 
-            <!-- 年表视图 -->
-            <div class="planner-view" id="yearView"></div>
+            <!-- 公开计划展示（只读） -->
+            <div class="planner-card" id="publicPlanner" style="display:none;">
+              <div class="planner-head">
+                <div class="planner-nav">
+                  <button type="button" class="btn btn-outline" id="publicPrev" title="上一个">←</button>
+                  <h3 class="planner-title" id="publicTitle">2026 年</h3>
+                  <button type="button" class="btn btn-outline" id="publicNext" title="下一个">→</button>
+                  <button type="button" class="btn btn-outline" id="publicToday">回到今年</button>
+                </div>
+                <div class="planner-actions">
+                  <button type="button" class="btn btn-outline active" id="publicViewYear">📅 年表</button>
+                  <button type="button" class="btn btn-outline" id="publicViewMonth">🗓️ 月表</button>
+                  <button type="button" class="btn btn-outline" id="publicViewDay">📝 日详情</button>
+                </div>
+              </div>
 
-            <!-- 月表视图 -->
-            <div class="planner-view" id="monthView" style="display:none;"></div>
+              <!-- 公开计划：年表 -->
+              <div class="planner-view" id="publicYearView"></div>
+              <!-- 公开计划：月表 -->
+              <div class="planner-view" id="publicMonthView" style="display:none;"></div>
+              <!-- 公开计划：日详情 -->
+              <div class="planner-view" id="publicDayView" style="display:none;"></div>
+            </div>
+          </div>
 
-            <!-- 日计划视图 -->
-            <div class="planner-view" id="dayView" style="display:none;">
-              <div class="day-editor">
-                <h4 class="day-title">📝 日计划 <span class="day-date" id="dayDate"></span></h4>
-                <div class="day-field">
-                  <label class="field-label" for="dayGoal">今日目标</label>
-                  <input class="field-input" id="dayGoal" type="text" placeholder="今天想完成什么" />
+          <!-- ============ 本地草稿面板（localStorage，仅本人可见） ============ -->
+          <div class="plan-pane" id="planLocalPane" style="display:none;">
+            <div class="plan-hero">
+              <div class="plan-hero-text">
+                <span class="plan-kicker">My Local Drafts</span>
+                <h3 class="plan-hero-title">我的本地草稿</h3>
+                <p class="plan-hero-desc">按年、按月、按天记录自己的计划。没有预设目标，从真实生活开始记录。</p>
+              </div>
+              <div class="plan-actions">
+                <button type="button" class="btn btn-outline" id="viewYear">📅 年表</button>
+                <button type="button" class="btn btn-outline" id="viewMonth">🗓️ 月表</button>
+                <button type="button" class="btn btn-outline" id="viewDay">📝 日计划</button>
+              </div>
+            </div>
+
+            <div class="plan-tip">✏️ 这些数据只保存在你自己的浏览器里，不会同步到网站，也不会被别人看到。</div>
+
+            <div class="planner-card">
+              <div class="planner-head">
+                <div class="planner-nav">
+                  <button type="button" class="btn btn-outline" id="plannerPrev">←</button>
+                  <h3 class="planner-title" id="plannerTitle">2026</h3>
+                  <button type="button" class="btn btn-outline" id="plannerNext">→</button>
+                  <button type="button" class="btn btn-outline" id="plannerToday">回到今天</button>
                 </div>
-                <div class="day-field">
-                  <label class="field-label" for="dayMorning">上午计划</label>
-                  <textarea class="field-input" id="dayMorning" rows="2" placeholder="上午的安排…"></textarea>
+                <div class="planner-actions">
+                  <button type="button" class="btn btn-outline" id="planExport">导出 JSON</button>
+                  <button type="button" class="btn btn-outline" id="planImport">导入 JSON</button>
+                  <input type="file" id="planImportFile" accept="application/json,.json" hidden />
+                  <button type="button" class="btn btn-outline danger" id="planClear">清空本地计划</button>
                 </div>
-                <div class="day-field">
-                  <label class="field-label" for="dayAfternoon">下午计划</label>
-                  <textarea class="field-input" id="dayAfternoon" rows="2" placeholder="下午的安排…"></textarea>
-                </div>
-                <div class="day-field">
-                  <label class="field-label" for="dayEvening">晚上计划</label>
-                  <textarea class="field-input" id="dayEvening" rows="2" placeholder="晚上的安排…"></textarea>
-                </div>
-                <div class="day-field">
-                  <label class="field-label" for="dayReview">今日复盘</label>
-                  <textarea class="field-input" id="dayReview" rows="2" placeholder="做完之后的复盘…"></textarea>
-                </div>
-                <div class="day-field">
-                  <label class="field-label" for="dayStatus">完成状态</label>
-                  <select class="select" id="dayStatus">
-                    <option value="未开始">未开始</option>
-                    <option value="进行中">进行中</option>
-                    <option value="已完成">已完成</option>
-                  </select>
-                </div>
-                <div class="day-actions">
-                  <button type="button" class="btn btn-primary" id="daySave">💾 保存当天计划</button>
-                  <button type="button" class="btn btn-outline danger" id="dayDelete">🗑️ 删除当天计划</button>
+              </div>
+
+              <!-- 年表视图 -->
+              <div class="planner-view" id="yearView"></div>
+
+              <!-- 月表视图 -->
+              <div class="planner-view" id="monthView" style="display:none;"></div>
+
+              <!-- 日计划视图 -->
+              <div class="planner-view" id="dayView" style="display:none;">
+                <div class="day-editor">
+                  <h4 class="day-title">📝 日计划 <span class="day-date" id="dayDate"></span></h4>
+                  <div class="day-field">
+                    <label class="field-label" for="dayGoal">今日目标</label>
+                    <input class="field-input" id="dayGoal" type="text" placeholder="今天想完成什么" />
+                  </div>
+                  <div class="day-field">
+                    <label class="field-label" for="dayMorning">上午计划</label>
+                    <textarea class="field-input" id="dayMorning" rows="2" placeholder="上午的安排…"></textarea>
+                  </div>
+                  <div class="day-field">
+                    <label class="field-label" for="dayAfternoon">下午计划</label>
+                    <textarea class="field-input" id="dayAfternoon" rows="2" placeholder="下午的安排…"></textarea>
+                  </div>
+                  <div class="day-field">
+                    <label class="field-label" for="dayEvening">晚上计划</label>
+                    <textarea class="field-input" id="dayEvening" rows="2" placeholder="晚上的安排…"></textarea>
+                  </div>
+                  <div class="day-field">
+                    <label class="field-label" for="dayReview">今日复盘</label>
+                    <textarea class="field-input" id="dayReview" rows="2" placeholder="做完之后的复盘…"></textarea>
+                  </div>
+                  <div class="day-field">
+                    <label class="field-label" for="dayStatus">完成状态</label>
+                    <select class="select" id="dayStatus">
+                      <option value="未开始">未开始</option>
+                      <option value="进行中">进行中</option>
+                      <option value="已完成">已完成</option>
+                    </select>
+                  </div>
+                  <div class="day-actions">
+                    <button type="button" class="btn btn-primary" id="daySave">💾 保存当天计划</button>
+                    <button type="button" class="btn btn-outline danger" id="dayDelete">🗑️ 删除当天计划</button>
+                  </div>
                 </div>
               </div>
             </div>

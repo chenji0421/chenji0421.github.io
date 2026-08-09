@@ -18,6 +18,7 @@ chenji0421.github.io · 项目自检脚本（真实空框架版）
 退出码：有错误返回 1，仅警告返回 0。
 """
 import ast
+import json
 import re
 import sys
 from pathlib import Path
@@ -36,6 +37,7 @@ KEY_FILES = [
     "css/style.css",
     "js/content.js",
     "js/main.js",
+    "data/plans.json",
     "articles/README.md",
     "articles/template.md",
     "games/README.md",
@@ -185,6 +187,19 @@ def main() -> int:
     content_js = ROOT / "js" / "content.js"
     if content_js.exists():
         check_content(content_js)
+
+    # 4.5 data/plans.json 公开计划格式
+    print("   📋 检查 data/plans.json ...")
+    plans_json = ROOT / "data" / "plans.json"
+    if plans_json.exists():
+        try:
+            plans_data = json.loads(plans_json.read_text(encoding="utf-8"))
+            if not isinstance(plans_data, dict) or not isinstance(plans_data.get("plans"), dict):
+                errors.append("data/plans.json 结构应为 {\"year\": \"2026\", \"plans\": {}}")
+            if not isinstance(plans_data.get("year", ""), str):
+                errors.append("data/plans.json 的 year 字段应为字符串")
+        except Exception as e:
+            errors.append(f"data/plans.json JSON 解析失败：{e}")
 
     # 5. 占位提醒（只看根目录主页）
     if root_html.exists():

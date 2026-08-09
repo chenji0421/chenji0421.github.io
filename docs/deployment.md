@@ -36,7 +36,8 @@ GitHub Pages 会在几十秒内重建上线。
 | --- | --- | --- |
 | 文章 | `articles/*.md` + `js/content.js` | 文章正文是 Markdown 文件，登记后网站才能找到 |
 | 项目 | `js/content.js` | 在 `siteContent.projects` 数组里登记 |
-| 计划 | 浏览器 `localStorage` | 不上传服务器，换设备不自动同步 |
+| 公开计划 | `data/plans.json` | 所有人可见（只读），站长改文件推送后生效 |
+| 本地草稿 | 浏览器 `localStorage` | 仅自己可见，不上传服务器，换设备不自动同步 |
 
 想详细了解怎么加内容 → 看 [CONTENT.md](CONTENT.md) 和 `articles/README.md`。
 
@@ -92,4 +93,4 @@ A：检查 `js/content.js` 里登记的 `file` 路径是否真实存在于 `arti
 A：本站没有后端，登录是纯静态演示 —— 永远不会上传你的账号密码。
 
 **Q：计划数据换设备后没了？**
-A：计划存在浏览器 `localStorage` 里，不会自动同步。可以用「导出 JSON / 导入 JSON」手动备份迁移。
+A：「本地草稿」存在浏览器 `localStorage` 里，不会自动同步，可以用「导出 JSON / 导入 JSON」手动备份迁移。想让所有人看到的计划，请写进 `data/plans.json` 并推送。

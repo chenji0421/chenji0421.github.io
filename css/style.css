@@ -1516,3 +1516,104 @@ body.modal-open { overflow: hidden; }
   .modal-box { padding: 26px 20px 22px; }
   .empty-state { padding: 40px 18px; }
 }
+
+/* ============================================================
+   v0.6.0 新增：计划页双标签（公开计划 / 本地草稿）
+   公开计划来自 data/plans.json（只读展示）
+   本地草稿存 localStorage（可编辑，仅本人可见）
+   ============================================================ */
+
+/* ---------- 计划页标签页 ---------- */
+.plan-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 18px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-sm);
+  padding: 6px;
+  box-shadow: var(--shadow);
+  width: fit-content;
+  max-width: 100%;
+}
+.plan-tab {
+  border: none;
+  background: transparent;
+  color: var(--text-sub);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 9px 22px;
+  border-radius: 10px;
+  transition: all .2s ease;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.plan-tab:hover { color: var(--accent); }
+.plan-tab.active {
+  background: linear-gradient(135deg, #2f7d6d, #1a6f63);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(47, 125, 109, .3);
+}
+
+.plan-pane { animation: pageIn .25s ease; }
+
+.plan-tip-public {
+  background: rgba(26, 115, 232, .08);
+  border-color: rgba(26, 115, 232, .3);
+  color: var(--accent-2);
+}
+
+/* ---------- 公开计划：只读日详情 ---------- */
+.pub-day-card {
+  background: var(--main-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  padding: 22px;
+  max-width: 620px;
+}
+.pub-day-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--card-border);
+  margin-bottom: 14px;
+}
+.pub-day-date { font-size: 17px; font-weight: 800; color: var(--text-main); }
+.pub-day-field {
+  display: flex;
+  gap: 12px;
+  padding: 9px 0;
+  border-bottom: 1px dashed var(--card-border);
+}
+.pub-day-field:last-child { border-bottom: none; }
+.pub-day-label {
+  flex-shrink: 0;
+  width: 84px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-sub);
+  padding-top: 2px;
+}
+.pub-day-text {
+  font-size: 14px;
+  color: var(--text-main);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.pub-day-none { color: var(--text-faint); font-style: normal; }
+.pub-day-empty {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--text-sub);
+}
+.pub-day-empty .empty-icon { font-size: 40px; }
+
+/* 移动端标签自适应 */
+@media (max-width: 640px) {
+  .plan-tabs { width: 100%; }
+  .plan-tab { flex: 1; padding: 9px 10px; }
+  .pub-day-field { flex-direction: column; gap: 4px; }
+  .pub-day-label { width: auto; }
+}

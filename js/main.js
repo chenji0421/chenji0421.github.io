@@ -835,6 +835,276 @@
     });
   }
 
+  /* ================= 计划页：双标签（公开计划 / 本地草稿） ================= */
+  var planTabs = $all('.plan-tab');
+  function setPlanTab(name) {
+    planTabs.forEach(function (t) {
+      var active = t.getAttribute('data-plantab') === name;
+      t.classList.toggle('active', active);
+      t.setAttribute('aria-selected', active ? 'true' : 'false');
+    });
+    var pub = $('#planPublicPane');
+    var loc = $('#planLocalPane');
+    if (pub) pub.style.display = name === 'public' ? '' : 'none';
+    if (loc) loc.style.display = name === 'local' ? '' : 'none';
+  }
+  planTabs.forEach(function (t) {
+    t.addEventListener('click', function () { setPlanTab(t.getAttribute('data-plantab')); });
+  });
+
+  /* ================= 公开计划（只读，来自 data/plans.json） ================= */
+  var publicState = { view: 'year', year: 2026, month: 0, date: '2026-01-01' };
+  var publicData = null;
+
+  function loadPublicPlans() {
+    var emptyEl = $('#publicEmpty');
+    var plannerEl = $('#publicPlanner');
+    fetch('data/plans.json')
+      .then(function (res) {
+        if (!res.ok) throw new Error('load failed');
+        return res.json();
+      })
+      .then(function (json) {
+        publicData = json || {};
+        var plans = publicData.plans || {};
+        var hasAny = false;
+        for (var k in plans) { if (Object.prototype.hasOwnProperty.call(plans, k)) { hasAny = true; break; } }
+        if (emptyEl) emptyEl.style.display = hasAny ? 'none' : '';
+        if (plannerEl) plannerEl.style.display = hasAny ? '' : 'none';
+        var y = parseInt(publicData.year, 10);
+        if (y && !isNaN(y)) {
+          publicState.year = y;
+          publicState.month = 0;
+          publicState.date = y + '-01-01';
+        }
+        setPublicView('year');
+      })
+      .catch(function () {
+        publicData = null;
+        if (emptyEl) emptyEl.style.display = '';
+        var desc = emptyEl && emptyEl.querySelector('.empty-desc');
+        if (desc) desc.textContent = '公开计划加载失败，或 data/plans.json 尚未创建。';
+        if (plannerEl) plannerEl.style.display = 'none';
+      });
+  }
+
+  function setPublicView(view) {
+    publicState.view = view;
+    ['publicViewYear', 'publicViewMonth', 'publicViewDay'].forEach(function (id) {
+      var b = $('#' + id);
+      if (b) b.classList.toggle('active', id === 'publicView' + view.charAt(0).toUpperCase() + view.slice(1));
+    });
+    var yv = $('#publicYearView');
+    var mv = $('#publicMonthView');
+    var dv = $('#publicDayView');
+    if (yv) yv.style.display = view === 'year' ? '' : 'none';
+    if (mv) mv.style.display = view === 'month' ? '' : 'none';
+    if (dv) dv.style.display = view === 'day' ? '' : 'none';
+    renderPublicPlanner();
+  }
+
+  function renderPublicPlanner() {
+    var titleEl = $('#publicTitle');
+    var plans = (publicData && publicData.plans) || {};
+    var v = publicState;
+    if (titleEl) {
+      if (v.view === 'year') titleEl.textContent = v.year + ' 年';
+      else if (v.view === 'month') titleEl.textContent = v.year + ' 年 ' + (v.month + 1) + ' 月';
+      else titleEl.textContent = v.date;
+    }
+    if (v.view === 'year') renderPublicYear(plans);
+    else if (v.view === 'month') renderPublicMonth(plans);
+    else renderPublicDay(plans);
+  }
+
+  function countPublicMonth(plans, y, m) {
+    var prefix = y + '-' + pad2(m + 1) + '-';
+    var goal = 0, done = 0;
+    for (var k in plans) {
+      if (Object.prototype.hasOwnProperty.call(plans, k) && k.indexOf(prefix) === 0) {
+        goal++;
+        if (plans[k] && plans[k].status === '已完成') done++;
+      }
+    }
+    return { goal: goal, done: done };
+  }
+
+  function renderPublicYear(plans) {
+    var el = $('#publicYearView');
+    if (!el) return;
+    var y = publicState.year;
+    var months = ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'];
+    el.innerHTML = '';
+    var grid = document.createElement('div');
+    grid.className = 'year-grid';
+    months.forEach(function (name, i) {
+      var st = countPublicMonth(plans, y, i);
+      var card = document.createElement('button');
+      card.type = 'button';
+      card.className = 'month-card';
+      card.innerHTML =
+        '<div class="month-name">' + name + '</div>' +
+        '<div class="month-stats">' +
+          '<span class="mstat goal">计划 ' + st.goal + '</span>' +
+          '<span class="mstat done">完成 ' + st.done + '</span>' +
+        '</div>';
+      card.addEventListener('click', function () {
+        publicState.month = i;
+        setPublicView('month');
+      });
+      grid.appendChild(card);
+    });
+    el.appendChild(grid);
+  }
+
+  function renderPublicMonth(plans) {
+    var el = $('#publicMonthView');
+    if (!el) return;
+    var y = publicState.year;
+    var m = publicState.month;
+    var daysInMonth = new Date(y, m + 1, 0).getDate();
+    var firstDay = new Date(y, m, 1).getDay();
+    var offset = (firstDay + 6) % 7;
+    var prefix = y + '-' + pad2(m + 1) + '-';
+
+    el.innerHTML = '';
+    var table = document.createElement('div');
+    table.className = 'calendar';
+
+    var week = document.createElement('div');
+    week.className = 'cal-week cal-head';
+    ['一', '二', '三', '四', '五', '六', '日'].forEach(function (w) {
+      var cell = document.createElement('div');
+      cell.className = 'cal-cell cal-head-cell';
+      cell.textContent = w;
+      week.appendChild(cell);
+    });
+    table.appendChild(week);
+
+    var cellCount = Math.ceil((offset + daysInMonth) / 7) * 7;
+    for (var i = 0; i < cellCount; i++) {
+      if (i % 7 === 0) { week = document.createElement('div'); week.className = 'cal-week'; table.appendChild(week); }
+      var dayNum = i - offset + 1;
+      var cell = document.createElement('button');
+      cell.type = 'button';
+      cell.className = 'cal-cell';
+      if (dayNum < 1 || dayNum > daysInMonth) {
+        cell.classList.add('empty');
+        cell.textContent = '';
+        week.appendChild(cell);
+        continue;
+      }
+      var ds = prefix + pad2(dayNum);
+      var entry = plans[ds];
+      var now = new Date();
+      if (ds === dateStr(now.getFullYear(), now.getMonth(), now.getDate())) cell.classList.add('today');
+      if (entry) {
+        cell.classList.add('has-plan');
+        if (entry.status === '已完成') cell.classList.add('done');
+      }
+      cell.innerHTML =
+        '<span class="cal-day">' + dayNum + '</span>' +
+        (entry ? '<span class="cal-dot"></span>' : '') +
+        (entry && entry.goal ? '<span class="cal-title">' + escapeHtml(entry.goal.slice(0, 8)) + '</span>' : '');
+      cell.addEventListener('click', (function (dsv) {
+        return function () {
+          publicState.date = dsv;
+          setPublicView('day');
+        };
+      })(ds));
+      week.appendChild(cell);
+    }
+    el.appendChild(table);
+  }
+
+  function renderPublicDay(plans) {
+    var el = $('#publicDayView');
+    if (!el) return;
+    var d = publicState.date;
+    var entry = plans[d];
+    el.innerHTML = '';
+    if (!entry) {
+      var empty = document.createElement('div');
+      empty.className = 'pub-day-empty';
+      empty.innerHTML = '<div class="empty-icon">📭</div><p>这一天没有公开计划。</p>';
+      el.appendChild(empty);
+      return;
+    }
+    var card = document.createElement('div');
+    card.className = 'pub-day-card';
+    var statusCls = STATUS_CLASS[entry.status] || 's-plan';
+    card.innerHTML =
+      '<div class="pub-day-head">' +
+        '<h4 class="pub-day-date">📅 ' + escapeHtml(d) + '</h4>' +
+        '<span class="proj-status ' + statusCls + '">' + escapeHtml(entry.status || '未开始') + '</span>' +
+      '</div>';
+    [
+      ['今日目标', 'goal'],
+      ['上午计划', 'morning'],
+      ['下午计划', 'afternoon'],
+      ['晚上计划', 'evening'],
+      ['今日复盘', 'review']
+    ].forEach(function (f) {
+      var val = entry[f[1]] || '';
+      card.innerHTML +=
+        '<div class="pub-day-field">' +
+          '<span class="pub-day-label">' + f[0] + '</span>' +
+          '<div class="pub-day-text">' + (val ? escapeHtml(val) : '<em class="pub-day-none">未填写</em>') + '</div>' +
+        '</div>';
+    });
+    el.appendChild(card);
+  }
+
+  /* 公开计划视图切换按钮 */
+  ['publicViewYear', 'publicViewMonth', 'publicViewDay'].forEach(function (id) {
+    var b = $('#' + id);
+    if (b) b.addEventListener('click', function () {
+      setPublicView(id.replace('publicView', '').toLowerCase());
+    });
+  });
+
+  /* 公开计划上 / 下导航 */
+  var pubPrev = $('#publicPrev');
+  var pubNext = $('#publicNext');
+  if (pubPrev) {
+    pubPrev.addEventListener('click', function () {
+      var v = publicState;
+      if (v.view === 'year') { v.year--; }
+      else if (v.view === 'month') { v.month--; if (v.month < 0) { v.month = 11; v.year--; } }
+      else { shiftPublicDate(-1); }
+      renderPublicPlanner();
+    });
+  }
+  if (pubNext) {
+    pubNext.addEventListener('click', function () {
+      var v = publicState;
+      if (v.view === 'year') { v.year++; }
+      else if (v.view === 'month') { v.month++; if (v.month > 11) { v.month = 0; v.year++; } }
+      else { shiftPublicDate(1); }
+      renderPublicPlanner();
+    });
+  }
+
+  function shiftPublicDate(delta) {
+    var parts = publicState.date.split('-').map(Number);
+    var dt = new Date(parts[0], parts[1] - 1, parts[2]);
+    dt.setDate(dt.getDate() + delta);
+    publicState.date = dateStr(dt.getFullYear(), dt.getMonth(), dt.getDate());
+    publicState.year = dt.getFullYear();
+    publicState.month = dt.getMonth();
+  }
+
+  var pubToday = $('#publicToday');
+  if (pubToday) {
+    pubToday.addEventListener('click', function () {
+      var now = new Date();
+      publicState.year = now.getFullYear();
+      publicState.month = now.getMonth();
+      publicState.date = dateStr(now.getFullYear(), now.getMonth(), now.getDate());
+      renderPublicPlanner();
+    });
+  }
+
   /* ================= 关于页渲染 ================= */
   var aboutIntro = $('#aboutIntro');
   if (aboutIntro) aboutIntro.textContent = ABOUT.intro;
@@ -1004,6 +1274,7 @@
     renderArticles();
     renderProjects();
     setPlannerView('year');
+    loadPublicPlans();
     navigate(getHashPage(), false);
     onScroll();
   }

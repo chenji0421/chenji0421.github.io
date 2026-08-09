@@ -22,4 +22,5 @@
 
 一个纯静态、零依赖、零构建的**个人学习工作台**，跑在 GitHub Pages 上。
 **没有假内容**：文章写在 `articles/` 目录、登记在 `js/content.js`；项目登记在
-`js/content.js`；计划数据存在浏览器 `localStorage` 里。所有交互都在浏览器本地完成。
+`js/content.js`；**公开计划**写在 `data/plans.json`（所有人可见），**本地草稿**存在
+浏览器 `localStorage` 里（仅自己可见）。所有交互都在浏览器本地完成。
