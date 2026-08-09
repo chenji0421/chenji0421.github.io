@@ -206,6 +206,7 @@
 
           <!-- 文章空状态 -->
           <div class="empty-state" id="articleEmpty">
+            <span class="empty-kicker">Articles · 真实笔记</span>
             <div class="empty-icon">📝</div>
             <h3 class="empty-title">还没有文章</h3>
             <p class="empty-desc">这里不会自动生成假文章。等你写下第一篇文章后，它会显示在这里。</p>
@@ -213,6 +214,7 @@
               <a class="btn btn-primary" href="articles/template.md" target="_blank" rel="noopener">查看文章模板</a>
               <a class="btn btn-outline" href="articles/README.md" target="_blank" rel="noopener">查看写作说明</a>
             </div>
+            <p class="empty-hint">写完放进 articles/ 并在 js/content.js 登记，推送即上线</p>
           </div>
 
           <!-- 文章卡片区 -->
@@ -238,6 +240,7 @@
 
             <!-- 公开计划空状态 -->
             <div class="empty-state" id="publicEmpty">
+              <span class="empty-kicker">Public Plans · data/plans.json</span>
               <div class="empty-icon">🌍</div>
               <h3 class="empty-title">暂无公开计划</h3>
               <p class="empty-desc">站长可以在 data/plans.json 中添加公开计划，访问者就能在这里看到。</p>
@@ -361,12 +364,14 @@
 
           <div class="project-groups" id="projectGroups">
             <div class="empty-state" id="projectEmpty">
+              <span class="empty-kicker">Projects · 真实登记</span>
               <div class="empty-icon">📦</div>
               <h3 class="empty-title">还没有项目</h3>
               <p class="empty-desc">等你完成真实项目后，可以在 js/content.js 中添加。</p>
               <div class="empty-actions">
                 <a class="btn btn-primary" href="js/content.js" target="_blank" rel="noopener">打开登记说明</a>
               </div>
+              <p class="empty-hint">项目页只显示真实登记的内容，不显示假进度 / 假星标 / 假浏览量</p>
             </div>
           </div>
         </section>
@@ -461,6 +466,7 @@
           </div>
 
           <div class="empty-state game-empty">
+            <span class="empty-kicker">Games · 预留</span>
             <div class="empty-icon">🎮</div>
             <h3 class="empty-title">暂未添加游戏</h3>
             <p class="empty-desc">以后可以把 HTML 小游戏文件放到 games/ 目录，并在这里嵌入。</p>
@@ -580,6 +586,15 @@
               <a class="btn btn-primary" href="https://github.com/chenji0421/chenji0421.github.io" target="_blank" rel="noopener">打开 GitHub 仓库</a>
               <a class="btn btn-outline" href="articles/README.md" target="_blank" rel="noopener">查看写作说明</a>
               <a class="btn btn-outline" href="docs/CONTENT.md" target="_blank" rel="noopener">查看内容维护指南</a>
+            </div>
+
+            <div class="maintain-flow">
+              <h4 class="maintain-flow-title">🔄 数据是怎么更新的</h4>
+              <ol class="maintain-flow-steps">
+                <li>你在 GitHub 仓库里修改 <code>articles/</code>、<code>js/content.js</code>、<code>data/plans.json</code></li>
+                <li>推送到 <code>main</code> 分支（<code>git push</code>）</li>
+                <li>GitHub Pages 自动重新构建，几十秒后访客看到最新公开内容</li>
+              </ol>
             </div>
 
             <p class="maintain-note">
