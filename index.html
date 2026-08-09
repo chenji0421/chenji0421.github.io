@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Chenji Learning Hub —— 个人学习工作台 / 知识库 / 作品展示平台。记录 Python、网页开发、数据分析、学习计划与项目实践。" />
+  <meta name="description" content="Chenji Learning Hub —— 真实可维护的个人学习工作台。没有假文章、假项目、假阅读量，所有内容由自己编写与登记。" />
   <meta name="author" content="chenji0421" />
   <meta name="theme-color" content="#132033" />
 
@@ -58,7 +58,7 @@
         </button>
         <div class="topbar-title" id="topbarTitle">首页</div>
         <div class="topbar-actions">
-          <span class="status-pill online top-status"><span class="dot"></span> 在线工作台</span>
+          <span class="status-pill online top-status"><span class="dot"></span> 本地工作台</span>
           <button type="button" class="theme-toggle" id="themeToggle" title="切换深色 / 浅色模式" aria-label="切换主题">
             <span class="theme-icon" aria-hidden="true">🌙</span>
             <span class="theme-text">深色模式</span>
@@ -68,7 +68,7 @@
 
       <div class="pages">
 
-        <!-- ================= 首页（深色科技感 Hero + 工作台信息） ================= -->
+        <!-- ================= 首页 ================= -->
         <section class="page active" id="page-home">
 
           <div class="hero-card">
@@ -77,14 +77,14 @@
             <div class="home-glow glow-b" aria-hidden="true"></div>
 
             <div class="home-inner">
-              <div class="home-badge"><span class="pulse-dot"></span> Chenji Learning Hub · 长期维护中</div>
+              <div class="home-badge"><span class="pulse-dot"></span> Chenji Learning Hub · 真实维护中</div>
 
               <h1 class="home-title">你好，我是 <span class="home-gradient">Chenji</span></h1>
-              <p class="home-sub">一名正在长跑中的 <span class="home-accent">长期主义者</span></p>
+              <p class="home-sub">非计算机专业大二学生，正在学 Python、前端与数据分析</p>
 
               <p class="home-desc">
-                非计算机专业大二学生，正在通过项目驱动的方式学习 Python、前端开发和数据分析。
-                这里记录我的学习路线、项目实践、踩坑笔记和阶段计划。
+                这里是一个「真实可维护」的学习工作台：文章自己写、项目自己登记、计划自己填。
+                没有假文章、假项目、假阅读量——你看到的一切都是真实内容。
               </p>
 
               <div class="home-terminal">
@@ -94,9 +94,9 @@
                 </div>
                 <div class="term-body">
                   <div class="term-line"><span class="t-prompt">$</span> boot <span class="t-comment">learning hub online</span></div>
-                  <div class="term-line"><span class="t-prompt">$</span> stack <span class="t-comment">HTML + CSS + JavaScript + Python</span></div>
-                  <div class="term-line"><span class="t-prompt">$</span> latest <span class="t-comment">文章中心 / 计划面板 / 工具箱上线</span></div>
-                  <div class="term-line"><span class="t-prompt">$</span> mode <span class="t-comment">learning mode · 正在长跑中</span><span class="t-cursor" aria-hidden="true"></span></div>
+                  <div class="term-line"><span class="t-prompt">$</span> stack <span class="t-comment">HTML + CSS + JavaScript</span></div>
+                  <div class="term-line"><span class="t-prompt">$</span> content <span class="t-comment">js/content.js + articles/ 目录</span></div>
+                  <div class="term-line"><span class="t-prompt">$</span> mode <span class="t-comment">learning mode · 长期主义</span><span class="t-cursor" aria-hidden="true"></span></div>
                 </div>
               </div>
 
@@ -107,10 +107,10 @@
             </div>
 
             <div class="home-stats">
-              <div class="stat-card"><div class="stat-num">12</div><div class="stat-label">已发布文章</div></div>
-              <div class="stat-card"><div class="stat-num">10</div><div class="stat-label">项目记录</div></div>
-              <div class="stat-card"><div class="stat-num">12</div><div class="stat-label">计划时间段</div></div>
-              <div class="stat-card"><div class="stat-num">8</div><div class="stat-label">学习模块</div></div>
+              <div class="stat-card"><div class="stat-num" id="statArticles">0</div><div class="stat-label">已发布文章</div></div>
+              <div class="stat-card"><div class="stat-num" id="statProjects">0</div><div class="stat-label">项目记录</div></div>
+              <div class="stat-card"><div class="stat-num" id="statPlans">0</div><div class="stat-label">本地计划天数</div></div>
+              <div class="stat-card"><div class="stat-num" id="statSkills">0</div><div class="stat-label">技能标签</div></div>
             </div>
           </div>
 
@@ -122,21 +122,21 @@
                   <span class="hs-icon">📚</span>
                   <div class="hs-body">
                     <div class="hs-title">当前在读</div>
-                    <div class="hs-desc">Python 基础 + JavaScript 入门，每天至少一道小练习</div>
+                    <div class="hs-desc">Python 基础 + 前端入门（进度以真实学习为准）</div>
                   </div>
                 </div>
                 <div class="home-status-item">
                   <span class="hs-icon">🔧</span>
                   <div class="hs-body">
                     <div class="hs-title">正在做</div>
-                    <div class="hs-desc">把个人网站迭代成「学习工作台」，边学边改、长期维护</div>
+                    <div class="hs-desc">把学习过程真实记录到这个工作台，长期维护</div>
                   </div>
                 </div>
                 <div class="home-status-item">
                   <span class="hs-icon">🎯</span>
                   <div class="hs-body">
                     <div class="hs-title">下一步</div>
-                    <div class="hs-desc">数据分析入门练习 → 接触 FastAPI 与数据库</div>
+                    <div class="hs-desc">先写出第一篇真实文章，再登记第一个真实项目</div>
                   </div>
                 </div>
               </div>
@@ -144,7 +144,10 @@
 
             <div class="home-card-col">
               <h3 class="block-title">🕐 最近更新</h3>
-              <div class="home-recent" id="recentList"><!-- 由 js/main.js 渲染最近 4 篇文章 --></div>
+              <div class="home-recent" id="recentList">
+                <!-- 有文章时显示最近几篇，没有则显示提示 -->
+                <p class="home-empty-note">还没有文章。等你在 articles/ 写下第一篇后，它会显示在这里。</p>
+              </div>
             </div>
           </div>
 
@@ -152,10 +155,10 @@
             <div class="home-card-col wide">
               <h3 class="block-title">⚡ 快捷入口</h3>
               <div class="home-links">
-                <a href="#articles" class="home-link"><span class="hl-icon">📝</span><span class="hl-body"><b>看文章</b><small>12 篇学习笔记</small></span></a>
-                <a href="#plans" class="home-link"><span class="hl-icon">🗓️</span><span class="hl-body"><b>学习计划</b><small>阶段冲刺计划</small></span></a>
-                <a href="#projects" class="home-link"><span class="hl-icon">📦</span><span class="hl-body"><b>项目实验室</b><small>10 个项目记录</small></span></a>
-                <a href="#toolbox" class="home-link"><span class="hl-icon">🧰</span><span class="hl-body"><b>工具箱</b><small>效率工具收藏</small></span></a>
+                <a href="#articles" class="home-link"><span class="hl-icon">📝</span><span class="hl-body"><b>写文章</b><small>articles/ 目录 + content.js</small></span></a>
+                <a href="#plans" class="home-link"><span class="hl-icon">🗓️</span><span class="hl-body"><b>学习计划</b><small>年 / 月 / 日三视图</small></span></a>
+                <a href="#projects" class="home-link"><span class="hl-icon">📦</span><span class="hl-body"><b>项目登记</b><small>content.js 里添加</small></span></a>
+                <a href="#toolbox" class="home-link"><span class="hl-icon">🧰</span><span class="hl-body"><b>工具箱</b><small>模板 / 命令 / 部署检查</small></span></a>
               </div>
             </div>
           </div>
@@ -164,18 +167,16 @@
             <span class="tag">Web 入门</span>
             <span class="tag">Python</span>
             <span class="tag">数据分析</span>
-            <span class="tag">自动化</span>
             <span class="tag">GitHub Pages</span>
-            <span class="tag">Claude Code</span>
             <span class="tag">长期主义</span>
           </div>
         </section>
 
-        <!-- ================= 文章页（文章中心） ================= -->
+        <!-- ================= 文章页 ================= -->
         <section class="page" id="page-articles">
           <div class="page-head">
             <h2 class="page-title">文章</h2>
-            <p class="page-sub">学习笔记、项目记录和标签搜索</p>
+            <p class="page-sub">你的真实笔记与记录 · 全部由你写入 articles/ 并登记</p>
           </div>
 
           <div class="article-toolbar">
@@ -184,121 +185,239 @@
               <input type="search" id="articleSearch" class="search-input" placeholder="搜索标题、摘要或标签…" />
             </div>
             <div class="toolbar-status">
-              <span class="status-pill online"><span class="dot"></span> 在线工作台</span>
-              <span class="article-count" id="articleCount">12 篇文章</span>
+              <span class="article-count" id="articleCount">0 篇文章</span>
             </div>
           </div>
 
-          <div class="filter-block">
+          <!-- 筛选区：没有文章时自动隐藏 -->
+          <div class="filter-block" id="articleFilters">
             <div class="filter-row">
               <span class="filter-label">标签</span>
-              <div class="filter-chips" id="tagFilter"><!-- 由 js/main.js 渲染 --></div>
+              <div class="filter-chips" id="tagFilter"></div>
             </div>
             <div class="filter-row">
               <span class="filter-label">分类 / 月份</span>
               <div class="filter-selects">
-                <select id="categoryFilter" class="select"><!-- 由 js/main.js 渲染 --></select>
-                <select id="monthFilter" class="select"><!-- 由 js/main.js 渲染 --></select>
+                <select id="categoryFilter" class="select"></select>
+                <select id="monthFilter" class="select"></select>
               </div>
             </div>
           </div>
 
-          <div class="hot-section">
-            <h3 class="block-title">🔥 热门文章</h3>
-            <div class="hot-list" id="hotList"><!-- 由 js/main.js 渲染前 5 篇 --></div>
+          <!-- 文章空状态 -->
+          <div class="empty-state" id="articleEmpty">
+            <div class="empty-icon">📝</div>
+            <h3 class="empty-title">还没有文章</h3>
+            <p class="empty-desc">这里不会自动生成假文章。等你写下第一篇文章后，它会显示在这里。</p>
+            <div class="empty-actions">
+              <a class="btn btn-primary" href="articles/template.md" target="_blank" rel="noopener">查看文章模板</a>
+              <a class="btn btn-outline" href="articles/README.md" target="_blank" rel="noopener">查看写作说明</a>
+            </div>
           </div>
 
-          <h3 class="block-title">📌 置顶文章</h3>
-          <div class="pinned-list" id="pinnedList"><!-- 由 js/main.js 渲染置顶文章 --></div>
-
-          <h3 class="block-title">📚 全部文章</h3>
-          <div class="article-grid" id="articleGrid"><!-- 由 js/main.js 根据 POSTS 渲染 --></div>
+          <!-- 文章卡片区 -->
+          <div class="article-grid" id="articleGrid"></div>
         </section>
 
-        <!-- ================= 计划页（阶段冲刺计划） ================= -->
+        <!-- ================= 计划页 ================= -->
         <section class="page" id="page-plans">
           <div class="page-head">
             <h2 class="page-title">计划</h2>
-            <p class="page-sub">Summer Sprint · 阶段冲刺计划</p>
+            <p class="page-sub">年表 / 月表 / 日计划 · 长期主义者的时间账本</p>
           </div>
 
           <div class="plan-hero">
             <div class="plan-hero-text">
-              <span class="plan-kicker">Summer Sprint</span>
-              <h3 class="plan-hero-title">Chenji 的阶段冲刺计划</h3>
-              <p class="plan-hero-desc">大二阶段学习记录：编程基础、Python 自动化、网页开发、数据分析和规律生活。</p>
+              <span class="plan-kicker">My Planner</span>
+              <h3 class="plan-hero-title">我的个人计划本</h3>
+              <p class="plan-hero-desc">按年、按月、按天记录自己的计划。没有预设目标，从真实生活开始记录。</p>
             </div>
             <div class="plan-actions">
-              <button type="button" class="btn btn-outline" id="planCopy">📋 复制计划</button>
-              <button type="button" class="btn btn-outline" id="planReset">↺ 恢复模板</button>
-              <button type="button" class="btn btn-primary" id="planSave">💾 本地保存</button>
+              <button type="button" class="btn btn-outline" id="viewYear">📅 年表</button>
+              <button type="button" class="btn btn-outline" id="viewMonth">🗓️ 月表</button>
+              <button type="button" class="btn btn-outline" id="viewDay">📝 日计划</button>
             </div>
           </div>
 
-          <div class="plan-tip">💡 当前为编辑模式。表格内容可直接修改，改动会自动保存到浏览器 localStorage，不会上传到服务器。</div>
+          <div class="plan-tip">💡 当前计划数据保存在你自己的浏览器 localStorage 中，不会上传到服务器。换设备后不会自动同步。</div>
 
-          <div class="plan-cols" id="planCols"><!-- 由 js/main.js 根据 PLAN_CARDS 渲染 --></div>
+          <div class="planner-card">
+            <div class="planner-head">
+              <div class="planner-nav">
+                <button type="button" class="btn btn-outline" id="plannerPrev">←</button>
+                <h3 class="planner-title" id="plannerTitle">2026</h3>
+                <button type="button" class="btn btn-outline" id="plannerNext">→</button>
+                <button type="button" class="btn btn-outline" id="plannerToday">回到今天</button>
+              </div>
+              <div class="planner-actions">
+                <button type="button" class="btn btn-outline" id="planExport">导出 JSON</button>
+                <button type="button" class="btn btn-outline" id="planImport">导入 JSON</button>
+                <input type="file" id="planImportFile" accept="application/json,.json" hidden />
+                <button type="button" class="btn btn-outline danger" id="planClear">清空本地计划</button>
+              </div>
+            </div>
 
-          <div class="plan-table-tools">
-            <h3 class="block-title">🕒 每日时间段安排</h3>
-            <button type="button" class="btn btn-outline" id="planAddRow">＋ 新增时间段</button>
-          </div>
-          <div class="table-wrap">
-            <table class="plan-table">
-              <thead>
-                <tr>
-                  <th>时间段</th>
-                  <th>要做什么</th>
-                  <th>重点 / 说明</th>
-                  <th>类型</th>
-                  <th>操作</th>
-                </tr>
-              </thead>
-              <tbody id="planBody"><!-- 由 js/main.js 根据 PLAN_TEMPLATE / localStorage 渲染 --></tbody>
-            </table>
+            <!-- 年表视图 -->
+            <div class="planner-view" id="yearView"></div>
+
+            <!-- 月表视图 -->
+            <div class="planner-view" id="monthView" style="display:none;"></div>
+
+            <!-- 日计划视图 -->
+            <div class="planner-view" id="dayView" style="display:none;">
+              <div class="day-editor">
+                <h4 class="day-title">📝 日计划 <span class="day-date" id="dayDate"></span></h4>
+                <div class="day-field">
+                  <label class="field-label" for="dayGoal">今日目标</label>
+                  <input class="field-input" id="dayGoal" type="text" placeholder="今天想完成什么" />
+                </div>
+                <div class="day-field">
+                  <label class="field-label" for="dayMorning">上午计划</label>
+                  <textarea class="field-input" id="dayMorning" rows="2" placeholder="上午的安排…"></textarea>
+                </div>
+                <div class="day-field">
+                  <label class="field-label" for="dayAfternoon">下午计划</label>
+                  <textarea class="field-input" id="dayAfternoon" rows="2" placeholder="下午的安排…"></textarea>
+                </div>
+                <div class="day-field">
+                  <label class="field-label" for="dayEvening">晚上计划</label>
+                  <textarea class="field-input" id="dayEvening" rows="2" placeholder="晚上的安排…"></textarea>
+                </div>
+                <div class="day-field">
+                  <label class="field-label" for="dayReview">今日复盘</label>
+                  <textarea class="field-input" id="dayReview" rows="2" placeholder="做完之后的复盘…"></textarea>
+                </div>
+                <div class="day-field">
+                  <label class="field-label" for="dayStatus">完成状态</label>
+                  <select class="select" id="dayStatus">
+                    <option value="未开始">未开始</option>
+                    <option value="进行中">进行中</option>
+                    <option value="已完成">已完成</option>
+                  </select>
+                </div>
+                <div class="day-actions">
+                  <button type="button" class="btn btn-primary" id="daySave">💾 保存当天计划</button>
+                  <button type="button" class="btn btn-outline danger" id="dayDelete">🗑️ 删除当天计划</button>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
-        <!-- ================= 项目页（项目实验室） ================= -->
+        <!-- ================= 项目页 ================= -->
         <section class="page" id="page-projects">
           <div class="page-head">
             <h2 class="page-title">项目</h2>
-            <p class="page-sub">项目实验室 · 已完成 / 进行中 / 计划中 / 长期计划</p>
+            <p class="page-sub">项目实验室 · 只有你真实登记的项目才会出现</p>
           </div>
 
-          <div class="project-groups" id="projectGroups"><!-- 由 js/main.js 根据 PROJECT_GROUPS 渲染 --></div>
+          <div class="project-groups" id="projectGroups">
+            <div class="empty-state" id="projectEmpty">
+              <div class="empty-icon">📦</div>
+              <h3 class="empty-title">还没有项目</h3>
+              <p class="empty-desc">等你完成真实项目后，可以在 js/content.js 中添加。</p>
+              <div class="empty-actions">
+                <a class="btn btn-primary" href="js/content.js" target="_blank" rel="noopener">打开登记说明</a>
+              </div>
+            </div>
+          </div>
         </section>
 
-        <!-- ================= 工具箱页（新增） ================= -->
+        <!-- ================= 工具箱页 ================= -->
         <section class="page" id="page-toolbox">
           <div class="page-head">
             <h2 class="page-title">工具箱</h2>
-            <p class="page-sub">学习工具、命令速查、笔记模板与效率工作流</p>
+            <p class="page-sub">模板、命令与说明 · 全部是真实可用的入口</p>
           </div>
 
           <div class="tool-intro">
-            <p>这里收集我学习过程中用到的工具、模板和方法。卡片内容多为「静态演示 + 说明文案」——把它们当成一份可以随时查阅的速查表。</p>
+            <p>这里只放「真实有用的工具入口」。每一项都指向仓库里真实存在的文件或步骤，
+            不是摆样子的假卡片。</p>
           </div>
 
-          <div class="tool-grid" id="toolGrid"><!-- 由 js/main.js 根据 TOOLS 渲染 --></div>
+          <div class="tool-grid">
+            <a class="tool-card tool-link" href="articles/template.md" target="_blank" rel="noopener">
+              <span class="tool-icon">📝</span>
+              <h3 class="tool-title">文章模板</h3>
+              <p class="tool-desc">写新文章时复制这个模板，填好标题、日期、标签和正文。</p>
+              <ul class="tool-points">
+                <li>articles/template.md</li>
+                <li>复制后填写即可</li>
+              </ul>
+              <span class="tool-tag">真实文件</span>
+            </a>
+
+            <a class="tool-card tool-link" href="articles/README.md" target="_blank" rel="noopener">
+              <span class="tool-icon">📚</span>
+              <h3 class="tool-title">写作说明</h3>
+              <p class="tool-desc">一步步教你：怎么写文章、登记到哪里、怎么推送上线。</p>
+              <ul class="tool-points">
+                <li>articles/README.md</li>
+                <li>写文章前先读它</li>
+              </ul>
+              <span class="tool-tag">真实文件</span>
+            </a>
+
+            <a class="tool-card tool-link" href="js/content.js" target="_blank" rel="noopener">
+              <span class="tool-icon">🗂️</span>
+              <h3 class="tool-title">项目数据模板</h3>
+              <p class="tool-desc">在 js/content.js 的 projects 数组里登记你的真实项目。</p>
+              <ul class="tool-points">
+                <li>格式示例在注释里</li>
+                <li>登记后才显示在项目页</li>
+              </ul>
+              <span class="tool-tag">真实文件</span>
+            </a>
+
+            <a class="tool-card tool-link" href="scripts/check.py" target="_blank" rel="noopener">
+              <span class="tool-icon">🩺</span>
+              <h3 class="tool-title">GitHub Pages 部署检查</h3>
+              <p class="tool-desc">运行仓库里的自检脚本，确认关键文件、HTML 结构和密钥扫描。</p>
+              <ul class="tool-points">
+                <li>python scripts/check.py</li>
+                <li>CI 也会自动跑</li>
+              </ul>
+              <span class="tool-tag">真实脚本</span>
+            </a>
+
+            <a class="tool-card tool-link" href="docs/deployment.md" target="_blank" rel="noopener">
+              <span class="tool-icon">🚀</span>
+              <h3 class="tool-title">部署说明</h3>
+              <p class="tool-desc">GitHub Pages 怎么部署、怎么本地预览、计划数据存在哪里。</p>
+              <ul class="tool-points">
+                <li>docs/deployment.md</li>
+                <li>push 即更新</li>
+              </ul>
+              <span class="tool-tag">真实文档</span>
+            </a>
+
+            <div class="tool-card">
+              <span class="tool-icon">🔮</span>
+              <h3 class="tool-title">未来计划</h3>
+              <p class="tool-desc">以下功能尚未实现，只做记录，不伪装成已完成。</p>
+              <ul class="tool-points">
+                <li>评论区（如 Giscus）</li>
+                <li>真实后端文章系统（FastAPI）</li>
+                <li>可嵌入的小游戏</li>
+              </ul>
+              <span class="tool-tag">计划中</span>
+            </div>
+          </div>
         </section>
 
-        <!-- ================= 游戏页（Card War 在线试玩） ================= -->
+        <!-- ================= 游戏页 ================= -->
         <section class="page" id="page-games">
           <div class="page-head">
             <h2 class="page-title">游戏</h2>
-            <p class="page-sub">Card War 在线试玩</p>
+            <p class="page-sub">小游戏工作台 · 目前是空状态</p>
           </div>
 
-          <div class="game-hero">
-            <div class="game-hero-text">
-              <h3 class="game-hero-title">Card War 在线试玩 <span class="proj-status s-embed">已嵌入 / 计划中</span></h3>
-              <p class="game-hero-desc">当前通过 iframe 或占位区域嵌入小游戏，后续可以补充游戏介绍、排行榜和分数记录。</p>
-            </div>
-            <div class="game-actions">
-              <button type="button" class="btn btn-outline" data-toast="已刷新游戏区域（演示）">↻ 刷新游戏</button>
-              <button type="button" class="btn btn-outline" data-toast="新窗口打开（演示）">⤢ 新窗口打开</button>
-              <button type="button" class="btn btn-primary" data-toast="仓库地址建设中">查看仓库</button>
+          <div class="empty-state game-empty">
+            <div class="empty-icon">🎮</div>
+            <h3 class="empty-title">暂未添加游戏</h3>
+            <p class="empty-desc">以后可以把 HTML 小游戏文件放到 games/ 目录，并在这里嵌入。</p>
+            <div class="empty-actions">
+              <a class="btn btn-outline" href="games/README.md" target="_blank" rel="noopener">查看添加说明</a>
             </div>
           </div>
 
@@ -306,50 +425,63 @@
             <div class="game-placeholder">
               <div class="game-ph-icon">🃏</div>
               <h4>游戏区域预留中</h4>
-              <p>未来可以把自己的 HTML 小游戏嵌入到这里</p>
-              <span class="placeholder-badge">敬请期待</span>
+              <p>把你的 HTML 小游戏放进 games/ 目录后，用 iframe 嵌入到这里</p>
+              <span class="placeholder-badge">计划中 · 尚未添加</span>
             </div>
           </div>
 
-          <div class="game-cards" id="gameCards"><!-- 由 js/main.js 根据 GAME.cards 渲染 --></div>
+          <div class="game-cards">
+            <div class="game-card">
+              <h4>📜 如何添加</h4>
+              <p>在 games/ 目录放一个纯静态游戏文件夹，然后在 index.html 的游戏页用 iframe 引用它。详细步骤见 games/README.md。</p>
+            </div>
+            <div class="game-card">
+              <h4>⚙️ 技术说明</h4>
+              <p>游戏必须是纯 HTML / CSS / JavaScript 静态文件，不能依赖后端或构建工具。排行榜等可以先用 localStorage 做。</p>
+            </div>
+            <div class="game-card">
+              <h4>🗺️ 当前状态</h4>
+              <p>还没有真实游戏，所以这里保持空状态。等做出第一个小游戏再嵌入，不假装已有游戏。</p>
+            </div>
+          </div>
         </section>
 
         <!-- ================= 关于页 ================= -->
         <section class="page" id="page-about">
           <div class="page-head">
             <h2 class="page-title">关于</h2>
-            <p class="page-sub">非计算机专业学生的自学记录</p>
+            <p class="page-sub">非计算机专业学生的真实自学记录</p>
           </div>
 
           <div class="about-grid">
             <div class="about-card">
               <h4>👋 个人简介</h4>
-              <p id="aboutIntro"><!-- 由 js/main.js 渲染 --></p>
+              <p id="aboutIntro"></p>
             </div>
             <div class="about-card">
               <h4>🎯 当前关注方向</h4>
-              <div class="focus-list" id="focusList"><!-- 由 js/main.js 渲染 --></div>
+              <div class="focus-list" id="focusList"></div>
             </div>
           </div>
 
           <div class="about-card">
-            <h4>📊 技能进度</h4>
-            <div class="skill-list" id="skillList"><!-- 由 js/main.js 渲染 --></div>
+            <h4>📊 技能进度 <span class="about-note">（自我评估，入门中）</span></h4>
+            <div class="skill-list" id="skillList"></div>
           </div>
 
           <div class="about-card">
             <h4>🕰️ 成长时间线</h4>
-            <div class="timeline" id="aboutTimeline"><!-- 由 js/main.js 渲染 --></div>
+            <div class="timeline" id="aboutTimeline"></div>
           </div>
 
           <div class="about-card">
             <h4>🧭 学习原则</h4>
-            <div class="principle-grid" id="principleGrid"><!-- 由 js/main.js 渲染 --></div>
+            <div class="principle-grid" id="principleGrid"></div>
           </div>
 
           <div class="about-card">
             <h4>📮 联系方式</h4>
-            <div class="contact-links" id="contactList"><!-- 由 js/main.js 渲染 --></div>
+            <div class="contact-links" id="contactList"></div>
           </div>
         </section>
 
@@ -357,30 +489,30 @@
         <section class="page" id="page-login">
           <div class="page-head">
             <h2 class="page-title">登录</h2>
-            <p class="page-sub">后台入口 · 静态演示</p>
+            <p class="page-sub">后台入口 · 纯静态演示</p>
           </div>
 
           <div class="login-wrap">
             <div class="login-card">
               <div class="login-logo">🔐</div>
               <h3 class="login-title">账号登录</h3>
-              <p class="login-tip">当前为静态演示页面，不会上传任何账号密码。请不要输入真实密码。</p>
+              <p class="login-tip">这是静态演示页面，不会连接服务器，也不会保存或上传账号密码。请不要输入真实密码。</p>
 
               <button type="button" class="login-gh-btn" data-toast="这是静态演示，暂未接入真实登录系统。">
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
                 使用 GitHub 登录
               </button>
-              <div class="login-note">演示按钮，暂未接入 OAuth</div>
+              <div class="login-note">演示按钮，暂未接入 OAuth，不会发起任何请求</div>
 
               <div class="login-divider"><span>或</span></div>
 
               <details class="login-collapse">
-                <summary>站长邮箱登录</summary>
+                <summary>站长邮箱登录（演示）</summary>
                 <div class="login-form">
                   <label class="field-label" for="loginEmail">邮箱</label>
                   <input class="field-input" id="loginEmail" type="email" placeholder="you@example.com" autocomplete="off" />
                   <label class="field-label" for="loginPwd">密码</label>
-                  <input class="field-input" id="loginPwd" type="password" placeholder="请输入密码" autocomplete="off" />
+                  <input class="field-input" id="loginPwd" type="password" placeholder="请不要输入真实密码" autocomplete="off" />
                   <button type="button" class="btn btn-primary login-submit" data-toast="这是静态演示，暂未接入真实登录系统。">登 录</button>
                 </div>
               </details>
@@ -391,17 +523,25 @@
       </div><!-- /.pages -->
 
       <footer class="footer">
-        <p>© <span id="year">2026</span> Chenji (chenji0421) · Chenji Learning Hub · 用 ❤ 和咖啡长期维护</p>
+        <p>© <span id="year">2026</span> Chenji (chenji0421) · Chenji Learning Hub · 真实内容，长期维护</p>
       </footer>
 
     </main>
   </div><!-- /.app -->
 
+  <!-- 文章阅读模态框 -->
+  <div class="modal-mask" id="articleModal" aria-hidden="true">
+    <div class="modal-box" role="dialog" aria-modal="true" aria-label="文章阅读">
+      <button class="modal-close" id="modalClose" aria-label="关闭">✕</button>
+      <article class="md-content" id="modalBody"></article>
+    </div>
+  </div>
+
   <button class="back-top" id="backTop" aria-label="回到顶部" title="回到顶部">↑</button>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  <script src="js/data.js"></script>
+  <script src="js/content.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

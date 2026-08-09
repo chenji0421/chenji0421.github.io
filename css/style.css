@@ -1347,3 +1347,239 @@ body.side-collapsed .side-collapse { justify-content: center; }
   .principle-grid { grid-template-columns: 1fr 1fr; }
   .home-actions .btn { flex: 1; justify-content: center; }
 }
+
+/* ============================================================
+   v0.5.0 新增：真实空框架样式
+   空状态 / 计划年-月-日 / Markdown 阅读 / 模态框 / 工具卡链接
+   ============================================================ */
+
+/* ---------- 空状态 ---------- */
+.empty-state {
+  text-align: center;
+  padding: 56px 24px;
+  background: var(--card-bg);
+  border: 1.5px dashed var(--card-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  margin: 18px 0;
+}
+.empty-icon { font-size: 52px; line-height: 1; }
+.empty-title { font-size: 20px; font-weight: 800; color: var(--text-main); margin-top: 14px; }
+.empty-desc {
+  font-size: 14px;
+  color: var(--text-sub);
+  margin-top: 8px;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.empty-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 22px;
+  flex-wrap: wrap;
+}
+.game-empty { margin-bottom: 18px; }
+
+.home-empty-note { font-size: 13.5px; color: var(--text-faint); padding: 8px 4px; }
+
+/* ---------- 计划页：三视图容器 ---------- */
+.planner-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  box-shadow: var(--shadow);
+}
+.planner-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--card-border);
+  margin-bottom: 18px;
+}
+.planner-nav { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.planner-title { font-size: 20px; font-weight: 800; min-width: 140px; text-align: center; color: var(--text-main); }
+.planner-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.btn.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+.btn.danger { color: #ef4444; }
+.btn.danger:hover { border-color: #ef4444; color: #ef4444; }
+
+/* ---------- 年表视图 ---------- */
+.year-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.month-card {
+  text-align: left;
+  background: var(--main-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  cursor: pointer;
+  transition: all .2s ease;
+}
+.month-card:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: var(--shadow); }
+.month-name { font-size: 16px; font-weight: 800; color: var(--text-main); }
+.month-stats { display: flex; gap: 10px; margin-top: 8px; flex-wrap: wrap; }
+.mstat { font-size: 12px; padding: 3px 10px; border-radius: 999px; font-weight: 600; }
+.mstat.goal { background: var(--accent-soft); color: var(--accent); }
+.mstat.done { background: rgba(16, 185, 129, .12); color: #059669; }
+
+/* ---------- 月表视图 ---------- */
+.calendar { display: flex; flex-direction: column; gap: 6px; }
+.cal-week { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
+.cal-cell {
+  border: 1px solid var(--card-border);
+  background: var(--main-bg);
+  border-radius: 10px;
+  min-height: 64px;
+  padding: 6px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  position: relative;
+  transition: all .15s ease;
+}
+.cal-cell:hover { border-color: var(--accent); transform: translateY(-1px); }
+.cal-cell.empty { background: transparent; border-color: transparent; cursor: default; }
+.cal-cell.empty:hover { transform: none; }
+.cal-cell.today { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-soft); }
+.cal-cell.has-plan { background: rgba(47, 125, 109, .06); }
+.cal-cell.done { background: rgba(16, 185, 129, .1); }
+.cal-head-cell {
+  background: transparent;
+  border: none;
+  min-height: auto;
+  text-align: center;
+  font-weight: 700;
+  color: var(--text-sub);
+  font-size: 12px;
+  padding: 6px 0;
+}
+.cal-day { font-weight: 700; font-size: 13px; color: var(--text-main); }
+.cal-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+.cal-cell.done .cal-dot { background: #059669; }
+.cal-title {
+  font-size: 11px;
+  color: var(--text-sub);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+/* ---------- 日计划视图 ---------- */
+.day-editor { display: flex; flex-direction: column; gap: 14px; max-width: 620px; }
+.day-title { font-size: 17px; font-weight: 800; color: var(--text-main); }
+.day-date { color: var(--accent); font-size: 15px; font-weight: 600; }
+.day-field { display: flex; flex-direction: column; gap: 6px; }
+.day-field textarea { resize: vertical; font-family: inherit; }
+.day-actions { display: flex; gap: 10px; margin-top: 6px; flex-wrap: wrap; }
+
+/* ---------- 关于页补充 ---------- */
+.proj-count { font-size: 12px; color: var(--text-sub); font-weight: 500; }
+.about-note { font-size: 12.5px; color: var(--text-faint); font-weight: 500; }
+
+/* ---------- 工具箱链接卡片 ---------- */
+.tool-link { display: block; }
+
+/* ---------- 文章阅读模态框 ---------- */
+.modal-mask {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 15, 26, .6);
+  backdrop-filter: blur(3px);
+  z-index: 200;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.modal-mask.show { display: flex; }
+body.modal-open { overflow: hidden; }
+
+.modal-box {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  max-width: 780px;
+  width: 100%;
+  max-height: 88vh;
+  overflow-y: auto;
+  padding: 34px 38px 30px;
+  position: relative;
+  box-shadow: var(--shadow-lg);
+}
+.modal-close {
+  position: absolute;
+  top: 14px; right: 14px;
+  width: 34px; height: 34px;
+  border-radius: 10px;
+  border: 1px solid var(--card-border);
+  background: var(--main-bg);
+  color: var(--text-sub);
+  font-size: 14px;
+  transition: all .18s ease;
+}
+.modal-close:hover { background: #ef4444; color: #fff; border-color: #ef4444; }
+
+/* ---------- Markdown 渲染 ---------- */
+.md-content { line-height: 1.8; color: var(--text-main); word-break: break-word; }
+.md-content h1 { font-size: 26px; font-weight: 800; margin: 4px 0 16px; }
+.md-content h2 { font-size: 20px; font-weight: 800; margin: 28px 0 10px; padding-bottom: 8px; border-bottom: 1px solid var(--card-border); }
+.md-content h3 { font-size: 17px; font-weight: 700; margin: 22px 0 8px; }
+.md-content p { margin: 10px 0; font-size: 14.5px; color: var(--text-sub); }
+.md-content ul, .md-content ol { margin: 10px 0 10px 24px; }
+.md-content li { font-size: 14.5px; color: var(--text-sub); margin: 4px 0; list-style: disc; }
+.md-content ol li { list-style: decimal; }
+.md-content a { color: var(--accent); text-decoration: underline; }
+.md-content strong { color: var(--text-main); }
+.md-content code {
+  font-family: "SF Mono", "Cascadia Code", Consolas, monospace;
+  font-size: .9em;
+  background: rgba(127, 127, 127, .12);
+  padding: 1px 6px;
+  border-radius: 6px;
+}
+.md-content pre {
+  background: #0d1626;
+  color: #dbe5f2;
+  border-radius: 12px;
+  padding: 14px 16px;
+  overflow-x: auto;
+  font-size: 13px;
+  margin: 14px 0;
+  line-height: 1.6;
+}
+.md-content pre code { background: transparent; padding: 0; color: inherit; }
+.md-content blockquote {
+  border-left: 3px solid var(--accent);
+  background: var(--accent-soft);
+  border-radius: 0 10px 10px 0;
+  padding: 10px 16px;
+  margin: 12px 0;
+  color: var(--text-sub);
+}
+.md-loading { color: var(--text-sub); padding: 24px 0; text-align: center; }
+.md-error { text-align: center; padding: 40px 10px; color: var(--text-sub); }
+.md-error-icon { font-size: 46px; margin-bottom: 12px; }
+.md-error code { display: inline-block; margin-top: 14px; padding: 6px 12px; background: var(--main-bg); border-radius: 8px; font-size: 12.5px; }
+
+/* ---------- 响应式补充 ---------- */
+@media (max-width: 992px) {
+  .year-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 640px) {
+  .year-grid { grid-template-columns: repeat(2, 1fr); }
+  .cal-cell { min-height: 52px; padding: 4px; }
+  .cal-title { display: none; }
+  .modal-box { padding: 26px 20px 22px; }
+  .empty-state { padding: 40px 18px; }
+}

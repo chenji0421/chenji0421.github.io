@@ -1,18 +1,19 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-chenji0421.github.io · 项目自检脚本（Chenji Learning Hub 版）
+chenji0421.github.io · 项目自检脚本（真实空框架版）
 
 用法：
     python scripts/check.py
 
 检查项：
-  1. 关键文件是否存在（index.html / css / js / docs / README …）
+  1. 关键文件是否存在（index.html / css / js / articles / games / docs / README …）
   2. Python 文件能否通过语法检查（用 ast 解析，不执行代码）
   3. 根目录 index.html 标签是否配对闭合、锚点与本地资源是否有效
-  4. 页面与数据完整性（8 个 hash 路由页面、js/data.js 关键数据）
-  5. 是否残留 example.com 等占位文本（提醒用，不阻断）
-  6. 是否误提交疑似密钥 / token（阻断）
+  4. 页面路由完整性（8 个 hash 路由页面）
+  5. js/content.js 是否为「空框架」结构（siteContent.articles / projects 存在）
+  6. 是否残留 example.com 等占位文本（提醒用，不阻断）
+  7. 是否误提交疑似密钥 / token（阻断）
 
 退出码：有错误返回 1，仅警告返回 0。
 """
@@ -33,13 +34,15 @@ KEY_FILES = [
     "LICENSE",
     ".gitignore",
     "css/style.css",
-    "js/data.js",
+    "js/content.js",
     "js/main.js",
+    "articles/README.md",
+    "articles/template.md",
+    "games/README.md",
     "assets/avatar.svg",
     "assets/favicon.svg",
     "docs/README.md",
     "docs/roadmap.md",
-    "docs/learning-notes.md",
     "docs/deployment.md",
     "scripts/check.py",
 ]
@@ -63,13 +66,13 @@ SECRET_RE = re.compile(
 # ---------- 页面路由完整性 ----------
 HASH_PAGES = ["home", "articles", "plans", "projects", "toolbox", "games", "about", "login"]
 
-# ---------- js/data.js 关键数据 ----------
-DATA_CHECKS = {
-    "12 篇文章": r"title: '我为什么开始搭建个人网站'",
-    "第 12 篇文章": r"title: '下一步学习 FastAPI 的计划'",
-    "10 个项目": r"name: 'FastAPI 博客系统学习版'",
-    "工具箱": r"var TOOLS",
-    "学习原则": r"var LEARNING_PRINCIPLES",
+# ---------- js/content.js 空框架结构检查 ----------
+CONTENT_CHECKS = {
+    "siteContent 定义": r"var siteContent\s*=",
+    "articles 数组": r"articles\s*:\s*\[\s*\]",
+    "projects 数组": r"projects\s*:\s*\[\s*\]",
+    "文章登记示例注释": r"文章登记示例",
+    "项目登记示例注释": r"项目登记示例",
 }
 
 
@@ -121,11 +124,11 @@ def check_html(path: Path) -> None:
             errors.append(f"[{path}] 引用的本地资源不存在：{ref}")
 
 
-def check_data(path: Path) -> None:
+def check_content(path: Path) -> None:
     text = path.read_text(encoding="utf-8")
-    for label, pattern in DATA_CHECKS.items():
+    for label, pattern in CONTENT_CHECKS.items():
         if not re.search(pattern, text):
-            errors.append(f"[{path}] 缺少数据：{label}")
+            errors.append(f"[{path}] 缺少内容框架：{label}")
 
 
 def scan_secrets(root: Path) -> None:
@@ -153,7 +156,7 @@ def check_placeholders(path: Path) -> None:
 
 
 def main() -> int:
-    print("🔍 自检 chenji0421.github.io（Chenji Learning Hub）...\n")
+    print("🔍 自检 chenji0421.github.io（真实空框架版）...\n")
 
     # 1. 关键文件
     print("   📁 检查关键文件 ...")
@@ -177,11 +180,11 @@ def main() -> int:
     if root_html.exists():
         check_html(root_html)
 
-    # 4. 数据完整性
-    print("   🗂️  检查 js/data.js 关键数据 ...")
-    data_js = ROOT / "js" / "data.js"
-    if data_js.exists():
-        check_data(data_js)
+    # 4. content.js 空框架结构
+    print("   🗂️  检查 js/content.js 空框架 ...")
+    content_js = ROOT / "js" / "content.js"
+    if content_js.exists():
+        check_content(content_js)
 
     # 5. 占位提醒（只看根目录主页）
     if root_html.exists():

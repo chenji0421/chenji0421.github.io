@@ -19,15 +19,23 @@
 
 ## 3. 数据存在哪里？
 
-- 本站没有数据库，所有内容（文章 / 项目 / 计划 / 技能…）都写在 `js/data.js` 里。
-- 浏览器加载页面时，`js/main.js` 读取这些数据，渲染成页面上的卡片。
-- 想加一篇文章？在 `POSTS` 数组里照葫芦画瓢加一个对象就行。
+- 本站没有数据库。文章 / 项目是**你自己登记的**：写在 `articles/` 目录、登记在 `js/content.js` 里。
+- `js/content.js` 是一个空框架：
+
+  ```js
+  var siteContent = { articles: [], projects: [] };
+  ```
+
+  你往 `articles` / `projects` 数组里加对象，文章和项目就会出现在网站上。
+  默认是空的 —— **这里不会自动生成假内容**。
+
 - 想记录用户的编辑？用浏览器自带的 `localStorage`（本地存储）：
   ```js
   localStorage.setItem('hub_theme', 'dark');   // 存
   localStorage.getItem('hub_theme');            // 读
   ```
 - `localStorage` 存在**你自己的浏览器**里，换台电脑就没了，也不会传给服务器。
+  计划页的数据就存在这里（键名 `chenji_planner_data`）。
 
 ## 4. hash 路由是什么？
 
@@ -35,13 +43,22 @@
 - 浏览器监听 `hashchange` 事件，页面根据 hash 切换显示哪个 `<section>`。
 - 好处：不需要服务器配合（不需要 nginx 配置 / history API），刷新后还在原页面。
 
-## 5. 怎么看懂报错
+## 5. Markdown 怎么变成网页的？
+
+- 文章正文是 `.md` 文件（纯文本），浏览器不能直接渲染成好看的样子。
+- `js/main.js` 里有一个**极简 Markdown 渲染器**：
+  - `fetch` 读取 `articles/xxx.md` 的文本
+  - 把 `#` 标题、`-` 列表、`**加粗**`、``` 代码块 ``` 等语法转成 HTML
+  - 显示在阅读模态框里
+- 不引入外部库，所以只支持常用的几种语法（详见 `articles/README.md`）。
+
+## 6. 怎么看懂报错
 
 - **前端报错**：打开浏览器 F12 → Console，红色的就是错误，点开看第几行。
 - **网站白屏 / 像没加载 CSS**：先看 Console 有没有 JS 报错，再看 Network 里 `css/style.css` 是不是 404。
 - **GitHub 报错**：仓库 Actions 页面点进失败的 job，红色的 step 就是出事的地方。
 
-## 6. 关于密码 / Token 的安全习惯
+## 7. 关于密码 / Token 的安全习惯
 
 - 代码里不能写密码、Token —— 一旦推到 GitHub 就全世界都能看到。
 - 本站没有后端，所以根本没有密钥。将来写 Python 后端时：
@@ -50,19 +67,22 @@
   - `.env.example` 只写变量名不写真值，可以放心提交
 - 登录页是**纯演示**，不会上传任何账号密码。
 
-## 7. 一个「今天就能试」的小实验
+## 8. 一个「今天就能试」的小实验
 
 ```bash
 # 1. 本地起一个静态服务器
 python -m http.server 8000
 # 2. 浏览器打开 http://localhost:8000
-# 3. 打开 js/data.js，给 POSTS 数组加一篇文章，刷新页面
+# 3. 复制 articles/template.md 为 articles/hello.md，填一点内容
+# 4. 在 js/content.js 的 siteContent.articles 里加一个对象，file 指向 articles/hello.md
+# 5. 刷新页面，打开「文章」页，点一下你的文章
 ```
 
-看到新文章出现在文章中心，你就理解了「数据驱动页面」—— 改数据，页面自动变。
+看到文章卡片出现、点击能打开 Markdown 渲染的正文，你就理解了
+「数据驱动页面」—— 改数据，页面自动变。
 
-## 8. 之前全栈阶段留下什么可以继续学？
+## 9. 之前全栈阶段留下什么可以继续学？
 
 - 仓库的 git 历史里曾有过 `backend/`（FastAPI）和 `frontend/`（React + Vite）示例，
   现在已移出主结构，但相关概念仍在学习路线上（见 `docs/roadmap.md`）。
-- 想复习 FastAPI：搜 git 历史 `git log --all -- backend`，或直接看学习路线第 3 步。
+- 想复习 FastAPI：搜 git 历史 `git log --all -- backend`，或直接看学习路线第 4 步。
